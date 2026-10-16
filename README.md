@@ -1,3 +1,4 @@
+_This public repository is a cleaned snapshot; development history is private_
 # Density: region-aware step allocation for video diffusion
 
 **Can a video diffusion model spend more of its compute where people look (faces, and hands on the objects they hold) and
