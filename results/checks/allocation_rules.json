@@ -1,0 +1,2048 @@
+{
+  "milestone": "Allocation rules: need score, C3-C6 ranking, token mapping, diagnostics",
+  "passed": true,
+  "all_judged_passed": true,
+  "real_model_ran": true,
+  "num_judged": 81,
+  "num_failed": 0,
+  "environment": {
+    "git_sha": "ac677363bf3a475554470b9b1312a35e5d60a585",
+    "git_dirty": false,
+    "python": "3.10.19",
+    "platform": "macOS-26.3.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "torch": "2.14.1",
+    "diffusers": "0.40.0",
+    "numpy": "2.2.6",
+    "mps_available": true
+  },
+  "registered": {
+    "need_floor": 1e-08,
+    "roi_threshold": 0.1,
+    "lambda_grid": [
+      1.0,
+      3.0,
+      10.0
+    ],
+    "need_window_K": {
+      "HSA-50": 5,
+      "HSA-75B": 10,
+      "switch-20": 9,
+      "switch-30": 12
+    },
+    "need_window_definition": "K = number of leading iterations in which every token runs; labels assigned after iteration K - 1",
+    "tie_rules": {
+      "C3": "g descending, then token ID ascending",
+      "C4": "(1 + lambda m) g descending (float64, exact), then token ID ascending",
+      "C5": "m descending, then position in torch.randperm(N) seeded by the prompt ID",
+      "C6": "b descending, then g descending, then token ID ascending"
+    },
+    "small_resolution_groups": "registered high-group share, rounded (31 of 192 tiny tokens, 312 of 1,950 real tokens)"
+  },
+  "device_scope": "The need score and every model test run on CPU and MPS. Ranking (numpy lexsort in float64), token mapping and the diagnostics run on CPU by design, so their results do not depend on the device.",
+  "t12_note": "The literal T12 statement, that masked tokens can only rise in rank relative to C3, is false when coverage is fractional: a masked token can be overtaken by a more-covered masked token. The judged invariants are the ones that hold for any coverage: equal group sizes, unmasked tokens keep their relative order and can only fall, no masked token falls behind an unmasked token it led, and the ROI's full-step count can only rise. The literal statement is judged for uniform coverage, where it holds.",
+  "conditions": {
+    "C1": {
+      "steps": 40,
+      "hsa": false,
+      "rule": null,
+      "mask": null,
+      "purpose": "Dense Euler, 40 steps: full-compute reference"
+    },
+    "C2": {
+      "steps": 20,
+      "hsa": false,
+      "rule": null,
+      "mask": null,
+      "purpose": "Dense Euler, 20 steps: naive 50 percent baseline"
+    },
+    "C3": {
+      "steps": 40,
+      "hsa": true,
+      "rule": "need",
+      "mask": null,
+      "purpose": "Rank by need: need-only HSA baseline"
+    },
+    "C4": {
+      "steps": 40,
+      "hsa": true,
+      "rule": "importance_need",
+      "mask": "roi",
+      "purpose": "Rank by importance times need: primary Density test"
+    },
+    "C5": {
+      "steps": 40,
+      "hsa": true,
+      "rule": "coverage",
+      "mask": "roi",
+      "purpose": "Rank by fractional coverage: importance without need"
+    },
+    "C6": {
+      "steps": 40,
+      "hsa": true,
+      "rule": "binary_then_need",
+      "mask": "roi",
+      "purpose": "Binary ROI first, then need"
+    },
+    "A1": {
+      "steps": 40,
+      "hsa": true,
+      "rule": "importance_need",
+      "mask": "hands_contact",
+      "purpose": "C4 with hands and contact only"
+    }
+  },
+  "real_model": {
+    "verification": {
+      "inputs_file_sha256": "7bef2cd062b2197e35a33afe6b91503341b6d44212af39e59d8ff4fb89694b98",
+      "inputs_file_matches_record": true,
+      "input_tensors_match_record": true,
+      "weights_sha256": {
+        "transformer/diffusion_pytorch_model-00001-of-00002.safetensors": "6d011927dbd2cc8afe53d57abab04a8fd86f615d83324770d985fb058ece3a24",
+        "transformer/diffusion_pytorch_model-00002-of-00002.safetensors": "b92ec2309b1f239af6f746431815a881afcc938abb26a4f08d9a2fd6c892f872",
+        "vae/diffusion_pytorch_model.safetensors": "d6e524b3fffede1787a74e81b30976dce5400c4439ba64222168e607ed19e793"
+      },
+      "weights_match_record": true
+    },
+    "artifacts_sha256": {
+      "allocation_demo/mask_overlay.png": "9d9ebc657e806401e89af9b65fceec3749b0827a4cdfd19ea83de4aab6cc57aa"
+    }
+  },
+  "sphere_demo": {
+    "circle": {
+      "x": 213,
+      "y": 126,
+      "radius": 74
+    },
+    "roi_tokens": 615,
+    "full_step_slots": 312,
+    "num_tokens": 1950,
+    "c4_full_step_roi_share_saturated": true,
+    "inside_definition": "latent elements of tokens with b = 1[m >= 0.1], via unpatchify",
+    "c4_full_step_roi_share_rises_with_lambda": null,
+    "conditions": {
+      "C3": {
+        "precision": 0.04807692307692308,
+        "recall": 0.024390243902439025,
+        "normalized_recall": 0.04807692307692308,
+        "lift": 0.15243902439024393,
+        "a_roi": 0.0,
+        "s_roi": 0.26364764267990076,
+        "changed_tokens": 0,
+        "no_op": true,
+        "mean_coverage_full_step": 0.03384164720773697,
+        "latent_mse_inside": 0.003488088259473443,
+        "latent_mse_outside": 0.0008144903695210814
+      },
+      "C4 lambda 1": {
+        "precision": 1.0,
+        "recall": 0.5073170731707317,
+        "normalized_recall": 1.0,
+        "lift": 3.1707317073170733,
+        "a_roi": 0.4991869918699187,
+        "s_roi": 0.4478908188585608,
+        "changed_tokens": 604,
+        "no_op": false,
+        "mean_coverage_full_step": 0.9778520464897156,
+        "latent_mse_inside": 0.0026112834457308054,
+        "latent_mse_outside": 0.0007976219640113413
+      },
+      "C4 lambda 3": {
+        "precision": 1.0,
+        "recall": 0.5073170731707317,
+        "normalized_recall": 1.0,
+        "lift": 3.1707317073170733,
+        "a_roi": 0.5056910569105691,
+        "s_roi": 0.4478908188585608,
+        "changed_tokens": 608,
+        "no_op": false,
+        "mean_coverage_full_step": 0.9928886294364929,
+        "latent_mse_inside": 0.002500400645658374,
+        "latent_mse_outside": 0.000786645570769906
+      },
+      "C4 lambda 10": {
+        "precision": 1.0,
+        "recall": 0.5073170731707317,
+        "normalized_recall": 1.0,
+        "lift": 3.1707317073170733,
+        "a_roi": 0.5056910569105691,
+        "s_roi": 0.4478908188585608,
+        "changed_tokens": 608,
+        "no_op": false,
+        "mean_coverage_full_step": 0.9949168562889099,
+        "latent_mse_inside": 0.0023182006552815437,
+        "latent_mse_outside": 0.0007568497094325721
+      },
+      "C5": {
+        "precision": 1.0,
+        "recall": 0.5073170731707317,
+        "normalized_recall": 1.0,
+        "lift": 3.1707317073170733,
+        "a_roi": 0.5154471544715448,
+        "s_roi": 0.4478908188585608,
+        "changed_tokens": 614,
+        "no_op": false,
+        "mean_coverage_full_step": 1.0,
+        "latent_mse_inside": 0.002568025141954422,
+        "latent_mse_outside": 0.0007721908041276038
+      },
+      "C6": {
+        "precision": 1.0,
+        "recall": 0.5073170731707317,
+        "normalized_recall": 1.0,
+        "lift": 3.1707317073170733,
+        "a_roi": 0.48292682926829267,
+        "s_roi": 0.4478908188585608,
+        "changed_tokens": 594,
+        "no_op": false,
+        "mean_coverage_full_step": 0.8123121857643127,
+        "latent_mse_inside": 0.0039444840513169765,
+        "latent_mse_outside": 0.0006333794444799423
+      }
+    },
+    "records": {
+      "C3": {
+        "condition": "C3",
+        "prompt_id": 0,
+        "seed": null,
+        "preset": "HSA-50",
+        "lambda": null,
+        "steps": 40,
+        "token_step_fraction": 0.496,
+        "input_sha256": {
+          "latents": "ec071f907bc93572ca1d7a6b723a1ffafd31f629e8e89905dbefa4b8d4dc02c0",
+          "prompt_embeds": "39489c3e8663b05c0d4292a60bcc4e7904f866665824bae951781051fdaf73e3",
+          "negative_prompt_embeds": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74",
+          "coverage_roi": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "coverage_hands_contact": "b271f8fd43f8bf3098da252119bd75a801e65f3c742b9c6d44c7ea9d8c7f5865"
+        },
+        "allocation_sha256": {
+          "g": "a6aebd00bd323fe416510a31ed170b95aed4a3f6c01f4538f8aa0e48581d7d48",
+          "order": "ec260f19650e8a68bb846c15d95b1ccca9083c008747c5dec1a0efe51a51e308",
+          "labels": "8c1ac1511c068c7668d77bca2fc042007220a76acb662aaaf5f18f358c4689f6",
+          "labels_c3": "8c1ac1511c068c7668d77bca2fc042007220a76acb662aaaf5f18f358c4689f6"
+        },
+        "diagnostics": {
+          "roi": {
+            "tokens": 1950,
+            "roi_tokens": 615,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 15,
+            "precision": 0.04807692307692308,
+            "recall": 0.024390243902439025,
+            "normalized_recall": 0.04807692307692308,
+            "lift": 0.15243902439024393,
+            "roi_evaluations": 10200,
+            "evaluations": 38688,
+            "s_roi": 0.26364764267990076,
+            "changed_tokens": 0,
+            "changed_roi_tokens": 0,
+            "a_roi": 0.0,
+            "no_op": true
+          },
+          "hands_contact": {
+            "tokens": 1950,
+            "roi_tokens": 410,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 8,
+            "precision": 0.02564102564102564,
+            "recall": 0.01951219512195122,
+            "normalized_recall": 0.02564102564102564,
+            "lift": 0.12195121951219512,
+            "roi_evaluations": 6752,
+            "evaluations": 38688,
+            "s_roi": 0.17452440033085195,
+            "changed_tokens": 0,
+            "changed_roi_tokens": 0,
+            "a_roi": 0.0,
+            "no_op": true
+          }
+        },
+        "group_tokens": [
+          312,
+          1638
+        ],
+        "active_iterations": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            37,
+            38,
+            39
+          ]
+        ],
+        "active_counts": [
+          1950,
+          1950,
+          1950,
+          1950,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          1950,
+          1950,
+          1950
+        ]
+      },
+      "C4 lambda 3": {
+        "condition": "C4",
+        "prompt_id": 0,
+        "seed": null,
+        "preset": "HSA-50",
+        "lambda": 3.0,
+        "steps": 40,
+        "token_step_fraction": 0.496,
+        "input_sha256": {
+          "latents": "ec071f907bc93572ca1d7a6b723a1ffafd31f629e8e89905dbefa4b8d4dc02c0",
+          "prompt_embeds": "39489c3e8663b05c0d4292a60bcc4e7904f866665824bae951781051fdaf73e3",
+          "negative_prompt_embeds": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74",
+          "coverage_roi": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "coverage_hands_contact": "b271f8fd43f8bf3098da252119bd75a801e65f3c742b9c6d44c7ea9d8c7f5865"
+        },
+        "allocation_sha256": {
+          "g": "a6aebd00bd323fe416510a31ed170b95aed4a3f6c01f4538f8aa0e48581d7d48",
+          "m": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "w": "5b531c745a84779b55edd75058c90dcf06d7885ee088a5dd64b16d95d8ba2749",
+          "order": "74c34ba06eb37f0b8eedbb5ffb68ba55a73f1deab0e887ff80525e7cd6006505",
+          "labels": "aaa31f1c20d13fc2d13c7c74b4d8898e33674605f302699510f066aa3d701d21",
+          "labels_c3": "8c1ac1511c068c7668d77bca2fc042007220a76acb662aaaf5f18f358c4689f6"
+        },
+        "diagnostics": {
+          "roi": {
+            "tokens": 1950,
+            "roi_tokens": 615,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 312,
+            "precision": 1.0,
+            "recall": 0.5073170731707317,
+            "normalized_recall": 1.0,
+            "lift": 3.1707317073170733,
+            "roi_evaluations": 17328,
+            "evaluations": 38688,
+            "s_roi": 0.4478908188585608,
+            "changed_tokens": 608,
+            "changed_roi_tokens": 311,
+            "a_roi": 0.5056910569105691,
+            "no_op": false
+          },
+          "hands_contact": {
+            "tokens": 1950,
+            "roi_tokens": 410,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 219,
+            "precision": 0.7019230769230769,
+            "recall": 0.5341463414634147,
+            "normalized_recall": 0.701923076923077,
+            "lift": 3.338414634146341,
+            "roi_evaluations": 11816,
+            "evaluations": 38688,
+            "s_roi": 0.3054177005789909,
+            "changed_tokens": 608,
+            "changed_roi_tokens": 217,
+            "a_roi": 0.5292682926829269,
+            "no_op": false
+          }
+        },
+        "group_tokens": [
+          312,
+          1638
+        ],
+        "active_iterations": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            37,
+            38,
+            39
+          ]
+        ],
+        "active_counts": [
+          1950,
+          1950,
+          1950,
+          1950,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          1950,
+          1950,
+          1950
+        ]
+      },
+      "C5": {
+        "condition": "C5",
+        "prompt_id": 0,
+        "seed": null,
+        "preset": "HSA-50",
+        "lambda": null,
+        "steps": 40,
+        "token_step_fraction": 0.496,
+        "input_sha256": {
+          "latents": "ec071f907bc93572ca1d7a6b723a1ffafd31f629e8e89905dbefa4b8d4dc02c0",
+          "prompt_embeds": "39489c3e8663b05c0d4292a60bcc4e7904f866665824bae951781051fdaf73e3",
+          "negative_prompt_embeds": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74",
+          "coverage_roi": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "coverage_hands_contact": "b271f8fd43f8bf3098da252119bd75a801e65f3c742b9c6d44c7ea9d8c7f5865"
+        },
+        "allocation_sha256": {
+          "g": "a6aebd00bd323fe416510a31ed170b95aed4a3f6c01f4538f8aa0e48581d7d48",
+          "m": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "order": "cc703ea8c901ecd954d1abcadb80ad010653a77b5dac7a4d240e25836dd4d78e",
+          "labels": "b9e6e039c9a3fb85562aa091fffc2d4b7753b1b9d6e1e68974708bebefbb4b92",
+          "labels_c3": "8c1ac1511c068c7668d77bca2fc042007220a76acb662aaaf5f18f358c4689f6",
+          "tie_permutation": "fe4d6a9cb9a09bb02c285471a432dd559b44d79f6663e73e21a2f6ae9b918e35"
+        },
+        "diagnostics": {
+          "roi": {
+            "tokens": 1950,
+            "roi_tokens": 615,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 312,
+            "precision": 1.0,
+            "recall": 0.5073170731707317,
+            "normalized_recall": 1.0,
+            "lift": 3.1707317073170733,
+            "roi_evaluations": 17328,
+            "evaluations": 38688,
+            "s_roi": 0.4478908188585608,
+            "changed_tokens": 614,
+            "changed_roi_tokens": 317,
+            "a_roi": 0.5154471544715448,
+            "no_op": false
+          },
+          "hands_contact": {
+            "tokens": 1950,
+            "roi_tokens": 410,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 223,
+            "precision": 0.7147435897435898,
+            "recall": 0.5439024390243903,
+            "normalized_recall": 0.7147435897435898,
+            "lift": 3.399390243902439,
+            "roi_evaluations": 11912,
+            "evaluations": 38688,
+            "s_roi": 0.30789909015715466,
+            "changed_tokens": 614,
+            "changed_roi_tokens": 225,
+            "a_roi": 0.5487804878048781,
+            "no_op": false
+          }
+        },
+        "group_tokens": [
+          312,
+          1638
+        ],
+        "active_iterations": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            37,
+            38,
+            39
+          ]
+        ],
+        "active_counts": [
+          1950,
+          1950,
+          1950,
+          1950,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          1950,
+          1950,
+          1950
+        ],
+        "tie_permutation_recipe": "torch.randperm(N, generator=torch.Generator('cpu').manual_seed(0))"
+      },
+      "C6": {
+        "condition": "C6",
+        "prompt_id": 0,
+        "seed": null,
+        "preset": "HSA-50",
+        "lambda": null,
+        "steps": 40,
+        "token_step_fraction": 0.496,
+        "input_sha256": {
+          "latents": "ec071f907bc93572ca1d7a6b723a1ffafd31f629e8e89905dbefa4b8d4dc02c0",
+          "prompt_embeds": "39489c3e8663b05c0d4292a60bcc4e7904f866665824bae951781051fdaf73e3",
+          "negative_prompt_embeds": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74",
+          "coverage_roi": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "coverage_hands_contact": "b271f8fd43f8bf3098da252119bd75a801e65f3c742b9c6d44c7ea9d8c7f5865"
+        },
+        "allocation_sha256": {
+          "g": "a6aebd00bd323fe416510a31ed170b95aed4a3f6c01f4538f8aa0e48581d7d48",
+          "m": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "order": "38152d078eda58347530e63d796e38889256699af81991abf65dc6b26b2cace0",
+          "labels": "9fd2ae88c63623214d98665d24ab4e914ba7819b1edfb5cbc57a9d22bd35cf62",
+          "labels_c3": "8c1ac1511c068c7668d77bca2fc042007220a76acb662aaaf5f18f358c4689f6"
+        },
+        "diagnostics": {
+          "roi": {
+            "tokens": 1950,
+            "roi_tokens": 615,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 312,
+            "precision": 1.0,
+            "recall": 0.5073170731707317,
+            "normalized_recall": 1.0,
+            "lift": 3.1707317073170733,
+            "roi_evaluations": 17328,
+            "evaluations": 38688,
+            "s_roi": 0.4478908188585608,
+            "changed_tokens": 594,
+            "changed_roi_tokens": 297,
+            "a_roi": 0.48292682926829267,
+            "no_op": false
+          },
+          "hands_contact": {
+            "tokens": 1950,
+            "roi_tokens": 410,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 211,
+            "precision": 0.6762820512820513,
+            "recall": 0.5146341463414634,
+            "normalized_recall": 0.6762820512820513,
+            "lift": 3.2164634146341466,
+            "roi_evaluations": 11624,
+            "evaluations": 38688,
+            "s_roi": 0.30045492142266333,
+            "changed_tokens": 594,
+            "changed_roi_tokens": 203,
+            "a_roi": 0.4951219512195122,
+            "no_op": false
+          }
+        },
+        "group_tokens": [
+          312,
+          1638
+        ],
+        "active_iterations": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            37,
+            38,
+            39
+          ]
+        ],
+        "active_counts": [
+          1950,
+          1950,
+          1950,
+          1950,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          1950,
+          1950,
+          1950
+        ]
+      },
+      "C4 lambda 1": {
+        "condition": "C4",
+        "prompt_id": 0,
+        "seed": null,
+        "preset": "HSA-50",
+        "lambda": 1.0,
+        "steps": 40,
+        "token_step_fraction": 0.496,
+        "input_sha256": {
+          "latents": "ec071f907bc93572ca1d7a6b723a1ffafd31f629e8e89905dbefa4b8d4dc02c0",
+          "prompt_embeds": "39489c3e8663b05c0d4292a60bcc4e7904f866665824bae951781051fdaf73e3",
+          "negative_prompt_embeds": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74",
+          "coverage_roi": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13"
+        },
+        "allocation_sha256": {
+          "g": "a6aebd00bd323fe416510a31ed170b95aed4a3f6c01f4538f8aa0e48581d7d48",
+          "m": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "w": "41c6611e8684c7dde64b3b9d2de8906dbebee8d8db2ad9653e06c55567c13107",
+          "order": "35fc37b7a36d9e3f98cf0a8dc2267a40946f8dd36bc4ec305cdb5f9aee555746",
+          "labels": "16bfb32f9c4cc7059c6385b53caf095c662faa0aeb9b295f3e90498bf6f6bbcc",
+          "labels_c3": "8c1ac1511c068c7668d77bca2fc042007220a76acb662aaaf5f18f358c4689f6"
+        },
+        "diagnostics": {
+          "roi": {
+            "tokens": 1950,
+            "roi_tokens": 615,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 312,
+            "precision": 1.0,
+            "recall": 0.5073170731707317,
+            "normalized_recall": 1.0,
+            "lift": 3.1707317073170733,
+            "roi_evaluations": 17328,
+            "evaluations": 38688,
+            "s_roi": 0.4478908188585608,
+            "changed_tokens": 604,
+            "changed_roi_tokens": 307,
+            "a_roi": 0.4991869918699187,
+            "no_op": false
+          }
+        },
+        "group_tokens": [
+          312,
+          1638
+        ],
+        "active_iterations": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            37,
+            38,
+            39
+          ]
+        ],
+        "active_counts": [
+          1950,
+          1950,
+          1950,
+          1950,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          1950,
+          1950,
+          1950
+        ]
+      },
+      "C4 lambda 10": {
+        "condition": "C4",
+        "prompt_id": 0,
+        "seed": null,
+        "preset": "HSA-50",
+        "lambda": 10.0,
+        "steps": 40,
+        "token_step_fraction": 0.496,
+        "input_sha256": {
+          "latents": "ec071f907bc93572ca1d7a6b723a1ffafd31f629e8e89905dbefa4b8d4dc02c0",
+          "prompt_embeds": "39489c3e8663b05c0d4292a60bcc4e7904f866665824bae951781051fdaf73e3",
+          "negative_prompt_embeds": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74",
+          "coverage_roi": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13"
+        },
+        "allocation_sha256": {
+          "g": "a6aebd00bd323fe416510a31ed170b95aed4a3f6c01f4538f8aa0e48581d7d48",
+          "m": "3de8949fe4da98cab62ea363776d36772447e1d2bcc662eb865d27016ab9bb13",
+          "w": "e84ff8bfd206702f61c9bdfab07398d239d4937f1e735115a2bb792a4dbd4c57",
+          "order": "a9682bed8941a720d88d765a94a6bd1f2fea1c36e1e7f0de8d5ffdecccce030e",
+          "labels": "032a46c33f04af3316d479ba08e29799d86917ba7cd1f2544b2078d689db2520",
+          "labels_c3": "8c1ac1511c068c7668d77bca2fc042007220a76acb662aaaf5f18f358c4689f6"
+        },
+        "diagnostics": {
+          "roi": {
+            "tokens": 1950,
+            "roi_tokens": 615,
+            "full_step_tokens": 312,
+            "full_step_roi_tokens": 312,
+            "precision": 1.0,
+            "recall": 0.5073170731707317,
+            "normalized_recall": 1.0,
+            "lift": 3.1707317073170733,
+            "roi_evaluations": 17328,
+            "evaluations": 38688,
+            "s_roi": 0.4478908188585608,
+            "changed_tokens": 608,
+            "changed_roi_tokens": 311,
+            "a_roi": 0.5056910569105691,
+            "no_op": false
+          }
+        },
+        "group_tokens": [
+          312,
+          1638
+        ],
+        "active_iterations": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            37,
+            38,
+            39
+          ]
+        ],
+        "active_counts": [
+          1950,
+          1950,
+          1950,
+          1950,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          312,
+          312,
+          312,
+          1950,
+          1950,
+          1950,
+          1950
+        ]
+      }
+    }
+  },
+  "results": [
+    {
+      "test": "T8 need score hand example",
+      "passed": true,
+      "device": "cpu",
+      "g": [
+        0.75,
+        50000000.0,
+        0.0
+      ],
+      "expected": [
+        0.75,
+        50000000.0,
+        0.0
+      ]
+    },
+    {
+      "test": "T8 stops on NaN and infinity",
+      "passed": true,
+      "device": "cpu"
+    },
+    {
+      "test": "T8 rejects K < 2 and non-fp32 input",
+      "passed": true,
+      "device": "cpu"
+    },
+    {
+      "test": "T8 K is the all-active prefix for every preset",
+      "passed": true,
+      "K": {
+        "HSA-50": 5,
+        "HSA-75B": 10,
+        "switch-20": 9,
+        "switch-30": 12
+      }
+    },
+    {
+      "test": "T8 need score hand example",
+      "passed": true,
+      "device": "mps",
+      "g": [
+        0.75,
+        50000000.0,
+        0.0
+      ],
+      "expected": [
+        0.75,
+        50000000.0,
+        0.0
+      ]
+    },
+    {
+      "test": "T8 stops on NaN and infinity",
+      "passed": true,
+      "device": "mps"
+    },
+    {
+      "test": "T8 rejects K < 2 and non-fp32 input",
+      "passed": true,
+      "device": "mps"
+    },
+    {
+      "test": "T8 K is the all-active prefix for every preset",
+      "passed": true,
+      "K": {
+        "HSA-50": 5,
+        "HSA-75B": 10,
+        "switch-20": 9,
+        "switch-30": 12
+      }
+    },
+    {
+      "test": "T9 C3 ties",
+      "passed": true,
+      "order": [
+        1,
+        5,
+        0,
+        2,
+        4,
+        7,
+        3,
+        6
+      ]
+    },
+    {
+      "test": "T9 C4 ties",
+      "passed": true,
+      "order": [
+        1,
+        5,
+        2,
+        7,
+        0,
+        4,
+        3,
+        6
+      ]
+    },
+    {
+      "test": "T9 C5 ties",
+      "passed": true,
+      "order": [
+        7,
+        0,
+        4,
+        2,
+        3,
+        1,
+        5,
+        6
+      ],
+      "permutation": [
+        7,
+        0,
+        3,
+        4,
+        1,
+        5,
+        2,
+        6
+      ]
+    },
+    {
+      "test": "T9 C6 ties",
+      "passed": true,
+      "order": [
+        2,
+        7,
+        1,
+        5,
+        0,
+        4,
+        3,
+        6
+      ]
+    },
+    {
+      "test": "T9 group sizes filled exactly",
+      "passed": true
+    },
+    {
+      "test": "T9 registered group sizes at N = 32,760",
+      "passed": true,
+      "preset": "HSA-50",
+      "group_sizes": [
+        5242,
+        27518
+      ]
+    },
+    {
+      "test": "T9 registered group sizes at N = 32,760",
+      "passed": true,
+      "preset": "HSA-75B",
+      "group_sizes": [
+        10811,
+        21949
+      ]
+    },
+    {
+      "test": "T9 registered group sizes at N = 32,760",
+      "passed": true,
+      "preset": "switch-20",
+      "group_sizes": [
+        1560,
+        31200
+      ]
+    },
+    {
+      "test": "T9 registered group sizes at N = 32,760",
+      "passed": true,
+      "preset": "switch-30",
+      "group_sizes": [
+        1560,
+        31200
+      ]
+    },
+    {
+      "test": "T12 fractional mask",
+      "passed": true,
+      "lam": 1.0,
+      "group_sizes_equal": true,
+      "unmasked_order_kept": true,
+      "unmasked_only_fall": true,
+      "masked_keep_lead_over_unmasked": true,
+      "roi_full_steps_only_rise": true,
+      "masked_only_rise": false
+    },
+    {
+      "test": "T12 fractional mask",
+      "passed": true,
+      "lam": 3.0,
+      "group_sizes_equal": true,
+      "unmasked_order_kept": true,
+      "unmasked_only_fall": true,
+      "masked_keep_lead_over_unmasked": true,
+      "roi_full_steps_only_rise": true,
+      "masked_only_rise": false
+    },
+    {
+      "test": "T12 fractional mask",
+      "passed": true,
+      "lam": 10.0,
+      "group_sizes_equal": true,
+      "unmasked_order_kept": true,
+      "unmasked_only_fall": true,
+      "masked_keep_lead_over_unmasked": true,
+      "roi_full_steps_only_rise": true,
+      "masked_only_rise": false
+    },
+    {
+      "test": "T12 uniform mask: masked tokens only rise",
+      "passed": true,
+      "lam": 1.0,
+      "group_sizes_equal": true,
+      "unmasked_order_kept": true,
+      "unmasked_only_fall": true,
+      "masked_keep_lead_over_unmasked": true,
+      "roi_full_steps_only_rise": true,
+      "masked_only_rise": true
+    },
+    {
+      "test": "T12 uniform mask: masked tokens only rise",
+      "passed": true,
+      "lam": 3.0,
+      "group_sizes_equal": true,
+      "unmasked_order_kept": true,
+      "unmasked_only_fall": true,
+      "masked_keep_lead_over_unmasked": true,
+      "roi_full_steps_only_rise": true,
+      "masked_only_rise": true
+    },
+    {
+      "test": "T12 uniform mask: masked tokens only rise",
+      "passed": true,
+      "lam": 10.0,
+      "group_sizes_equal": true,
+      "unmasked_order_kept": true,
+      "unmasked_only_fall": true,
+      "masked_keep_lead_over_unmasked": true,
+      "roi_full_steps_only_rise": true,
+      "masked_only_rise": true
+    },
+    {
+      "test": "T12 literal claim fails for fractional coverage (counterexample)",
+      "passed": null,
+      "c3_order": [
+        0,
+        1
+      ],
+      "c4_order": [
+        1,
+        0
+      ],
+      "c4_scores": [
+        2.000000014901161,
+        9.899999737739563
+      ],
+      "masked_token_fell": true
+    },
+    {
+      "test": "T13",
+      "passed": true,
+      "ignores_g": true,
+      "reproducible": true,
+      "differs_across_prompt_ids": true
+    },
+    {
+      "test": "T14 C6 binary first, then g",
+      "passed": true,
+      "roi_tokens": 19579,
+      "classes": true,
+      "g_descending": true,
+      "ties_by_id": true
+    },
+    {
+      "test": "T15 half-covered cell gives 0.5",
+      "passed": true,
+      "cell": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "dilated": [
+        [
+          0.5,
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "test": "T15 frame groups map exactly",
+      "passed": true
+    },
+    {
+      "test": "T15 dilation is spatial only, zero outside the grid",
+      "passed": true,
+      "nonzero_cells": 13
+    },
+    {
+      "test": "T15 shapes at tiny, small and full size",
+      "passed": true,
+      "shapes": {
+        "tiny 9 x 128 x 128": [
+          3,
+          8,
+          8
+        ],
+        "small 17 x 240 x 416": [
+          5,
+          15,
+          26
+        ],
+        "full 81 x 480 x 832": [
+          21,
+          30,
+          52
+        ]
+      }
+    },
+    {
+      "test": "T15 token order matches the Transformer",
+      "passed": true
+    },
+    {
+      "test": "T16 hand example (P, R, R_norm, lift, S_ROI, A_ROI)",
+      "passed": true,
+      "precision": 0.6666666666666666,
+      "recall": 0.5,
+      "normalized_recall": 0.6666666666666666,
+      "lift": 1.6666666666666665,
+      "s_roi": 0.46153846153846156,
+      "a_roi": 0.25
+    },
+    {
+      "test": "T16 no-op only when every label matches",
+      "passed": true,
+      "identical": true,
+      "one_token_outside_roi_moved": false,
+      "a_roi_when_only_outside_moved": 0.0
+    },
+    {
+      "test": "T16 empty ROI reports N/A",
+      "passed": true,
+      "defined_anyway": []
+    },
+    {
+      "test": "T17 labels assigned once, then frozen",
+      "passed": true
+    },
+    {
+      "test": "T18 ascending sort fails T9",
+      "passed": true,
+      "failing": [
+        "T18 ascending sort C3 ties"
+      ]
+    },
+    {
+      "test": "T18 g-seeded C5 permutation fails T13",
+      "passed": true
+    },
+    {
+      "test": "T8 run uses guided v at n = 0..K-1",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "matches_reference": true,
+      "alternatives_differ": {
+        "v_2..v_K+1 (shifted)": true,
+        "v_1..v_K+1 (one extra)": true
+      }
+    },
+    {
+      "test": "T18 conditional-only g fails T8",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "max_abs_diff": 0.004011005163192749
+    },
+    {
+      "test": "registry: C1 equals the dense loop",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true
+    },
+    {
+      "test": "T10 lambda = 0 equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "lam": 1.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "lam": 3.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "lam": 10.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T17 equal active counts and budgets across C3-C6 and A1",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "counts_equal_every_iteration_layer_branch": true,
+      "token_step_fractions": {
+        "C3": 0.496875,
+        "C4 lambda 3": 0.496875,
+        "C5": 0.496875,
+        "C6": 0.496875,
+        "A1 lambda 3": 0.496875
+      },
+      "g_bitwise_equal": true,
+      "c3_labels_inside_c4_match_c3_run": true,
+      "deterministic_repeat": true,
+      "relabel_refused": true,
+      "log_entries": 160
+    },
+    {
+      "test": "registry: C2 runs 20 dense steps at fraction 0.5",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true
+    },
+    {
+      "test": "T8 run uses guided v at n = 0..K-1",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "matches_reference": true,
+      "alternatives_differ": {
+        "v_2..v_K+1 (shifted)": true,
+        "v_1..v_K+1 (one extra)": true
+      }
+    },
+    {
+      "test": "T18 conditional-only g fails T8",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "max_abs_diff": 0.011862397193908691
+    },
+    {
+      "test": "registry: C1 equals the dense loop",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true
+    },
+    {
+      "test": "T10 lambda = 0 equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 1.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 3.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 10.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T17 equal active counts and budgets across C3-C6 and A1",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "counts_equal_every_iteration_layer_branch": true,
+      "token_step_fractions": {
+        "C3": 0.496875,
+        "C4 lambda 3": 0.496875,
+        "C5": 0.496875,
+        "C6": 0.496875,
+        "A1 lambda 3": 0.496875
+      },
+      "g_bitwise_equal": true,
+      "c3_labels_inside_c4_match_c3_run": true,
+      "deterministic_repeat": true,
+      "relabel_refused": true,
+      "log_entries": 160
+    },
+    {
+      "test": "registry: C2 runs 20 dense steps at fraction 0.5",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true
+    },
+    {
+      "test": "T8 run uses guided v at n = 0..K-1",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "matches_reference": true,
+      "alternatives_differ": {
+        "v_2..v_K+1 (shifted)": true,
+        "v_1..v_K+1 (one extra)": true
+      }
+    },
+    {
+      "test": "T18 conditional-only g fails T8",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "max_abs_diff": 0.004011109471321106
+    },
+    {
+      "test": "registry: C1 equals the dense loop",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true
+    },
+    {
+      "test": "T10 lambda = 0 equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "lam": 1.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "lam": 3.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "lam": 10.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T17 equal active counts and budgets across C3-C6 and A1",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "counts_equal_every_iteration_layer_branch": true,
+      "token_step_fractions": {
+        "C3": 0.496875,
+        "C4 lambda 3": 0.496875,
+        "C5": 0.496875,
+        "C6": 0.496875,
+        "A1 lambda 3": 0.496875
+      },
+      "g_bitwise_equal": true,
+      "c3_labels_inside_c4_match_c3_run": true,
+      "deterministic_repeat": true,
+      "relabel_refused": true,
+      "log_entries": 160
+    },
+    {
+      "test": "registry: C2 runs 20 dense steps at fraction 0.5",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true
+    },
+    {
+      "test": "T8 run uses guided v at n = 0..K-1",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "matches_reference": true,
+      "alternatives_differ": {
+        "v_2..v_K+1 (shifted)": true,
+        "v_1..v_K+1 (one extra)": true
+      }
+    },
+    {
+      "test": "T18 conditional-only g fails T8",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "max_abs_diff": 0.011393234133720398
+    },
+    {
+      "test": "registry: C1 equals the dense loop",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true
+    },
+    {
+      "test": "T10 lambda = 0 equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 1.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 3.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 10.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T17 equal active counts and budgets across C3-C6 and A1",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "counts_equal_every_iteration_layer_branch": true,
+      "token_step_fractions": {
+        "C3": 0.496875,
+        "C4 lambda 3": 0.496875,
+        "C5": 0.496875,
+        "C6": 0.496875,
+        "A1 lambda 3": 0.496875
+      },
+      "g_bitwise_equal": true,
+      "c3_labels_inside_c4_match_c3_run": true,
+      "deterministic_repeat": true,
+      "relabel_refused": true,
+      "log_entries": 160
+    },
+    {
+      "test": "registry: C2 runs 20 dense steps at fraction 0.5",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true
+    },
+    {
+      "test": "registry: C1 reproduces the committed R1 frames",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "frames": 17,
+      "frames_matching_record": 17
+    },
+    {
+      "test": "T8 run uses guided v at n = 0..K-1",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "matches_reference": true,
+      "alternatives_differ": {
+        "v_2..v_K+1 (shifted)": true,
+        "v_1..v_K+1 (one extra)": true
+      }
+    },
+    {
+      "test": "T18 conditional-only g fails T8",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "max_abs_diff": 0.07641535252332687
+    },
+    {
+      "test": "T10 lambda = 0 equals C3",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 1.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 3.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T11 empty mask equals C3",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "lam": 10.0,
+      "labels_equal": true,
+      "active_ids_equal": true,
+      "output_bitwise": true
+    },
+    {
+      "test": "T17 equal active counts and budgets across C3-C6 and A1",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "counts_equal_every_iteration_layer_branch": true,
+      "token_step_fractions": {
+        "C3": 0.496,
+        "C4 lambda 3": 0.496,
+        "C5": 0.496,
+        "C6": 0.496,
+        "A1 lambda 3": 0.496
+      },
+      "g_bitwise_equal": true,
+      "c3_labels_inside_c4_match_c3_run": true,
+      "deterministic_repeat": true,
+      "relabel_refused": true,
+      "log_entries": 2400
+    },
+    {
+      "test": "registry: C2 runs 20 dense steps at fraction 0.5",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true
+    }
+  ]
+}

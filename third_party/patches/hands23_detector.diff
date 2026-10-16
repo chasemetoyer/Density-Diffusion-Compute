@@ -1,0 +1,232 @@
+diff --git a/demo.py b/demo.py
+index f047b3f..18765cc 100644
+--- a/demo.py
++++ b/demo.py
+@@ -40,8 +40,7 @@ def parse_grasp(grasp_type):
+     elif grasp_type == 7:
+         return "Other"
+     else:
+-        print("Can not parse grasp: {grasp_type}")
+-        pdb.set_trace()
++        raise ValueError(f"Can not parse grasp: {grasp_type}")
+ 
+ def parse_contact(contact):
+     # get names for contact
+@@ -56,8 +55,7 @@ def parse_contact(contact):
+     elif contact == 4:
+         return "obj_to_obj_contact"  
+     else:
+-        print("Can not parse contact: {contact}")
+-        pdb.set_trace()
++        raise ValueError(f"Can not parse contact: {contact}")
+                 
+ def parse_touch(touch):
+     # get names for touch
+@@ -76,8 +74,7 @@ def parse_touch(touch):
+     elif touch == 6:
+         return "neither_,_held"
+     else:
+-        print("Can not parse touch: {touch}")
+-        pdb.set_trace()
++        raise ValueError(f"Can not parse touch: {touch}")
+ 
+ 
+ 
+@@ -293,9 +290,7 @@ def main():
+         test_img = test_img.strip("\n")
+         print(f'Processing: {test_img}')
+         if os.path.exists(os.path.join(args.data_dir, test_img)) is False:
+-            print(os.path.join(args.data_dir, test_img))
+-            pdb.set_trace()
+-            continue
++            raise FileNotFoundError(os.path.join(args.data_dir, test_img))
+         im = cv2.imread(os.path.join(args.data_dir, test_img))
+         im_name = os.path.split(test_img)[-1][:-4]
+         
+diff --git a/hodetector/modeling/roi_heads/roi_heads.py b/hodetector/modeling/roi_heads/roi_heads.py
+index 0100479..a4d9b6e 100755
+--- a/hodetector/modeling/roi_heads/roi_heads.py
++++ b/hodetector/modeling/roi_heads/roi_heads.py
+@@ -218,7 +218,7 @@ class hoRCNNROIHeads(StandardROIHeads):
+                     max_dist[i][j][1] =  max( sdf(y1,y2,Y1), sdf(y1,y2,Y2))/diag
+                     v_over_v_norm[i][j] = v[i][j]/v_norm[i][j]
+ 
+-        return torch.cat((PF,v,v_norm,min_dist, max_dist, v_over_v_norm), 2).cuda()
++        return torch.cat((PF,v,v_norm,min_dist, max_dist, v_over_v_norm), 2).to(z_feature.device)
+ 
+ 
+     def _inference_z(self, features, pred_instances):
+@@ -228,6 +228,7 @@ class hoRCNNROIHeads(StandardROIHeads):
+         pred_boxes_raw =  [x.pred_boxes for x in pred_instances][0].tensor
+         pred_classes_raw =  [x.pred_classes for x in pred_instances][0]
+         pred_scores = [x.scores for x in pred_instances][0].reshape(-1,1)
++        device = pred_boxes_raw.device
+ 
+         pred_boxes = []
+         pred_classes = []
+@@ -242,16 +243,16 @@ class hoRCNNROIHeads(StandardROIHeads):
+         
+ 
+         
+-        pred_boxes = torch.tensor(pred_boxes).cuda()
++        pred_boxes = torch.tensor(pred_boxes).to(device)
+         pred_boxes = [Boxes(pred_boxes)]
+         pred_boxes_ = pred_boxes[0]
+         
+ 
+-        pred_scores_ = torch.tensor(pred_score).cuda()
++        pred_scores_ = torch.tensor(pred_score).to(device)
+         
+ 
+-        pred_classes = torch.tensor(pred_classes).cuda()
+-        pred_classes_ = pred_classes.clone().detach().cuda()
++        pred_classes = torch.tensor(pred_classes).to(device)
++        pred_classes_ = pred_classes.clone().detach().to(device)
+        
+ 
+         z_feature = self.box_pooler(features, pred_boxes)
+@@ -263,9 +264,9 @@ class hoRCNNROIHeads(StandardROIHeads):
+         try:
+             Ids = F.one_hot(pred_classes, num_classes = 3)
+         except:
+-            temp = torch.zeros(0,1).cuda()
+-            temp_g = torch.zeros(0,8).cuda()
+-            temp_t = torch.zeros(0,7).cuda()
++            temp = torch.zeros(0,1).to(device)
++            temp_g = torch.zeros(0,8).to(device)
++            temp_t = torch.zeros(0,7).to(device)
+             return [torch.cat((boxes,temp, temp,temp, temp, temp, temp_g, temp_t), dim=1)], [Instances(image_size = image_size, pred_boxes = pred_boxes_, pred_classes = pred_classes_, scores = pred_scores_)]
+         
+         
+@@ -302,22 +303,22 @@ class hoRCNNROIHeads(StandardROIHeads):
+                         if pred_classes[j] == 2:
+                             inter_prob[i][j] = cls_prob[i][j]
+         except:
+-            pdb.set_trace()
++            raise
+             print("error in assigning interaction probability")
+ 
+         
+     
+-        score = torch.zeros(score_z.shape[0], 1).cuda()
+-        interaction = -1 * torch.ones(score_z.shape[0], 1).cuda()
+-        contact_state = torch.zeros(score_z.shape[0], 1).cuda()
++        score = torch.zeros(score_z.shape[0], 1).to(device)
++        interaction = -1 * torch.ones(score_z.shape[0], 1).to(device)
++        contact_state = torch.zeros(score_z.shape[0], 1).to(device)
+ 
+-        h_side = torch.zeros(hand_side.shape[0],1).cuda()
+-        t_type = 100*torch.ones(hand_side.shape[0],1).cuda()
+-        g_type = 100*torch.ones(hand_side.shape[0],1).cuda()
++        h_side = torch.zeros(hand_side.shape[0],1).to(device)
++        t_type = 100*torch.ones(hand_side.shape[0],1).to(device)
++        g_type = 100*torch.ones(hand_side.shape[0],1).to(device)
+ 
+         # first objects are only included for evaluation if they are associated to a hand
+         # second objects are only included for evaluation if they are associated to a first object
+-        idx_to_include = torch.arange(start = 0, end = len(boxes), dtype = int, device='cuda')[pred_classes==0].tolist()
++        idx_to_include = torch.arange(start = 0, end = len(boxes), dtype = int, device=device)[pred_classes==0].tolist()
+ 
+ 
+         for i in range(len(z_feature)):
+@@ -351,7 +352,7 @@ class hoRCNNROIHeads(StandardROIHeads):
+                     try:
+                         assert t_type[i] <= 8
+                     except:
+-                        pdb.set_trace()
++                        raise
+ 
+                     cls_prob_i = 1 - inter_prob[i][:,0].reshape(-1)
+                     max_val  = torch.max(cls_prob_i)
+@@ -370,7 +371,7 @@ class hoRCNNROIHeads(StandardROIHeads):
+ 
+                     score[i] = max_val
+             except Exception as e:
+-                pdb.set_trace()
++                raise
+                 print(e)
+                 print("error in assign values")
+ 
+@@ -421,7 +422,7 @@ class hoRCNNROIHeads(StandardROIHeads):
+         PF = self.get_PF(z_feature[iou], bboxes[iou],gt_classes[iou], gt_touch[iou])
+        
+         # ground truth for pairwise interaction prediction
+-        PL = 100 * torch.ones((length, length), device= interaction.device, dtype=interaction.dtype).cuda()
++        PL = 100 * torch.ones((length, length), device= interaction.device, dtype=interaction.dtype)
+         
+         # go through each pair of instances to determine the pairwise ground truth interaction
+         for i in range(length):
+diff --git a/hodetector/utils/positional_encoding.py b/hodetector/utils/positional_encoding.py
+index 82d27c7..978fd5e 100644
+--- a/hodetector/utils/positional_encoding.py
++++ b/hodetector/utils/positional_encoding.py
+@@ -20,4 +20,4 @@ def get_position_encoding(bb1, bb2, L=10):
+             pos.append(torch.sin((2**j)*np.pi*x))
+             pos.append(torch.cos((2**j)*np.pi*x))
+     pos.append(torch.linalg.norm(v))
+-    return torch.stack(pos).unsqueeze(0).cuda()
+\ No newline at end of file
++    return torch.stack(pos).unsqueeze(0).to(bb1.device if torch.is_tensor(bb1) else 'cpu')
+\ No newline at end of file
+diff --git a/utils/vis_utils.py b/utils/vis_utils.py
+index 858ec43..bb6201d 100644
+--- a/utils/vis_utils.py
++++ b/utils/vis_utils.py
+@@ -29,8 +29,7 @@ def parseSide(s):
+     if   s == 'left_hand':  return 'L', 0
+     elif s == 'right_hand': return 'R', 1
+     else:
+-        print(f'Weird hand side label is {s}, {type(s)}')
+-        pdb.set_trace()
++        raise ValueError(f'Weird hand side label is {s}, {type(s)}')
+ 
+ def parseState(s):
+     if   s == 'no_contact':              return 'NoC',      0
+@@ -40,8 +39,7 @@ def parseState(s):
+     elif s == 'obj_to_obj_contact':      return 'ObjC',     4
+     elif s in ['inconclusive', 'None']:  return  None,     -1
+     else:
+-        print(f'Weird hand state label is {s}')
+-        pdb.set_trace()
++        raise ValueError(f'Weird hand state label is {s}')
+ 
+ def parseGraspType(s):
+     '''Parse String to Int.
+@@ -56,8 +54,7 @@ def parseGraspType(s):
+     elif s in ['other', 'Other']: return 'Other', 7
+     elif s == 'None':             return s, -1
+     else:
+-        print(f'Weird grasp type label is {s}')
+-        pdb.set_trace()
++        raise ValueError(f'Weird grasp type label is {s}')
+ 
+ def parseTouchType(s):
+     if s == 'tool_,_touched':        return 'Tool:touched', 0
+@@ -69,8 +66,7 @@ def parseTouchType(s):
+     elif s == 'neither_,_held':      return 'Neither:held', 6
+     elif   s == 'None':              return s, -1
+     else:
+-        print(f'Weird tool type label is {s}')
+-        pdb.set_trace()
++        raise ValueError(f'Weird tool type label is {s}')
+ 
+ 
+ def draw_hand_mask(im, draw, bbox, side, contact, grasp, mask, width, height, font, scale, use_simple):
+@@ -99,7 +95,7 @@ def draw_hand_mask(im, draw, bbox, side, contact, grasp, mask, width, height, fo
+         else:
+             txt1 = f'{contact},{grasp}'
+         txt2 = f'{side}'
+-        txt1_width, txt1_height = draw.textsize(txt1, font)
++        left, top, right, bottom = draw.textbbox((0, 0), txt1, font=font); txt1_width, txt1_height = right - left, bottom - top
+ 
+ 
+         draw = ImageDraw.Draw(im)
+@@ -132,7 +128,7 @@ def draw_firstobj_mask(im, draw, bbox, touch, mask, width, height, font, scale,
+     if not use_simple:
+         txt = touch
+         draw = ImageDraw.Draw(im)
+-        txt_width, txt_height = draw.textsize(txt, font)
++        left, top, right, bottom = draw.textbbox((0, 0), txt, font=font); txt_width, txt_height = right - left, bottom - top
+         draw.rectangle([bbox[0], max(0, bbox[1]-43), bbox[0]+txt_width+14, max(0, bbox[1]-43)+43], fill=(255, 255, 255), outline=firstobj_rgb, width=4)
+         draw.text((bbox[0]+8, max(0, bbox[1]-41)), txt, font=font, fill=txt_color) # 
+     return im

@@ -1,0 +1,1226 @@
+stratum,rank,source_id,also_in,decision,reason
+face,1,vbench2_human_anatomy:22,vbench2_human_clothes:16,kept: holdout,one person; a close-up can keep the face in view through the activity
+face,2,vbench2_human_anatomy:23,,skipped,more than one person
+face,3,vbench2_human_anatomy:112,,skipped,two people
+face,4,vbench2_human_anatomy:78,vbench2_human_clothes:68,skipped,two successive actions: one clear expression cannot fit both
+face,5,vbench_human:8,,kept: holdout,one person; the face can be the focus throughout
+face,6,vbench_human:86,,kept: holdout,one person; the face can be the focus throughout
+face,7,vbench2_human_anatomy:17,vbench2_human_clothes:12,kept: holdout,one person; a close-up can keep the face in view through the activity
+face,8,vbench_human:78,,kept: holdout,one person; the face can be the focus throughout
+face,9,vbench_human:51,,skipped,two people
+face,10,vbench_human:88,,skipped,two people
+face,11,vbench_human:2,,skipped,more than one person
+face,12,vbench_human:11,,skipped,more than one person
+face,13,vbench_human:18,,skipped,two people
+face,14,vbench2_human_anatomy:85,vbench2_human_clothes:75,skipped,two successive actions: one clear expression cannot fit both
+face,15,vbench_human:6,,skipped,more than one person
+face,16,vbench2_human_anatomy:29,,skipped,more than one person
+face,17,vbench2_human_anatomy:57,vbench2_human_identity:26 vbench2_human_clothes:47,skipped,two successive actions: one clear expression cannot fit both
+face,18,vbench2_human_anatomy:25,vbench2_human_identity:10 vbench2_human_clothes:18,kept: holdout,one person; a close-up can keep the face in view through the activity
+face,19,vbench_human:90,,skipped,two people
+face,20,vbench_human:9,,skipped,two people
+face,21,vbench2_human_anatomy:50,vbench2_human_clothes:40,skipped,two successive actions: one clear expression cannot fit both
+face,22,vbench2_human_anatomy:49,vbench2_human_identity:20 vbench2_human_clothes:39,skipped,two successive actions: one clear expression cannot fit both
+face,23,vbench2_human_anatomy:2,vbench2_human_clothes:2,kept: primary,one person; the face can be the focus throughout
+face,24,vbench_human:25,,skipped,a group of people
+face,25,vbench2_human_anatomy:119,,skipped,two people
+face,26,vbench2_human_anatomy:8,vbench2_human_clothes:6,kept: primary,one person; the face can be the focus throughout
+face,27,vbench_human:20,,skipped,two people
+face,28,vbench_human:10,,skipped,more than one person
+face,29,vbench_human:83,,kept: primary,one person; the face can be the focus throughout
+face,30,vbench_human:24,,skipped,a crowd
+face,31,vbench2_human_anatomy:66,vbench2_human_identity:33 vbench2_human_clothes:56,skipped,two successive actions: one clear expression cannot fit both
+face,32,vbench_human:28,,skipped,a group of people
+face,33,vbench_human:49,,skipped,two people
+face,34,vbench2_human_anatomy:16,vbench2_human_clothes:11,kept: primary,one person; a close-up can keep the face in view through the activity
+face,35,vbench2_human_anatomy:110,,skipped,two people
+face,36,vbench_human:38,,skipped,a crowd
+face,37,vbench2_human_anatomy:77,vbench2_human_identity:41 vbench2_human_clothes:67,skipped,two successive actions: one clear expression cannot fit both
+face,38,vbench2_human_anatomy:63,vbench2_human_identity:30 vbench2_human_clothes:53,skipped,two successive actions: one clear expression cannot fit both
+face,39,vbench2_human_anatomy:9,,skipped,more than one person
+face,40,vbench2_human_anatomy:7,vbench2_human_clothes:5,kept: primary,one person; the face can be the focus throughout
+face,41,vbench2_human_anatomy:61,vbench2_human_identity:29 vbench2_human_clothes:51,skipped,two successive actions: one clear expression cannot fit both
+face,42,vbench_human:40,,skipped,more than one person
+face,43,vbench_human:23,,skipped,more than one person
+face,44,vbench_human:26,,skipped,a group of people
+face,45,vbench2_human_anatomy:42,vbench2_human_clothes:32,skipped,two successive actions: one clear expression cannot fit both
+face,46,vbench_human:53,,skipped,more than one person
+face,47,vbench2_human_anatomy:34,vbench2_human_clothes:24,kept: primary,one person; a close-up can keep the face in view through the activity
+face,48,vbench_human:65,,kept: primary,"one person; the face can be the focus throughout (the source names no action, so the expression stands in for it)"
+face,49,vbench_human:69,,kept: primary,one person; the face can be the focus throughout
+face,50,vbench2_human_anatomy:32,,skipped,more than one person
+face,51,vbench2_human_anatomy:86,,skipped,two people
+face,52,vbench_human:100,,skipped,two people
+face,53,vbench_human:67,,skipped,two people
+face,54,vbench2_human_anatomy:14,vbench2_human_identity:6 vbench2_human_clothes:10,kept: primary,one person; a close-up can keep the face in view through the activity
+face,55,vbench2_human_anatomy:3,,skipped,more than one person
+face,56,vbench2_human_anatomy:40,vbench2_human_identity:14 vbench2_human_clothes:30,skipped,two successive actions: one clear expression cannot fit both
+face,57,vbench_human:48,,kept: primary,one person; the face can be the focus throughout
+face,58,vbench2_human_anatomy:98,,skipped,two people
+face,59,vbench2_human_anatomy:101,,skipped,two people
+face,60,vbench_human:71,,kept: primary,one person; the face can be the focus throughout
+face,61,vbench2_human_anatomy:56,vbench2_human_identity:25 vbench2_human_clothes:46,skipped,two successive actions: one clear expression cannot fit both
+face,62,vbench2_human_anatomy:19,vbench2_human_identity:7 vbench2_human_clothes:13,kept: primary,one person; the face can be the focus throughout
+face,63,vbench2_human_anatomy:41,vbench2_human_identity:15 vbench2_human_clothes:31,skipped,two successive actions: one clear expression cannot fit both
+face,64,vbench2_human_anatomy:109,,skipped,two people
+face,65,vbench_human:35,,kept: primary,one person; the face can be the focus throughout
+face,66,vbench2_human_anatomy:43,vbench2_human_identity:16 vbench2_human_clothes:33,skipped,two successive actions: one clear expression cannot fit both
+face,67,vbench_human:91,,skipped,two people
+face,68,vbench_human:52,,skipped,two people
+face,69,vbench2_human_anatomy:33,vbench2_human_clothes:23,kept: primary,one person; a close-up can keep the face in view through the activity
+face,70,vbench_human:27,,skipped,a group of people
+face,71,vbench2_human_anatomy:60,vbench2_human_clothes:50,skipped,two successive actions: one clear expression cannot fit both
+face,72,vbench2_human_anatomy:65,vbench2_human_identity:32 vbench2_human_clothes:55,skipped,two successive actions: one clear expression cannot fit both
+face,73,vbench2_human_anatomy:80,vbench2_human_identity:42 vbench2_human_clothes:70,skipped,two successive actions: one clear expression cannot fit both
+face,74,vbench2_human_anatomy:46,vbench2_human_clothes:36,skipped,two successive actions: one clear expression cannot fit both
+face,75,vbench2_human_anatomy:79,vbench2_human_clothes:69,skipped,two successive actions: one clear expression cannot fit both
+face,76,vbench_human:41,,skipped,more than one person
+face,77,vbench_human:61,,skipped,two people
+face,78,vbench_human:43,,kept: primary,one person; the face can be the focus throughout
+face,79,vbench2_human_anatomy:104,,skipped,two people
+face,80,vbench2_human_anatomy:31,vbench2_human_identity:12 vbench2_human_clothes:22,kept: primary,one person; the face can be the focus throughout
+face,81,vbench_human:37,,skipped,a group of people
+face,82,vbench2_human_anatomy:5,vbench2_human_clothes:4,kept: primary,one person; a close-up can keep the face in view through the activity
+face,83,vbench2_human_anatomy:72,vbench2_human_identity:37 vbench2_human_clothes:62,skipped,two successive actions: one clear expression cannot fit both
+face,84,vbench2_human_anatomy:4,vbench2_human_identity:2 vbench2_human_clothes:3,kept: primary,one person; a close-up can keep the face in view through the activity
+face,85,vbench2_human_anatomy:89,,skipped,two people
+face,86,vbench2_human_anatomy:120,,skipped,two people
+face,87,vbench2_human_anatomy:24,vbench2_human_identity:9 vbench2_human_clothes:17,kept: primary,one person; a close-up can keep the face in view through the activity
+face,88,vbench2_human_anatomy:59,vbench2_human_identity:28 vbench2_human_clothes:49,skipped,two successive actions: one clear expression cannot fit both
+face,89,vbench2_human_anatomy:28,vbench2_human_identity:11 vbench2_human_clothes:20,kept: primary,one person; a close-up can keep the face in view through the activity
+face,90,vbench_human:32,,kept: primary,"one person; the face can be the focus throughout (the source names no action, so the expression stands in for it)"
+face,91,vbench2_human_anatomy:88,,skipped,two people
+face,92,vbench2_human_anatomy:27,vbench2_human_clothes:19,kept: primary,one person; a close-up can keep the face in view through the activity
+face,93,vbench2_human_anatomy:91,,skipped,two people
+face,94,vbench2_human_anatomy:74,vbench2_human_identity:38 vbench2_human_clothes:64,skipped,two successive actions: one clear expression cannot fit both
+face,95,vbench_human:93,,kept: primary,"one person; the face can be the focus throughout (the source names no action, so the expression stands in for it)"
+face,96,vbench2_human_anatomy:113,,skipped,two people
+face,97,vbench_human:1,,skipped,more than one person
+face,98,vbench2_human_anatomy:6,,skipped,more than one person
+face,99,vbench2_human_anatomy:18,,skipped,more than one person
+face,100,vbench_human:47,,skipped,two people
+face,101,vbench_human:77,,skipped,two people
+face,102,vbench_human:81,,skipped,two people
+face,103,vbench_human:82,,skipped,more than one person
+face,104,vbench2_human_anatomy:106,,skipped,more than one person
+face,105,vbench2_human_anatomy:54,vbench2_human_identity:23 vbench2_human_clothes:44,skipped,two successive actions: one clear expression cannot fit both
+face,106,vbench_human:42,,kept: primary,one person; the face can be the focus throughout
+face,107,vbench2_human_anatomy:20,vbench2_human_clothes:14,kept: primary,one person; the face can be the focus throughout
+face,108,vbench_human:79,,skipped,two people
+face,109,vbench2_human_anatomy:44,vbench2_human_identity:17 vbench2_human_clothes:34,skipped,two successive actions: one clear expression cannot fit both
+face,110,vbench2_human_anatomy:96,,skipped,two people
+face,111,vbench2_human_anatomy:62,vbench2_human_clothes:52,skipped,two successive actions: one clear expression cannot fit both
+face,112,vbench_human:50,,kept: primary,one person; the face can be the focus throughout
+face,113,vbench_human:75,,kept: primary,"one person; the face can be the focus throughout (the source names no action, so the expression stands in for it)"
+face,114,vbench_human:12,,skipped,more than one person
+face,115,vbench2_human_anatomy:1,vbench2_human_identity:1 vbench2_human_clothes:1,kept: primary,one person; the face can be the focus throughout
+face,116,vbench2_human_anatomy:93,,skipped,two people
+face,117,vbench_human:34,,kept: primary,one person; the face can be the focus throughout
+face,118,vbench_human:30,,kept: primary,one person; the face can be the focus throughout
+face,119,vbench_human:92,,skipped,two people
+face,120,vbench_human:39,,skipped,a group of people
+face,121,vbench_human:57,,kept: primary,one person; the face can be the focus throughout
+face,122,vbench_human:15,,kept: primary,"one person; the face can be the focus throughout (the source names no action, so the expression stands in for it)"
+face,123,vbench_human:80,,skipped,more than one person
+face,124,vbench_human:45,,skipped,a group of people
+face,125,vbench2_human_anatomy:58,vbench2_human_identity:27 vbench2_human_clothes:48,skipped,two successive actions: one clear expression cannot fit both
+face,126,vbench_human:72,,kept: primary,one person; the face can be the focus throughout
+face,127,vbench_human:63,,skipped,more than one person
+face,128,vbench2_human_anatomy:68,vbench2_human_clothes:58,skipped,two successive actions: one clear expression cannot fit both
+face,129,vbench_human:99,,skipped,two people
+face,130,vbench_human:58,,kept: primary,one person; the face can be the focus throughout
+face,131,vbench2_human_anatomy:102,,skipped,two people
+face,132,vbench_human:60,,skipped,two people
+face,133,vbench_human:68,,skipped,more than one person
+face,134,vbench2_human_anatomy:99,,skipped,two people
+face,135,vbench_human:54,,skipped,two people
+face,136,vbench2_human_anatomy:73,vbench2_human_clothes:63,skipped,two successive actions: one clear expression cannot fit both
+face,137,vbench_human:97,,kept: primary,one person; the face can be the focus throughout
+face,138,vbench_human:5,,skipped,more than one person
+face,139,vbench2_human_anatomy:30,vbench2_human_clothes:21,kept: primary,one person; the face can be the focus throughout
+face,140,vbench_human:96,,kept: reserve,one person; the face can be the focus throughout
+face,141,vbench_human:44,,skipped,two people
+face,142,vbench2_human_anatomy:39,vbench2_human_clothes:29,skipped,two successive actions: one clear expression cannot fit both
+face,143,vbench2_human_anatomy:12,,skipped,more than one person
+face,144,vbench2_human_anatomy:35,vbench2_human_clothes:25,kept: reserve,one person; a close-up can keep the face in view through the activity
+face,145,vbench2_human_anatomy:114,,skipped,two people
+face,146,vbench_human:21,,skipped,a group of people
+face,147,vbench2_human_anatomy:45,vbench2_human_identity:18 vbench2_human_clothes:35,skipped,two successive actions: one clear expression cannot fit both
+face,148,vbench2_human_anatomy:21,vbench2_human_identity:8 vbench2_human_clothes:15,kept: reserve,one person; a close-up can keep the face in view through the activity
+face,149,vbench_human:31,,kept: reserve,one person; the face can be the focus throughout
+face,150,vbench2_human_anatomy:116,,skipped,two people
+face,151,vbench_human:74,,skipped,"rejected by Chase: skipped under reading i, an action that needs a second person (Chase's message of 2026-10-07; transcribed by Claude)"
+face,152,vbench2_human_anatomy:118,,skipped,two people
+face,153,vbench2_human_anatomy:94,,skipped,two people
+face,154,vbench_human:17,,skipped,two people
+face,155,vbench_human:76,,kept: reserve,one person; the face can be the focus throughout
+face,156,vbench_human:22,,skipped,a group of people
+face,157,vbench2_human_anatomy:83,vbench2_human_identity:45 vbench2_human_clothes:73,skipped,two successive actions: one clear expression cannot fit both
+face,158,vbench_human:95,,kept: reserve,"one person; the face can be the focus throughout (the source names no action, so the expression stands in for it)"
+face,159,vbench2_human_anatomy:10,vbench2_human_identity:3 vbench2_human_clothes:7,kept: reserve,one person; a close-up can keep the face in view through the activity
+face,160,vbench2_human_anatomy:117,,skipped,two people
+face,161,vbench2_human_anatomy:111,,skipped,two people
+face,162,vbench_human:33,,skipped,the face is in the water for much of the clip
+face,163,vbench_human:85,,skipped,two people
+face,164,vbench2_human_anatomy:107,,skipped,two people
+face,165,vbench2_human_anatomy:37,vbench2_human_clothes:27,skipped,two successive actions: one clear expression cannot fit both
+face,166,vbench_human:84,,kept: reserve,one person; the face can be the focus throughout
+face,167,vbench_human:29,,kept: reserve,one person; a close-up can keep the face in view through the activity
+face,168,vbench2_human_anatomy:69,vbench2_human_identity:35 vbench2_human_clothes:59,skipped,two successive actions: one clear expression cannot fit both
+face,169,vbench2_human_anatomy:115,,skipped,two people
+face,170,vbench2_human_anatomy:26,,skipped,more than one person
+face,171,vbench2_human_anatomy:90,,skipped,two people
+face,172,vbench2_human_anatomy:95,,skipped,two people
+face,173,vbench2_human_anatomy:75,vbench2_human_identity:39 vbench2_human_clothes:65,skipped,two successive actions: one clear expression cannot fit both
+face,174,vbench2_human_anatomy:97,,skipped,two people
+face,175,vbench_human:7,,kept: reserve,one person; the face can be the focus throughout
+face,176,vbench_human:66,,skipped,two people
+face,177,vbench_human:4,,kept: reserve,one person; the face can be the focus throughout
+face,178,vbench_human:19,,kept: reserve,one person; the face can be the focus throughout
+face,179,vbench2_human_anatomy:108,,skipped,two people
+face,180,vbench2_human_anatomy:64,vbench2_human_identity:31 vbench2_human_clothes:54,skipped,two successive actions: one clear expression cannot fit both
+face,181,vbench_human:13,,kept: reserve,one person; the face can be the focus throughout
+face,182,vbench2_human_anatomy:81,vbench2_human_identity:43 vbench2_human_clothes:71,skipped,two successive actions: one clear expression cannot fit both
+face,183,vbench2_human_anatomy:92,,skipped,two people
+face,184,vbench2_human_anatomy:47,vbench2_human_clothes:37,skipped,two successive actions: one clear expression cannot fit both
+face,185,vbench_human:94,,kept: reserve,one person; the face can be the focus throughout
+face,186,vbench2_human_anatomy:87,,skipped,two people
+face,187,vbench2_human_anatomy:76,vbench2_human_identity:40 vbench2_human_clothes:66,skipped,two successive actions: one clear expression cannot fit both
+face,188,vbench_human:3,,kept: reserve,"one person; the face can be the focus throughout (the source names no action, so the expression stands in for it)"
+face,189,vbench2_human_anatomy:103,,skipped,two people
+face,190,vbench2_human_anatomy:82,vbench2_human_identity:44 vbench2_human_clothes:72,skipped,two successive actions: one clear expression cannot fit both
+face,191,vbench2_human_anatomy:71,vbench2_human_identity:36 vbench2_human_clothes:61,skipped,two successive actions: one clear expression cannot fit both
+face,192,vbench2_human_anatomy:70,vbench2_human_clothes:60,skipped,two successive actions: one clear expression cannot fit both
+face,193,vbench_human:98,,skipped,more than one person
+face,194,vbench2_human_anatomy:15,,skipped,more than one person
+face,195,vbench_human:46,,skipped,an action that needs a second person: explaining to someone
+face,196,vbench_human:14,,skipped,an animal is part of the scene
+face,197,vbench_human:62,,skipped,two people
+face,198,vbench_human:55,,skipped,two people
+face,199,vbench2_human_anatomy:51,vbench2_human_clothes:41,skipped,two successive actions: one clear expression cannot fit both
+face,200,vbench2_human_anatomy:100,,skipped,two people
+face,201,vbench2_human_anatomy:11,vbench2_human_identity:4 vbench2_human_clothes:8,kept: reserve,one person; a close-up can keep the face in view through the activity
+face,202,vbench2_human_anatomy:52,vbench2_human_identity:21 vbench2_human_clothes:42,skipped,two successive actions: one clear expression cannot fit both
+face,203,vbench2_human_anatomy:13,vbench2_human_identity:5 vbench2_human_clothes:9,kept: reserve,one person; a close-up can keep the face in view through the activity
+face,204,vbench2_human_anatomy:55,vbench2_human_identity:24 vbench2_human_clothes:45,skipped,two successive actions: one clear expression cannot fit both
+face,205,vbench_human:36,,kept: reserve,one person; the face can be the focus throughout
+face,206,vbench_human:59,,kept: reserve,one person; the face can be the focus throughout
+face,207,vbench2_human_anatomy:38,vbench2_human_clothes:28,skipped,two successive actions: one clear expression cannot fit both
+face,208,vbench_human:56,,kept: reserve,one person; the face can be the focus throughout
+manipulation,1,t2v_compbench_object_interactions:77,,skipped,no person
+manipulation,2,vbench_human_action:17,,kept: holdout,one person; the hands keep sustained contact with a named object
+manipulation,3,t2v_compbench_action_binding:13,,skipped,no person
+manipulation,4,t2v_compbench_object_interactions:59,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,5,t2v_compbench_object_interactions:102,,skipped,no person
+manipulation,6,t2v_compbench_action_binding:44,,skipped,no person
+manipulation,7,t2v_compbench_action_binding:125,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,8,t2v_compbench_object_interactions:162,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,9,vbench_human_action:24,,skipped,the source names no object in the hands
+manipulation,10,t2v_compbench_action_binding:176,,skipped,a second subject shares the scene
+manipulation,11,t2v_compbench_object_interactions:193,,skipped,more than one person
+manipulation,12,t2v_compbench_object_interactions:121,,skipped,no person
+manipulation,13,t2v_compbench_object_interactions:40,,skipped,no person
+manipulation,14,t2v_compbench_action_binding:189,,skipped,no person
+manipulation,15,t2v_compbench_object_interactions:96,,skipped,more than one person
+manipulation,16,t2v_compbench_object_interactions:122,,skipped,no person
+manipulation,17,t2v_compbench_action_binding:85,,skipped,no person
+manipulation,18,t2v_compbench_action_binding:37,,skipped,no person
+manipulation,19,t2v_compbench_object_interactions:180,,skipped,more than one person
+manipulation,20,t2v_compbench_object_interactions:114,,skipped,no person
+manipulation,21,t2v_compbench_object_interactions:128,,skipped,no person
+manipulation,22,t2v_compbench_object_interactions:69,,skipped,no person
+manipulation,23,t2v_compbench_object_interactions:15,,skipped,the hands keep no contact with an object
+manipulation,24,vbench_human_action:58,,skipped,the contact is with the body
+manipulation,25,t2v_compbench_object_interactions:90,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,26,t2v_compbench_object_interactions:135,,skipped,no person
+manipulation,27,vbench_human_action:12,,skipped,the source names no object in the hands
+manipulation,28,t2v_compbench_action_binding:24,,skipped,no person
+manipulation,29,t2v_compbench_object_interactions:188,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,30,t2v_compbench_action_binding:52,,skipped,a second subject shares the scene
+manipulation,31,t2v_compbench_action_binding:56,,skipped,a second subject shares the scene
+manipulation,32,vbench_human_action:46,,kept: holdout,one person; the hands keep sustained contact with a named object
+manipulation,33,vbench_human_action:50,,skipped,the source names no object in the hands
+manipulation,34,t2v_compbench_action_binding:71,,skipped,a second subject shares the scene
+manipulation,35,t2v_compbench_action_binding:195,,skipped,no person
+manipulation,36,t2v_compbench_action_binding:124,,skipped,no person
+manipulation,37,t2v_compbench_action_binding:174,,skipped,more than one person
+manipulation,38,t2v_compbench_object_interactions:163,,skipped,no person
+manipulation,39,t2v_compbench_object_interactions:79,,skipped,no person
+manipulation,40,t2v_compbench_action_binding:5,,skipped,no person
+manipulation,41,t2v_compbench_action_binding:178,,skipped,no person
+manipulation,42,t2v_compbench_action_binding:36,,skipped,no person
+manipulation,43,t2v_compbench_action_binding:18,,skipped,no person
+manipulation,44,vbench_human_action:4,,skipped,"rejected by Chase: action happens at the mouth, outside the hands-and-object close-up."
+manipulation,45,t2v_compbench_action_binding:78,,skipped,no person
+manipulation,46,t2v_compbench_object_interactions:22,,skipped,no person
+manipulation,47,vbench_human_action:99,,kept: holdout,one person; the hands keep sustained contact with a named object
+manipulation,48,t2v_compbench_object_interactions:18,,skipped,no person
+manipulation,49,t2v_compbench_action_binding:101,,skipped,no person
+manipulation,50,t2v_compbench_object_interactions:75,,skipped,no person
+manipulation,51,t2v_compbench_object_interactions:71,,skipped,no person
+manipulation,52,t2v_compbench_action_binding:19,,skipped,no person
+manipulation,53,t2v_compbench_object_interactions:35,,skipped,no person
+manipulation,54,t2v_compbench_action_binding:190,,skipped,no person
+manipulation,55,t2v_compbench_object_interactions:115,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,56,t2v_compbench_object_interactions:168,,kept: holdout,one person; the hands keep sustained contact with a named object
+manipulation,57,t2v_compbench_action_binding:83,,skipped,no person
+manipulation,58,t2v_compbench_action_binding:98,,skipped,no person
+manipulation,59,vbench_human_action:87,,skipped,the hands keep no contact with an object
+manipulation,60,t2v_compbench_object_interactions:189,,skipped,more than one person
+manipulation,61,t2v_compbench_action_binding:159,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,62,t2v_compbench_object_interactions:49,,skipped,no person
+manipulation,63,t2v_compbench_object_interactions:166,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,64,t2v_compbench_action_binding:28,,skipped,no person
+manipulation,65,vbench_human_action:29,,skipped,the source names no object in the hands
+manipulation,66,t2v_compbench_object_interactions:127,,skipped,no person
+manipulation,67,vbench_human_action:76,,skipped,more than one person
+manipulation,68,vbench_human_action:73,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,69,t2v_compbench_object_interactions:159,,skipped,more than one person
+manipulation,70,t2v_compbench_object_interactions:112,,skipped,the source names no object in the hands
+manipulation,71,t2v_compbench_action_binding:8,,skipped,no person
+manipulation,72,t2v_compbench_object_interactions:48,,skipped,the hands keep no contact with an object
+manipulation,73,t2v_compbench_object_interactions:137,,skipped,no person
+manipulation,74,vbench_human_action:98,,kept: holdout,one person; the hands keep sustained contact with a named object
+manipulation,75,t2v_compbench_object_interactions:19,,skipped,the hands keep no contact with an object
+manipulation,76,t2v_compbench_object_interactions:155,,skipped,more than one person
+manipulation,77,vbench_human_action:48,,skipped,the hands keep no contact with an object
+manipulation,78,t2v_compbench_object_interactions:43,,skipped,the source names no object in the hands
+manipulation,79,t2v_compbench_action_binding:111,,skipped,no person
+manipulation,80,t2v_compbench_object_interactions:195,,skipped,more than one person
+manipulation,81,vbench_human_action:80,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,82,t2v_compbench_action_binding:31,,skipped,no person
+manipulation,83,t2v_compbench_action_binding:157,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,84,t2v_compbench_object_interactions:152,,skipped,more than one person
+manipulation,85,t2v_compbench_action_binding:110,,skipped,no person
+manipulation,86,vbench_human_action:89,,skipped,the hands keep no contact with an object
+manipulation,87,t2v_compbench_object_interactions:88,,skipped,no person
+manipulation,88,t2v_compbench_object_interactions:11,,skipped,the hands keep no contact with an object
+manipulation,89,t2v_compbench_action_binding:63,,skipped,a second subject shares the scene
+manipulation,90,vbench_human_action:78,,kept: holdout,one person; the hands keep sustained contact with a named object
+manipulation,91,t2v_compbench_object_interactions:38,,skipped,no person
+manipulation,92,t2v_compbench_action_binding:197,,skipped,no person
+manipulation,93,t2v_compbench_object_interactions:58,,skipped,more than one person
+manipulation,94,vbench_human_action:5,,skipped,a clap
+manipulation,95,t2v_compbench_action_binding:33,,skipped,no person
+manipulation,96,t2v_compbench_object_interactions:84,,skipped,more than one person
+manipulation,97,t2v_compbench_action_binding:3,,skipped,no person
+manipulation,98,t2v_compbench_action_binding:167,,skipped,a second subject shares the scene
+manipulation,99,t2v_compbench_action_binding:79,,skipped,no person
+manipulation,100,t2v_compbench_action_binding:181,,skipped,no person
+manipulation,101,t2v_compbench_action_binding:77,,skipped,no person
+manipulation,102,t2v_compbench_object_interactions:123,,skipped,no person
+manipulation,103,t2v_compbench_action_binding:27,,skipped,no person
+manipulation,104,t2v_compbench_action_binding:89,,skipped,no person
+manipulation,105,t2v_compbench_object_interactions:81,,skipped,no person
+manipulation,106,t2v_compbench_object_interactions:78,,skipped,no person
+manipulation,107,t2v_compbench_action_binding:14,,skipped,no person
+manipulation,108,vbench_human_action:85,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,109,t2v_compbench_object_interactions:176,,skipped,more than one person
+manipulation,110,vbench_human_action:68,,skipped,the hands keep no contact with an object
+manipulation,111,t2v_compbench_action_binding:139,,skipped,no person
+manipulation,112,t2v_compbench_action_binding:191,,skipped,no person
+manipulation,113,t2v_compbench_action_binding:60,,skipped,a second subject shares the scene
+manipulation,114,t2v_compbench_object_interactions:33,,skipped,no person
+manipulation,115,t2v_compbench_object_interactions:147,,skipped,no person
+manipulation,116,t2v_compbench_action_binding:81,,skipped,no person
+manipulation,117,t2v_compbench_action_binding:138,,skipped,no person
+manipulation,118,vbench_human_action:26,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,119,vbench_human_action:10,,skipped,more than one person
+manipulation,120,t2v_compbench_action_binding:128,,skipped,more than one person
+manipulation,121,t2v_compbench_action_binding:180,,skipped,no person
+manipulation,122,t2v_compbench_action_binding:161,,skipped,a second subject shares the scene
+manipulation,123,t2v_compbench_action_binding:55,,skipped,a second subject shares the scene
+manipulation,124,t2v_compbench_action_binding:50,,skipped,a second subject shares the scene
+manipulation,125,t2v_compbench_action_binding:105,,skipped,no person
+manipulation,126,t2v_compbench_action_binding:53,,skipped,a second subject shares the scene
+manipulation,127,vbench_human_action:43,,skipped,the hands keep no contact with an object
+manipulation,128,t2v_compbench_action_binding:185,,skipped,no person
+manipulation,129,t2v_compbench_action_binding:93,,skipped,no person
+manipulation,130,vbench_human_action:39,,skipped,the hands keep no contact with an object
+manipulation,131,vbench_human_action:21,,skipped,the contact is with the body
+manipulation,132,t2v_compbench_object_interactions:154,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,133,t2v_compbench_object_interactions:106,,skipped,no person
+manipulation,134,vbench_human_action:75,,skipped,the hands keep no contact with an object
+manipulation,135,t2v_compbench_action_binding:80,,skipped,no person
+manipulation,136,t2v_compbench_action_binding:108,,skipped,no person
+manipulation,137,t2v_compbench_object_interactions:165,,skipped,more than one person
+manipulation,138,t2v_compbench_action_binding:155,,skipped,more than one person
+manipulation,139,t2v_compbench_object_interactions:181,,skipped,more than one person
+manipulation,140,t2v_compbench_object_interactions:119,,skipped,no person
+manipulation,141,t2v_compbench_object_interactions:132,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,142,t2v_compbench_action_binding:46,,skipped,a second subject shares the scene
+manipulation,143,vbench_human_action:37,,skipped,the source names no object in the hands
+manipulation,144,t2v_compbench_object_interactions:109,,skipped,the hands keep no contact with an object
+manipulation,145,vbench_human_action:97,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,146,t2v_compbench_object_interactions:2,,skipped,more than one person
+manipulation,147,vbench_human_action:44,,skipped,the contact is with the body
+manipulation,148,vbench_human_action:60,,skipped,the contact is with the body
+manipulation,149,vbench_human_action:38,,skipped,the hands keep no contact with an object
+manipulation,150,t2v_compbench_action_binding:38,,skipped,no person
+manipulation,151,t2v_compbench_object_interactions:140,,skipped,the hands keep no contact with an object
+manipulation,152,t2v_compbench_object_interactions:13,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,153,t2v_compbench_object_interactions:178,,skipped,more than one person
+manipulation,154,t2v_compbench_action_binding:26,,skipped,no person
+manipulation,155,t2v_compbench_object_interactions:113,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,156,vbench_human_action:36,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,157,vbench_human_action:63,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,158,vbench_human_action:19,,skipped,the hands keep no contact with an object
+manipulation,159,t2v_compbench_object_interactions:117,,skipped,the hands keep no contact with an object
+manipulation,160,t2v_compbench_object_interactions:91,,skipped,no person
+manipulation,161,t2v_compbench_object_interactions:186,,skipped,more than one person
+manipulation,162,t2v_compbench_object_interactions:124,,skipped,no person
+manipulation,163,t2v_compbench_object_interactions:143,,skipped,no person
+manipulation,164,t2v_compbench_object_interactions:3,,skipped,the hands keep no contact with an object
+manipulation,165,t2v_compbench_action_binding:119,,skipped,no person
+manipulation,166,vbench_human_action:70,,skipped,the contact is with the body
+manipulation,167,t2v_compbench_object_interactions:41,,skipped,no person
+manipulation,168,t2v_compbench_action_binding:184,,skipped,no person
+manipulation,169,t2v_compbench_action_binding:74,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,170,t2v_compbench_object_interactions:198,,skipped,more than one person
+manipulation,171,t2v_compbench_action_binding:194,,skipped,no person
+manipulation,172,t2v_compbench_object_interactions:20,,skipped,the hands keep no contact with an object
+manipulation,173,t2v_compbench_object_interactions:63,,skipped,more than one person
+manipulation,174,t2v_compbench_object_interactions:25,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,175,t2v_compbench_object_interactions:5,,skipped,no person
+manipulation,176,t2v_compbench_action_binding:182,,skipped,no person
+manipulation,177,t2v_compbench_action_binding:64,,skipped,a second subject shares the scene
+manipulation,178,vbench_human_action:18,,skipped,the hands keep no contact with an object
+manipulation,179,vbench_human_action:88,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,180,t2v_compbench_action_binding:163,,skipped,a second subject shares the scene
+manipulation,181,t2v_compbench_object_interactions:87,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,182,t2v_compbench_action_binding:172,,skipped,no person
+manipulation,183,t2v_compbench_object_interactions:65,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,184,t2v_compbench_object_interactions:99,,skipped,more than one person
+manipulation,185,t2v_compbench_object_interactions:57,,skipped,more than one person
+manipulation,186,t2v_compbench_object_interactions:14,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,187,t2v_compbench_object_interactions:27,,skipped,no person
+manipulation,188,t2v_compbench_object_interactions:4,,skipped,no person
+manipulation,189,t2v_compbench_action_binding:2,,skipped,no person
+manipulation,190,t2v_compbench_action_binding:141,,skipped,no person
+manipulation,191,t2v_compbench_object_interactions:196,,skipped,more than one person
+manipulation,192,t2v_compbench_action_binding:127,,skipped,more than one person
+manipulation,193,t2v_compbench_object_interactions:95,,skipped,more than one person
+manipulation,194,vbench_human_action:14,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,195,t2v_compbench_action_binding:96,,skipped,no person
+manipulation,196,vbench_human_action:25,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,197,t2v_compbench_object_interactions:139,,skipped,no person
+manipulation,198,t2v_compbench_action_binding:175,,skipped,no person
+manipulation,199,t2v_compbench_object_interactions:86,,skipped,more than one person
+manipulation,200,vbench_human_action:91,,skipped,more than one person
+manipulation,201,t2v_compbench_action_binding:130,,skipped,no person
+manipulation,202,t2v_compbench_action_binding:153,,skipped,more than one person
+manipulation,203,t2v_compbench_object_interactions:192,,skipped,more than one person
+manipulation,204,t2v_compbench_object_interactions:42,,skipped,no person
+manipulation,205,t2v_compbench_action_binding:87,,skipped,no person
+manipulation,206,t2v_compbench_object_interactions:110,,skipped,"contact with the object is brief, not sustained"
+manipulation,207,vbench_human_action:79,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,208,t2v_compbench_object_interactions:50,,skipped,a second subject shares the scene
+manipulation,209,t2v_compbench_action_binding:112,,skipped,a second subject shares the scene
+manipulation,210,t2v_compbench_action_binding:171,,skipped,a second subject shares the scene
+manipulation,211,t2v_compbench_action_binding:95,,skipped,more than one person
+manipulation,212,t2v_compbench_action_binding:144,,skipped,no person
+manipulation,213,t2v_compbench_object_interactions:54,,skipped,the source names no object in the hands
+manipulation,214,t2v_compbench_object_interactions:148,,skipped,no person
+manipulation,215,vbench_human_action:2,,skipped,the hands keep no contact with an object
+manipulation,216,vbench_human_action:31,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,217,vbench_human_action:22,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,218,t2v_compbench_object_interactions:108,,skipped,the hands keep no contact with an object
+manipulation,219,t2v_compbench_action_binding:147,,skipped,a second subject shares the scene
+manipulation,220,t2v_compbench_object_interactions:62,,skipped,no person
+manipulation,221,t2v_compbench_object_interactions:39,,skipped,no person
+manipulation,222,t2v_compbench_object_interactions:1,,skipped,no person
+manipulation,223,t2v_compbench_object_interactions:129,,skipped,no person
+manipulation,224,t2v_compbench_action_binding:115,,skipped,no person
+manipulation,225,t2v_compbench_object_interactions:142,,skipped,no person
+manipulation,226,t2v_compbench_action_binding:72,,skipped,a second subject shares the scene
+manipulation,227,t2v_compbench_action_binding:158,,skipped,a second subject shares the scene
+manipulation,228,vbench_human_action:61,,skipped,the hands keep no contact with an object
+manipulation,229,t2v_compbench_action_binding:67,,skipped,a second subject shares the scene
+manipulation,230,vbench_human_action:9,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,231,t2v_compbench_object_interactions:138,,skipped,no person
+manipulation,232,t2v_compbench_action_binding:9,,skipped,no person
+manipulation,233,t2v_compbench_object_interactions:92,,skipped,more than one person
+manipulation,234,t2v_compbench_action_binding:151,,skipped,a second subject shares the scene
+manipulation,235,t2v_compbench_object_interactions:172,,skipped,more than one person
+manipulation,236,t2v_compbench_object_interactions:136,,skipped,no person
+manipulation,237,t2v_compbench_object_interactions:36,,skipped,no person
+manipulation,238,vbench_human_action:74,,skipped,the hands keep no contact with an object
+manipulation,239,t2v_compbench_action_binding:103,,skipped,no person
+manipulation,240,t2v_compbench_object_interactions:100,,skipped,more than one person
+manipulation,241,vbench_human_action:94,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,242,t2v_compbench_object_interactions:199,,skipped,more than one person
+manipulation,243,t2v_compbench_action_binding:76,,skipped,no person
+manipulation,244,t2v_compbench_object_interactions:98,,skipped,more than one person
+manipulation,245,vbench_human_action:83,,skipped,more than one person
+manipulation,246,vbench_human_action:33,,skipped,"the hands hold the kite's line, not the kite"
+manipulation,247,t2v_compbench_action_binding:118,,skipped,no person
+manipulation,248,t2v_compbench_action_binding:99,,skipped,a second subject shares the scene
+manipulation,249,t2v_compbench_action_binding:120,,skipped,a second subject shares the scene
+manipulation,250,vbench_human_action:57,,skipped,the source names no object in the hands
+manipulation,251,t2v_compbench_action_binding:17,,skipped,no person
+manipulation,252,t2v_compbench_action_binding:199,,skipped,no person
+manipulation,253,t2v_compbench_action_binding:131,,skipped,no person
+manipulation,254,t2v_compbench_action_binding:133,,skipped,no person
+manipulation,255,t2v_compbench_action_binding:143,,skipped,no person
+manipulation,256,t2v_compbench_action_binding:91,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,257,t2v_compbench_action_binding:59,,skipped,a second subject shares the scene
+manipulation,258,t2v_compbench_action_binding:149,,skipped,more than one person
+manipulation,259,t2v_compbench_object_interactions:24,,skipped,no person
+manipulation,260,t2v_compbench_action_binding:47,,skipped,a second subject shares the scene
+manipulation,261,vbench_human_action:45,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,262,t2v_compbench_action_binding:39,,skipped,no person
+manipulation,263,t2v_compbench_object_interactions:51,,skipped,more than one person
+manipulation,264,t2v_compbench_action_binding:1,,skipped,no person
+manipulation,265,t2v_compbench_object_interactions:55,,skipped,more than one person
+manipulation,266,t2v_compbench_action_binding:166,,skipped,a second subject shares the scene
+manipulation,267,t2v_compbench_action_binding:48,,skipped,a second subject shares the scene
+manipulation,268,t2v_compbench_object_interactions:149,,skipped,no person
+manipulation,269,t2v_compbench_action_binding:160,,skipped,a second subject shares the scene
+manipulation,270,vbench_human_action:27,,skipped,the hands keep no contact with an object
+manipulation,271,t2v_compbench_action_binding:177,,skipped,a second subject shares the scene
+manipulation,272,t2v_compbench_action_binding:45,,skipped,no person
+manipulation,273,vbench_human_action:32,,skipped,the action and its effect must stay at the hands and the named object: playing a trumpet happens at the mouth too
+manipulation,274,t2v_compbench_object_interactions:46,,skipped,the source names no object in the hands
+manipulation,275,vbench_human_action:30,,skipped,the hands keep no contact with an object
+manipulation,276,t2v_compbench_action_binding:32,,skipped,no person
+manipulation,277,t2v_compbench_object_interactions:184,,skipped,more than one person
+manipulation,278,vbench_human_action:52,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,279,vbench_human_action:66,,skipped,the source names no object in the hands
+manipulation,280,t2v_compbench_action_binding:113,,skipped,no person
+manipulation,281,t2v_compbench_object_interactions:94,,skipped,no person
+manipulation,282,t2v_compbench_object_interactions:179,,skipped,more than one person
+manipulation,283,vbench_human_action:56,,skipped,the contact is with the body
+manipulation,284,t2v_compbench_action_binding:54,,skipped,a second subject shares the scene
+manipulation,285,t2v_compbench_object_interactions:164,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,286,t2v_compbench_object_interactions:126,,skipped,no person
+manipulation,287,vbench_human_action:100,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,288,t2v_compbench_action_binding:196,,skipped,no person
+manipulation,289,t2v_compbench_action_binding:20,,skipped,no person
+manipulation,290,vbench_human_action:6,,skipped,the source names no object in the hands
+manipulation,291,t2v_compbench_object_interactions:150,,skipped,no person
+manipulation,292,t2v_compbench_object_interactions:167,,skipped,more than one person
+manipulation,293,vbench_human_action:67,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,294,t2v_compbench_action_binding:35,,skipped,no person
+manipulation,295,t2v_compbench_action_binding:69,,skipped,a second subject shares the scene
+manipulation,296,t2v_compbench_action_binding:90,,skipped,a second subject shares the scene
+manipulation,297,t2v_compbench_object_interactions:171,,skipped,more than one person
+manipulation,298,t2v_compbench_action_binding:104,,skipped,no person
+manipulation,299,t2v_compbench_object_interactions:56,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,300,vbench_human_action:41,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,301,vbench_human_action:96,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,302,vbench_human_action:28,,skipped,more than one person
+manipulation,303,t2v_compbench_action_binding:122,,skipped,no person
+manipulation,304,t2v_compbench_action_binding:142,,skipped,no person
+manipulation,305,vbench_human_action:77,,skipped,the hands keep no contact with an object
+manipulation,306,t2v_compbench_object_interactions:146,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,307,t2v_compbench_object_interactions:153,,skipped,more than one person
+manipulation,308,t2v_compbench_object_interactions:170,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,309,vbench_human_action:92,,skipped,the hands keep no contact with an object
+manipulation,310,vbench_human_action:40,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,311,vbench_human_action:7,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,312,t2v_compbench_object_interactions:82,,skipped,more than one person
+manipulation,313,t2v_compbench_action_binding:75,,skipped,no person
+manipulation,314,t2v_compbench_object_interactions:34,,skipped,no person
+manipulation,315,t2v_compbench_action_binding:109,,skipped,no person
+manipulation,316,t2v_compbench_action_binding:145,,skipped,a second subject shares the scene
+manipulation,317,t2v_compbench_object_interactions:116,,skipped,no person
+manipulation,318,vbench_human_action:71,,skipped,the hands keep no contact with an object
+manipulation,319,t2v_compbench_object_interactions:200,,skipped,more than one person
+manipulation,320,t2v_compbench_object_interactions:103,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,321,t2v_compbench_object_interactions:72,,skipped,no person
+manipulation,322,t2v_compbench_action_binding:7,,skipped,no person
+manipulation,323,vbench_human_action:16,,skipped,the contact is with the body
+manipulation,324,t2v_compbench_action_binding:126,,skipped,the hands keep no contact with an object
+manipulation,325,t2v_compbench_action_binding:43,,skipped,no person
+manipulation,326,t2v_compbench_object_interactions:44,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,327,t2v_compbench_action_binding:51,,skipped,a second subject shares the scene
+manipulation,328,t2v_compbench_object_interactions:8,,skipped,no person
+manipulation,329,t2v_compbench_action_binding:16,,skipped,no person
+manipulation,330,t2v_compbench_action_binding:57,,skipped,a second subject shares the scene
+manipulation,331,t2v_compbench_object_interactions:64,,skipped,more than one person
+manipulation,332,t2v_compbench_object_interactions:194,,skipped,more than one person
+manipulation,333,t2v_compbench_action_binding:15,,skipped,no person
+manipulation,334,t2v_compbench_action_binding:86,,skipped,no person
+manipulation,335,t2v_compbench_action_binding:92,,skipped,a second subject shares the scene
+manipulation,336,t2v_compbench_object_interactions:10,,skipped,no person
+manipulation,337,t2v_compbench_object_interactions:85,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,338,t2v_compbench_action_binding:168,,skipped,no person
+manipulation,339,vbench_human_action:34,,skipped,the contact is with the body
+manipulation,340,t2v_compbench_object_interactions:31,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,341,t2v_compbench_object_interactions:101,,skipped,no person
+manipulation,342,vbench_human_action:1,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,343,t2v_compbench_action_binding:164,,skipped,a second subject shares the scene
+manipulation,344,t2v_compbench_action_binding:68,,skipped,a second subject shares the scene
+manipulation,345,vbench_human_action:72,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,346,vbench_human_action:51,,skipped,the hands keep no contact with an object
+manipulation,347,t2v_compbench_object_interactions:6,,skipped,no person
+manipulation,348,t2v_compbench_action_binding:148,,skipped,a second subject shares the scene
+manipulation,349,vbench_human_action:59,,skipped,more than one person
+manipulation,350,t2v_compbench_action_binding:34,,skipped,no person
+manipulation,351,t2v_compbench_action_binding:165,,skipped,a second subject shares the scene
+manipulation,352,t2v_compbench_object_interactions:97,,skipped,more than one person
+manipulation,353,t2v_compbench_object_interactions:104,,skipped,no person
+manipulation,354,t2v_compbench_action_binding:100,,skipped,no person
+manipulation,355,t2v_compbench_action_binding:114,,skipped,no person
+manipulation,356,t2v_compbench_object_interactions:74,,skipped,no person
+manipulation,357,t2v_compbench_action_binding:188,,skipped,no person
+manipulation,358,t2v_compbench_object_interactions:141,,skipped,more than one person
+manipulation,359,t2v_compbench_object_interactions:156,,skipped,no person
+manipulation,360,t2v_compbench_action_binding:10,,skipped,no person
+manipulation,361,t2v_compbench_object_interactions:37,,skipped,no person
+manipulation,362,t2v_compbench_object_interactions:183,,skipped,more than one person
+manipulation,363,t2v_compbench_object_interactions:160,,skipped,more than one person
+manipulation,364,vbench_human_action:47,,skipped,the hands keep no contact with an object
+manipulation,365,t2v_compbench_action_binding:134,,skipped,no person
+manipulation,366,t2v_compbench_action_binding:116,,skipped,no person
+manipulation,367,t2v_compbench_action_binding:70,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,368,t2v_compbench_action_binding:200,,skipped,no person
+manipulation,369,vbench_human_action:23,,skipped,the hands keep no contact with an object
+manipulation,370,t2v_compbench_action_binding:84,,skipped,no person
+manipulation,371,t2v_compbench_action_binding:183,,skipped,no person
+manipulation,372,t2v_compbench_object_interactions:105,,skipped,the hands keep no contact with an object
+manipulation,373,vbench_human_action:8,,skipped,the action and its effect must stay at the hands and the named object: eating happens at the mouth
+manipulation,374,vbench_human_action:90,,skipped,the hands keep no contact with an object
+manipulation,375,t2v_compbench_action_binding:152,,skipped,a second subject shares the scene
+manipulation,376,t2v_compbench_object_interactions:61,,skipped,no person
+manipulation,377,t2v_compbench_action_binding:12,,skipped,no person
+manipulation,378,t2v_compbench_object_interactions:66,,skipped,no person
+manipulation,379,t2v_compbench_action_binding:82,,skipped,no person
+manipulation,380,t2v_compbench_action_binding:198,,skipped,no person
+manipulation,381,vbench_human_action:55,,skipped,the hands keep no contact with an object
+manipulation,382,vbench_human_action:95,,skipped,the source names no object in the hands
+manipulation,383,t2v_compbench_action_binding:30,,skipped,no person
+manipulation,384,vbench_human_action:53,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,385,t2v_compbench_object_interactions:185,,skipped,more than one person
+manipulation,386,t2v_compbench_action_binding:146,,skipped,a second subject shares the scene
+manipulation,387,t2v_compbench_action_binding:150,,skipped,a second subject shares the scene
+manipulation,388,vbench_human_action:11,,skipped,the hands steer a vehicle or an animal rather than handle an object
+manipulation,389,t2v_compbench_action_binding:25,,skipped,no person
+manipulation,390,t2v_compbench_object_interactions:45,,skipped,"the action is a transformation, not the hands handling the potion"
+manipulation,391,t2v_compbench_action_binding:121,,skipped,no person
+manipulation,392,t2v_compbench_action_binding:136,,skipped,no person
+manipulation,393,t2v_compbench_object_interactions:93,,skipped,more than one person
+manipulation,394,t2v_compbench_action_binding:154,,skipped,more than one person
+manipulation,395,t2v_compbench_action_binding:11,,skipped,no person
+manipulation,396,t2v_compbench_action_binding:49,,skipped,a second subject shares the scene
+manipulation,397,t2v_compbench_object_interactions:83,,skipped,more than one person
+manipulation,398,t2v_compbench_object_interactions:68,,skipped,no person
+manipulation,399,t2v_compbench_action_binding:117,,skipped,no person
+manipulation,400,t2v_compbench_object_interactions:12,,skipped,no person
+manipulation,401,t2v_compbench_object_interactions:60,,skipped,more than one person
+manipulation,402,t2v_compbench_object_interactions:52,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,403,vbench_human_action:64,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,404,t2v_compbench_object_interactions:175,,skipped,more than one person
+manipulation,405,vbench_human_action:65,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,406,t2v_compbench_action_binding:88,,skipped,no person
+manipulation,407,vbench_human_action:82,,skipped,"contact with the object is brief, not sustained"
+manipulation,408,t2v_compbench_action_binding:58,,skipped,a second subject shares the scene
+manipulation,409,t2v_compbench_object_interactions:151,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,410,t2v_compbench_action_binding:156,,skipped,more than one person
+manipulation,411,t2v_compbench_action_binding:61,,skipped,more than one person
+manipulation,412,t2v_compbench_action_binding:42,,skipped,no person
+manipulation,413,t2v_compbench_object_interactions:190,,skipped,more than one person
+manipulation,414,vbench_human_action:13,,skipped,the hands keep no contact with an object
+manipulation,415,vbench_human_action:84,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,416,t2v_compbench_object_interactions:70,,skipped,no person
+manipulation,417,vbench_human_action:15,,skipped,the action and its effect must stay at the hands and the named object: playing a flute happens at the mouth too
+manipulation,418,t2v_compbench_object_interactions:28,,skipped,no person
+manipulation,419,t2v_compbench_object_interactions:111,,skipped,no person
+manipulation,420,t2v_compbench_object_interactions:32,,skipped,no person
+manipulation,421,vbench_human_action:54,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,422,t2v_compbench_action_binding:137,,skipped,no person
+manipulation,423,t2v_compbench_object_interactions:182,,skipped,more than one person
+manipulation,424,t2v_compbench_action_binding:135,,skipped,the hands keep no contact with an object
+manipulation,425,t2v_compbench_action_binding:66,,skipped,a second subject shares the scene
+manipulation,426,t2v_compbench_action_binding:23,,skipped,no person
+manipulation,427,t2v_compbench_object_interactions:133,,skipped,no person
+manipulation,428,t2v_compbench_action_binding:94,,skipped,no person
+manipulation,429,t2v_compbench_action_binding:132,,skipped,no person
+manipulation,430,t2v_compbench_object_interactions:17,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,431,vbench_human_action:86,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,432,t2v_compbench_action_binding:170,,skipped,more than one person
+manipulation,433,t2v_compbench_object_interactions:107,,skipped,no person
+manipulation,434,t2v_compbench_action_binding:40,,skipped,no person
+manipulation,435,t2v_compbench_object_interactions:120,,skipped,no person
+manipulation,436,t2v_compbench_object_interactions:197,,skipped,more than one person
+manipulation,437,t2v_compbench_object_interactions:118,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,438,t2v_compbench_object_interactions:23,,skipped,no person
+manipulation,439,t2v_compbench_object_interactions:144,,skipped,no person
+manipulation,440,t2v_compbench_object_interactions:173,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,441,vbench_human_action:69,,skipped,the contact is with the body
+manipulation,442,t2v_compbench_object_interactions:7,,skipped,no person
+manipulation,443,t2v_compbench_object_interactions:191,,skipped,more than one person
+manipulation,444,vbench_human_action:93,,skipped,more than one person
+manipulation,445,t2v_compbench_action_binding:187,,skipped,no person
+manipulation,446,t2v_compbench_object_interactions:157,,skipped,more than one person
+manipulation,447,vbench_human_action:81,,skipped,"a throw, catch, toss or strike, not sustained contact"
+manipulation,448,t2v_compbench_action_binding:179,,skipped,a second subject shares the scene
+manipulation,449,vbench_human_action:49,,skipped,the hands keep no contact with an object
+manipulation,450,t2v_compbench_object_interactions:30,,skipped,no person
+manipulation,451,t2v_compbench_object_interactions:16,,skipped,no person
+manipulation,452,t2v_compbench_object_interactions:134,,skipped,no person
+manipulation,453,t2v_compbench_action_binding:6,,skipped,no person
+manipulation,454,t2v_compbench_object_interactions:9,,skipped,no person
+manipulation,455,t2v_compbench_object_interactions:145,,skipped,no person
+manipulation,456,t2v_compbench_object_interactions:53,,skipped,no person
+manipulation,457,t2v_compbench_action_binding:129,,skipped,no person
+manipulation,458,t2v_compbench_action_binding:107,,skipped,no person
+manipulation,459,t2v_compbench_object_interactions:187,,skipped,more than one person
+manipulation,460,t2v_compbench_object_interactions:177,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,461,t2v_compbench_action_binding:65,,skipped,a second subject shares the scene
+manipulation,462,t2v_compbench_action_binding:22,,skipped,no person
+manipulation,463,t2v_compbench_object_interactions:174,,skipped,more than one person
+manipulation,464,t2v_compbench_action_binding:29,,skipped,no person
+manipulation,465,vbench_human_action:20,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,466,t2v_compbench_action_binding:192,,skipped,no person
+manipulation,467,t2v_compbench_object_interactions:131,,skipped,no person
+manipulation,468,t2v_compbench_action_binding:73,,skipped,a second subject shares the scene
+manipulation,469,t2v_compbench_action_binding:4,,skipped,no person
+manipulation,470,t2v_compbench_object_interactions:26,,skipped,no person
+manipulation,471,t2v_compbench_action_binding:123,,skipped,no person
+manipulation,472,t2v_compbench_action_binding:186,,skipped,no person
+manipulation,473,t2v_compbench_object_interactions:80,,skipped,no person
+manipulation,474,vbench_human_action:42,,skipped,more than one person
+manipulation,475,t2v_compbench_object_interactions:29,,skipped,no person
+manipulation,476,vbench_human_action:62,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,477,t2v_compbench_object_interactions:47,,skipped,the source names no object in the hands
+manipulation,478,t2v_compbench_object_interactions:76,,skipped,no person
+manipulation,479,vbench_human_action:3,,skipped,the hands keep no contact with an object
+manipulation,480,t2v_compbench_object_interactions:73,,skipped,no person
+manipulation,481,t2v_compbench_object_interactions:89,,skipped,no object stays in the hands through the tea party
+manipulation,482,t2v_compbench_object_interactions:67,,skipped,no person
+manipulation,483,t2v_compbench_action_binding:193,,skipped,no person
+manipulation,484,t2v_compbench_action_binding:140,,skipped,a second subject shares the scene
+manipulation,485,t2v_compbench_object_interactions:161,,skipped,more than one person
+manipulation,486,t2v_compbench_action_binding:62,,skipped,a second subject shares the scene
+manipulation,487,t2v_compbench_action_binding:97,,skipped,no person
+manipulation,488,t2v_compbench_action_binding:173,,skipped,a second subject shares the scene
+manipulation,489,t2v_compbench_action_binding:162,,skipped,a second subject shares the scene
+manipulation,490,vbench_human_action:35,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,491,t2v_compbench_object_interactions:125,,skipped,no person
+manipulation,492,t2v_compbench_action_binding:102,,skipped,no person
+manipulation,493,t2v_compbench_action_binding:106,,skipped,no person
+manipulation,494,t2v_compbench_object_interactions:169,,skipped,"the hands' contact is with an animal, or an animal is part of the action"
+manipulation,495,t2v_compbench_action_binding:169,,skipped,more than one person
+manipulation,496,t2v_compbench_object_interactions:130,,skipped,no person
+manipulation,497,t2v_compbench_action_binding:41,,skipped,no person
+manipulation,498,t2v_compbench_action_binding:21,,skipped,no person
+manipulation,499,t2v_compbench_object_interactions:21,,skipped,no person
+manipulation,500,t2v_compbench_object_interactions:158,,skipped,more than one person
+manipulation,501,kinetics400_remaining:16,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,502,kinetics400_remaining:171,,skipped,the hands keep no contact with a named object
+manipulation,503,kinetics400_remaining:43,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,504,kinetics400_remaining:78,,skipped,the contact is with the body
+manipulation,505,kinetics400_remaining:15,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,506,kinetics400_remaining:285,,skipped,the contact is with the body
+manipulation,507,kinetics400_remaining:88,,skipped,"contact with the object is brief, not sustained"
+manipulation,508,kinetics400_remaining:163,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,509,kinetics400_remaining:147,,skipped,an action that needs a second person counts as more than one person
+manipulation,510,kinetics400_remaining:259,,skipped,the hands keep no contact with a named object
+manipulation,511,kinetics400_remaining:284,,skipped,the contact is with the body
+manipulation,512,kinetics400_remaining:35,,skipped,the hands keep no contact with a named object
+manipulation,513,kinetics400_remaining:123,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,514,kinetics400_remaining:283,,skipped,an animal is part of the action
+manipulation,515,kinetics400_remaining:243,,skipped,the hands keep no contact with a named object
+manipulation,516,kinetics400_remaining:148,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,517,kinetics400_remaining:278,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,518,kinetics400_remaining:126,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,519,kinetics400_remaining:246,,skipped,the hands keep no contact with a named object
+manipulation,520,kinetics400_remaining:197,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,521,kinetics400_remaining:82,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,522,kinetics400_remaining:34,,skipped,an action that needs a second person counts as more than one person
+manipulation,523,kinetics400_remaining:252,,skipped,the hands keep no contact with a named object
+manipulation,524,kinetics400_remaining:242,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,525,kinetics400_remaining:192,,skipped,"the hands hold sticks or mallets the source does not name, striking the instrument"
+manipulation,526,kinetics400_remaining:184,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,527,kinetics400_remaining:91,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,528,kinetics400_remaining:205,,skipped,an animal is part of the action
+manipulation,529,kinetics400_remaining:70,,skipped,an action that needs a second person counts as more than one person
+manipulation,530,kinetics400_remaining:180,,skipped,an action that needs a second person counts as more than one person
+manipulation,531,kinetics400_remaining:265,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,532,kinetics400_remaining:124,,skipped,an animal is part of the action
+manipulation,533,kinetics400_remaining:142,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,534,kinetics400_remaining:95,,skipped,an animal is part of the action
+manipulation,535,kinetics400_remaining:167,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,536,kinetics400_remaining:267,,skipped,an action that needs a second person counts as more than one person
+manipulation,537,kinetics400_remaining:103,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,538,kinetics400_remaining:299,,skipped,the hands keep no contact with a named object
+manipulation,539,kinetics400_remaining:68,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,540,kinetics400_remaining:190,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,541,kinetics400_remaining:154,,skipped,the hands keep no contact with a named object
+manipulation,542,kinetics400_remaining:87,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,543,kinetics400_remaining:231,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,544,kinetics400_remaining:203,,skipped,the hands keep no contact with a named object
+manipulation,545,kinetics400_remaining:135,,skipped,the hands keep no contact with a named object
+manipulation,546,kinetics400_remaining:28,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,547,kinetics400_remaining:22,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,548,kinetics400_remaining:63,,skipped,the hands keep no contact with a named object
+manipulation,549,kinetics400_remaining:153,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,550,kinetics400_remaining:157,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,551,kinetics400_remaining:116,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,552,kinetics400_remaining:84,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,553,kinetics400_remaining:286,,skipped,the hands keep no contact with a named object
+manipulation,554,kinetics400_remaining:225,,skipped,the hands keep no contact with a named object
+manipulation,555,kinetics400_remaining:46,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,556,kinetics400_remaining:160,,skipped,an animal is part of the action
+manipulation,557,kinetics400_remaining:183,,skipped,an action that needs a second person counts as more than one person
+manipulation,558,kinetics400_remaining:276,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,559,kinetics400_remaining:92,,skipped,the hands keep no contact with a named object
+manipulation,560,kinetics400_remaining:175,,skipped,near-duplicate: repeats the action and the named object of the prompt kept at rank 90
+manipulation,561,kinetics400_remaining:61,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,562,kinetics400_remaining:181,,kept: primary,one person; the hands keep sustained contact with a named object
+manipulation,563,kinetics400_remaining:117,,skipped,the hands keep no contact with a named object
+manipulation,564,kinetics400_remaining:104,,skipped,an action that needs a second person counts as more than one person
+manipulation,565,kinetics400_remaining:237,,skipped,the hands keep no contact with a named object
+manipulation,566,kinetics400_remaining:250,,skipped,an action that needs a second person counts as more than one person
+manipulation,567,kinetics400_remaining:65,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,568,kinetics400_remaining:199,,skipped,an action that needs a second person counts as more than one person
+manipulation,569,kinetics400_remaining:176,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,570,kinetics400_remaining:296,,skipped,the hands keep no contact with a named object
+manipulation,571,kinetics400_remaining:272,,skipped,the hands keep no contact with a named object
+manipulation,572,kinetics400_remaining:137,,skipped,the hands keep no contact with a named object
+manipulation,573,kinetics400_remaining:217,,skipped,the contact is with the body
+manipulation,574,kinetics400_remaining:288,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,575,kinetics400_remaining:101,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,576,kinetics400_remaining:201,,skipped,an action that needs a second person counts as more than one person
+manipulation,577,kinetics400_remaining:235,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,578,kinetics400_remaining:271,,skipped,an animal is part of the action
+manipulation,579,kinetics400_remaining:209,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,580,kinetics400_remaining:208,,skipped,an animal is part of the action
+manipulation,581,kinetics400_remaining:52,,skipped,the hands keep no contact with a named object
+manipulation,582,kinetics400_remaining:152,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,583,kinetics400_remaining:289,,skipped,the contact is with the body
+manipulation,584,kinetics400_remaining:156,,skipped,the hands keep no contact with a named object
+manipulation,585,kinetics400_remaining:188,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,586,kinetics400_remaining:232,,skipped,the hands keep no contact with a named object
+manipulation,587,kinetics400_remaining:80,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,588,kinetics400_remaining:17,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,589,kinetics400_remaining:150,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,590,kinetics400_remaining:255,,skipped,an action that needs a second person counts as more than one person
+manipulation,591,kinetics400_remaining:194,,skipped,the hands keep no contact with a named object
+manipulation,592,kinetics400_remaining:73,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,593,kinetics400_remaining:131,,skipped,the hands keep no contact with a named object
+manipulation,594,kinetics400_remaining:215,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,595,kinetics400_remaining:210,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,596,kinetics400_remaining:280,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,597,kinetics400_remaining:58,,skipped,the contact is with the body
+manipulation,598,kinetics400_remaining:258,,skipped,an action that needs a second person counts as more than one person
+manipulation,599,kinetics400_remaining:42,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,600,kinetics400_remaining:145,,skipped,an action that needs a second person counts as more than one person
+manipulation,601,kinetics400_remaining:79,,skipped,the contact is with the body
+manipulation,602,kinetics400_remaining:241,,skipped,the hands keep no contact with a named object
+manipulation,603,kinetics400_remaining:274,,skipped,the hands keep no contact with a named object
+manipulation,604,kinetics400_remaining:195,,skipped,the contact is with the body
+manipulation,605,kinetics400_remaining:256,,skipped,the hands keep no contact with a named object
+manipulation,606,kinetics400_remaining:128,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,607,kinetics400_remaining:233,,skipped,an action that needs a second person counts as more than one person
+manipulation,608,kinetics400_remaining:240,,skipped,the hands keep no contact with a named object
+manipulation,609,kinetics400_remaining:218,,skipped,the contact is with the body
+manipulation,610,kinetics400_remaining:293,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,611,kinetics400_remaining:185,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,612,kinetics400_remaining:75,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,613,kinetics400_remaining:173,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,614,kinetics400_remaining:108,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,615,kinetics400_remaining:204,,skipped,an animal is part of the action
+manipulation,616,kinetics400_remaining:247,,skipped,the hands keep no contact with a named object
+manipulation,617,kinetics400_remaining:50,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,618,kinetics400_remaining:45,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,619,kinetics400_remaining:236,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,620,kinetics400_remaining:59,,skipped,the hands keep no contact with a named object
+manipulation,621,kinetics400_remaining:249,,skipped,the contact is with the body
+manipulation,622,kinetics400_remaining:105,,skipped,the hands keep no contact with a named object
+manipulation,623,kinetics400_remaining:10,,skipped,the hands keep no contact with a named object
+manipulation,624,kinetics400_remaining:27,,skipped,the hands keep no contact with a named object
+manipulation,625,kinetics400_remaining:230,,skipped,the hands keep no contact with a named object
+manipulation,626,kinetics400_remaining:44,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,627,kinetics400_remaining:66,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,628,kinetics400_remaining:187,,skipped,the hands keep no contact with a named object
+manipulation,629,kinetics400_remaining:11,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,630,kinetics400_remaining:55,,skipped,the close-up of the hands could not show the named object
+manipulation,631,kinetics400_remaining:122,,skipped,the hands keep no contact with a named object
+manipulation,632,kinetics400_remaining:31,,skipped,the close-up of the hands could not show the named object
+manipulation,633,kinetics400_remaining:127,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,634,kinetics400_remaining:3,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,635,kinetics400_remaining:266,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,636,kinetics400_remaining:159,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,637,kinetics400_remaining:96,,skipped,the contact is with the body
+manipulation,638,kinetics400_remaining:120,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,639,kinetics400_remaining:21,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,640,kinetics400_remaining:140,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,641,kinetics400_remaining:172,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,642,kinetics400_remaining:98,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,643,kinetics400_remaining:62,,skipped,the hands keep no contact with a named object
+manipulation,644,kinetics400_remaining:178,,skipped,near-duplicate: repeats the action and the named object of the prompt kept at rank 465
+manipulation,645,kinetics400_remaining:211,,skipped,an action that needs a second person counts as more than one person
+manipulation,646,kinetics400_remaining:53,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,647,kinetics400_remaining:47,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,648,kinetics400_remaining:94,,skipped,an animal is part of the action
+manipulation,649,kinetics400_remaining:115,,skipped,the hands keep no contact with a named object
+manipulation,650,kinetics400_remaining:245,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,651,kinetics400_remaining:125,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,652,kinetics400_remaining:4,,skipped,the contact is with the body
+manipulation,653,kinetics400_remaining:269,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,654,kinetics400_remaining:279,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,655,kinetics400_remaining:56,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,656,kinetics400_remaining:99,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,657,kinetics400_remaining:238,,skipped,the hands keep no contact with a named object
+manipulation,658,kinetics400_remaining:168,,skipped,an action that needs a second person counts as more than one person
+manipulation,659,kinetics400_remaining:32,,skipped,the hands keep no contact with a named object
+manipulation,660,kinetics400_remaining:76,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,661,kinetics400_remaining:198,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,662,kinetics400_remaining:244,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,663,kinetics400_remaining:291,,skipped,the contact is with the body
+manipulation,664,kinetics400_remaining:64,,skipped,the hands keep no contact with a named object
+manipulation,665,kinetics400_remaining:166,,skipped,the hands keep no contact with a named object
+manipulation,666,kinetics400_remaining:132,,skipped,the hands keep no contact with a named object
+manipulation,667,kinetics400_remaining:74,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,668,kinetics400_remaining:40,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,669,kinetics400_remaining:26,,skipped,the object must be named in the source; this action only implies it
+manipulation,670,kinetics400_remaining:81,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,671,kinetics400_remaining:219,,skipped,an animal is part of the action
+manipulation,672,kinetics400_remaining:14,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,673,kinetics400_remaining:262,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,674,kinetics400_remaining:174,,skipped,"the hands hold sticks or mallets the source does not name, striking the instrument"
+manipulation,675,kinetics400_remaining:86,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,676,kinetics400_remaining:212,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,677,kinetics400_remaining:18,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,678,kinetics400_remaining:90,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,679,kinetics400_remaining:83,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,680,kinetics400_remaining:149,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,681,kinetics400_remaining:110,,skipped,the hands keep no contact with a named object
+manipulation,682,kinetics400_remaining:37,,skipped,an animal is part of the action
+manipulation,683,kinetics400_remaining:51,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,684,kinetics400_remaining:226,,skipped,the hands keep no contact with a named object
+manipulation,685,kinetics400_remaining:155,,skipped,the hands keep no contact with a named object
+manipulation,686,kinetics400_remaining:133,,skipped,the hands keep no contact with a named object
+manipulation,687,kinetics400_remaining:268,,skipped,the hands keep no contact with a named object
+manipulation,688,kinetics400_remaining:54,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,689,kinetics400_remaining:177,,skipped,the hands keep no contact with a named object
+manipulation,690,kinetics400_remaining:7,,skipped,the hands keep no contact with a named object
+manipulation,691,kinetics400_remaining:19,,skipped,the contact is with the body
+manipulation,692,kinetics400_remaining:253,,skipped,the hands keep no contact with a named object
+manipulation,693,kinetics400_remaining:222,,skipped,near-duplicate: repeats the action and the named object of the prompt kept at rank 595
+manipulation,694,kinetics400_remaining:102,,skipped,"contact with the object is brief, not sustained"
+manipulation,695,kinetics400_remaining:119,,skipped,the hands keep no contact with a named object
+manipulation,696,kinetics400_remaining:228,,skipped,the hands keep no contact with a named object
+manipulation,697,kinetics400_remaining:300,,skipped,the hands keep no contact with a named object
+manipulation,698,kinetics400_remaining:130,,skipped,the hands keep no contact with a named object
+manipulation,699,kinetics400_remaining:72,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,700,kinetics400_remaining:162,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,701,kinetics400_remaining:158,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,702,kinetics400_remaining:29,,skipped,the contact is with the body
+manipulation,703,kinetics400_remaining:100,,skipped,the contact is with the body
+manipulation,704,kinetics400_remaining:25,,skipped,the contact is with the body
+manipulation,705,kinetics400_remaining:281,,skipped,the hands keep no contact with a named object
+manipulation,706,kinetics400_remaining:216,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,707,kinetics400_remaining:264,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,708,kinetics400_remaining:144,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,709,kinetics400_remaining:71,,skipped,the contact is with the body
+manipulation,710,kinetics400_remaining:121,,skipped,the hands keep no contact with a named object
+manipulation,711,kinetics400_remaining:77,,skipped,the hands keep no contact with a named object
+manipulation,712,kinetics400_remaining:227,,skipped,the hands keep no contact with a named object
+manipulation,713,kinetics400_remaining:161,,skipped,"contact with the object is brief, not sustained"
+manipulation,714,kinetics400_remaining:234,,skipped,an animal is part of the action
+manipulation,715,kinetics400_remaining:193,,skipped,the hands keep no contact with a named object
+manipulation,716,kinetics400_remaining:49,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,717,kinetics400_remaining:36,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,718,kinetics400_remaining:57,,skipped,an action that needs a second person counts as more than one person
+manipulation,719,kinetics400_remaining:38,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,720,kinetics400_remaining:112,,skipped,the hands keep no contact with a named object
+manipulation,721,kinetics400_remaining:134,,skipped,the hands keep no contact with a named object
+manipulation,722,kinetics400_remaining:294,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,723,kinetics400_remaining:85,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,724,kinetics400_remaining:30,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,725,kinetics400_remaining:9,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,726,kinetics400_remaining:129,,skipped,the hands keep no contact with a named object
+manipulation,727,kinetics400_remaining:224,,skipped,the contact is with the body
+manipulation,728,kinetics400_remaining:12,,skipped,an animal is part of the action
+manipulation,729,kinetics400_remaining:143,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,730,kinetics400_remaining:263,,skipped,the hands keep no contact with a named object
+manipulation,731,kinetics400_remaining:6,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,732,kinetics400_remaining:113,,skipped,the hands keep no contact with a named object
+manipulation,733,kinetics400_remaining:136,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,734,kinetics400_remaining:20,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,735,kinetics400_remaining:69,,skipped,the hands keep no contact with a named object
+manipulation,736,kinetics400_remaining:107,,skipped,the hands keep no contact with a named object
+manipulation,737,kinetics400_remaining:39,,skipped,the hands keep no contact with a named object
+manipulation,738,kinetics400_remaining:141,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,739,kinetics400_remaining:186,,skipped,the hands keep no contact with a named object
+manipulation,740,kinetics400_remaining:282,,skipped,the hands keep no contact with a named object
+manipulation,741,kinetics400_remaining:251,,skipped,the hands keep no contact with a named object
+manipulation,742,kinetics400_remaining:191,,skipped,the hands keep no contact with a named object
+manipulation,743,kinetics400_remaining:179,,skipped,the hands keep no contact with a named object
+manipulation,744,kinetics400_remaining:261,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,745,kinetics400_remaining:23,,skipped,the hands keep no contact with a named object
+manipulation,746,kinetics400_remaining:260,,skipped,near-duplicate: repeats the action and the named object of the prompt kept at rank 90
+manipulation,747,kinetics400_remaining:170,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,748,kinetics400_remaining:97,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,749,kinetics400_remaining:48,,skipped,near-duplicate: repeats the action and the named object of the prompt kept at rank 74
+manipulation,750,kinetics400_remaining:5,,skipped,an action that needs a second person counts as more than one person
+manipulation,751,kinetics400_remaining:287,,skipped,the hands keep no contact with a named object
+manipulation,752,kinetics400_remaining:221,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,753,kinetics400_remaining:223,,skipped,the hands keep no contact with a named object
+manipulation,754,kinetics400_remaining:206,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,755,kinetics400_remaining:277,,skipped,the object must be named in the source; this action only implies it
+manipulation,756,kinetics400_remaining:118,,skipped,an animal is part of the action
+manipulation,757,kinetics400_remaining:106,,skipped,the hands keep no contact with a named object
+manipulation,758,kinetics400_remaining:164,,skipped,the hands keep no contact with a named object
+manipulation,759,kinetics400_remaining:41,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,760,kinetics400_remaining:202,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,761,kinetics400_remaining:292,,skipped,the contact is with the body
+manipulation,762,kinetics400_remaining:146,,skipped,an action that needs a second person counts as more than one person
+manipulation,763,kinetics400_remaining:207,,skipped,steering or riding: the hands hold controls the source does not name
+manipulation,764,kinetics400_remaining:13,,skipped,the hands keep no contact with a named object
+manipulation,765,kinetics400_remaining:220,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,766,kinetics400_remaining:182,,skipped,the hands keep no contact with a named object
+manipulation,767,kinetics400_remaining:189,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,768,kinetics400_remaining:275,,skipped,near-duplicate: repeats the action and the named object of the prompt kept at rank 2
+manipulation,769,kinetics400_remaining:114,,skipped,the hands keep no contact with a named object
+manipulation,770,kinetics400_remaining:196,,skipped,the hands keep no contact with a named object
+manipulation,771,kinetics400_remaining:239,,skipped,the hands keep no contact with a named object
+manipulation,772,kinetics400_remaining:89,,skipped,the hands keep no contact with a named object
+manipulation,773,kinetics400_remaining:295,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,774,kinetics400_remaining:2,,skipped,the hands keep no contact with a named object
+manipulation,775,kinetics400_remaining:298,,skipped,the hands keep no contact with a named object
+manipulation,776,kinetics400_remaining:67,,skipped,an action that needs a second person counts as more than one person
+manipulation,777,kinetics400_remaining:33,,skipped,the hands keep no contact with a named object
+manipulation,778,kinetics400_remaining:1,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,779,kinetics400_remaining:213,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,780,kinetics400_remaining:165,,skipped,the action and its effect must stay at the hands and the named object: the action happens at the mouth
+manipulation,781,kinetics400_remaining:138,,skipped,the hands keep no contact with a named object
+manipulation,782,kinetics400_remaining:200,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,783,kinetics400_remaining:169,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,784,kinetics400_remaining:257,,skipped,the hands keep no contact with a named object
+manipulation,785,kinetics400_remaining:214,,skipped,the hands keep no contact with a named object
+manipulation,786,kinetics400_remaining:229,,skipped,the hands keep no contact with a named object
+manipulation,787,kinetics400_remaining:109,,skipped,an animal is part of the action
+manipulation,788,kinetics400_remaining:93,,skipped,an animal is part of the action
+manipulation,789,kinetics400_remaining:151,,skipped,the hands keep no contact with a named object
+manipulation,790,kinetics400_remaining:297,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,791,kinetics400_remaining:111,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,792,kinetics400_remaining:8,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,793,kinetics400_remaining:248,,skipped,the action and its effect must stay at the hands and the named object: the effect is elsewhere
+manipulation,794,kinetics400_remaining:60,,skipped,the contact is with the body
+manipulation,795,kinetics400_remaining:139,,kept: reserve,one person; the hands keep sustained contact with a named object
+manipulation,796,kinetics400_remaining:273,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,797,kinetics400_remaining:254,,skipped,the hands keep no contact with a named object
+manipulation,798,kinetics400_remaining:270,,skipped,the object in the hands is not the one the source names (an unnamed tool or utensil)
+manipulation,799,kinetics400_remaining:24,,skipped,"a throw, catch, toss, clap or strike, not sustained contact"
+manipulation,800,kinetics400_remaining:290,,skipped,the contact is with the body
+body,1,vbench2_human_anatomy:36,,kept: secondary,one person in full-body motion
+body,2,vbench_human_action:6,,skipped,not full-body motion
+body,3,vbench2_human_anatomy:9,,skipped,more than one person
+body,4,vbench2_human_anatomy:59,,skipped,"two successive actions, not full-body motion"
+body,5,vbench_human_action:87,,kept: secondary,one person in full-body motion
+body,6,vbench2_human_anatomy:37,,skipped,"two successive actions, not full-body motion"
+body,7,vbench2_human_anatomy:53,,skipped,"two successive actions, not full-body motion"
+body,8,vbench2_human_anatomy:16,,skipped,kept in the face stratum
+body,9,vbench2_human_anatomy:50,,skipped,"two successive actions, not full-body motion"
+body,10,vbench2_human_anatomy:56,,skipped,"two successive actions, not full-body motion"
+body,11,vbench2_human_anatomy:72,,skipped,"two successive actions, not full-body motion"
+body,12,vbench2_human_anatomy:83,,skipped,"two successive actions, not full-body motion"
+body,13,vbench2_human_anatomy:78,,skipped,"two successive actions, not full-body motion"
+body,14,vbench_human_action:5,,skipped,not full-body motion
+body,15,vbench2_human_anatomy:105,,skipped,two people
+body,16,vbench_human_action:48,,kept: secondary,one person in full-body motion
+body,17,vbench_human_action:91,,skipped,two people
+body,18,vbench_human_action:51,,kept: secondary,one person in full-body motion
+body,19,vbench2_human_anatomy:84,,skipped,"two successive actions, not full-body motion"
+body,20,vbench2_human_anatomy:7,,skipped,kept in the face stratum
+body,21,vbench_human_action:49,,kept: secondary,one person in full-body motion
+body,22,vbench_human_action:14,,kept: secondary,one person in full-body motion
+body,23,vbench_human_action:25,,skipped,kept in the manipulation stratum
+body,24,vbench_human_action:70,,skipped,not full-body motion
+body,25,vbench_human_action:83,,skipped,not full-body motion
+body,26,vbench_human_action:2,,kept: secondary,one person in full-body motion
+body,27,vbench2_human_anatomy:41,,skipped,"two successive actions, not full-body motion"
+body,28,vbench_human_action:59,,skipped,two people
+body,29,vbench2_human_anatomy:1,,skipped,kept in the face stratum
+body,30,vbench_human_action:30,,kept: secondary,one person in full-body motion
+body,31,vbench_human_action:86,,skipped,kept in the manipulation stratum
+body,32,vbench2_human_anatomy:103,,skipped,two people
+body,33,vbench2_human_anatomy:110,,skipped,two people
+body,34,vbench2_human_anatomy:114,,skipped,two people
+body,35,vbench_human_action:69,,skipped,not full-body motion
+body,36,vbench2_human_anatomy:18,,skipped,more than one person
+body,37,vbench2_human_anatomy:75,,skipped,"two successive actions, not full-body motion"
+body,38,vbench2_human_anatomy:88,,skipped,two people
+body,39,vbench_human_action:45,,skipped,kept in the manipulation stratum
+body,40,vbench2_human_anatomy:19,,skipped,kept in the face stratum
+body,41,vbench2_human_anatomy:62,,skipped,"two successive actions, not full-body motion"
+body,42,vbench2_human_anatomy:109,,skipped,two people
+body,43,vbench_human_action:34,,skipped,not full-body motion
+body,44,vbench2_human_anatomy:34,,skipped,kept in the face stratum
+body,45,vbench2_human_anatomy:3,,skipped,more than one person
+body,46,vbench_human_action:71,,kept: secondary,one person in full-body motion (the source's label means a crawling baby)
+body,47,vbench2_human_anatomy:24,,skipped,kept in the face stratum
+body,48,vbench2_human_anatomy:91,,skipped,two people
+body,49,vbench2_human_anatomy:70,,skipped,"two successive actions, not full-body motion"
+body,50,vbench2_human_anatomy:11,,skipped,kept in the face stratum
+body,51,vbench2_human_anatomy:66,,skipped,"two successive actions, not full-body motion"
+body,52,vbench2_human_anatomy:97,,skipped,two people
+body,53,vbench2_human_anatomy:6,,skipped,more than one person
+body,54,vbench_human_action:37,,skipped,not full-body motion
+body,55,vbench_human_action:12,,skipped,not full-body motion
+body,56,vbench2_human_anatomy:99,,skipped,two people
+body,57,vbench2_human_anatomy:100,,skipped,two people
+body,58,vbench_human_action:8,,skipped,not full-body motion
+body,59,vbench_human_action:28,,skipped,two people
+body,60,vbench2_human_anatomy:63,,skipped,"two successive actions, not full-body motion"
+body,61,vbench2_human_anatomy:61,,skipped,"two successive actions, not full-body motion"
+body,62,vbench2_human_anatomy:89,,skipped,two people
+body,63,vbench_human_action:54,,skipped,kept in the manipulation stratum
+body,64,vbench2_human_anatomy:21,,skipped,kept in the face stratum
+body,65,vbench2_human_anatomy:120,,skipped,two people
+body,66,vbench2_human_anatomy:64,,skipped,"two successive actions, not full-body motion"
+body,67,vbench2_human_anatomy:17,,skipped,kept in the face stratum
+body,68,vbench2_human_anatomy:54,,skipped,"two successive actions, not full-body motion"
+body,69,vbench2_human_anatomy:71,,skipped,"two successive actions, not full-body motion"
+body,70,vbench_human_action:53,,skipped,kept in the manipulation stratum
+body,71,vbench_human_action:99,,skipped,kept in the manipulation stratum
+body,72,vbench_human_action:7,,skipped,an animal is part of the action
+body,73,vbench_human_action:85,,skipped,kept in the manipulation stratum
+body,74,vbench_human_action:89,,skipped,not full-body motion
+body,75,vbench2_human_anatomy:74,,skipped,"two successive actions, not full-body motion"
+body,76,vbench_human_action:98,,skipped,kept in the manipulation stratum
+body,77,vbench2_human_anatomy:101,,skipped,two people
+body,78,vbench2_human_anatomy:68,,skipped,"two successive actions, not full-body motion"
+body,79,vbench_human_action:50,,skipped,not full-body motion
+body,80,vbench2_human_anatomy:8,,skipped,kept in the face stratum
+body,81,vbench2_human_anatomy:93,,skipped,two people
+body,82,vbench_human_action:27,,kept: secondary,one person in full-body motion
+body,83,vbench2_human_anatomy:69,,skipped,"two successive actions, not full-body motion"
+body,84,vbench2_human_anatomy:40,,skipped,"two successive actions, not full-body motion"
+body,85,vbench2_human_anatomy:81,,skipped,"two successive actions, not full-body motion"
+body,86,vbench2_human_anatomy:30,,skipped,kept in the face stratum
+body,87,vbench_human_action:58,,skipped,not full-body motion
+body,88,vbench2_human_anatomy:5,,skipped,kept in the face stratum
+body,89,vbench2_human_anatomy:107,,skipped,two people
+body,90,vbench2_human_anatomy:27,,skipped,kept in the face stratum
+body,91,vbench2_human_anatomy:12,,skipped,more than one person
+body,92,vbench_human_action:9,,skipped,kept in the manipulation stratum
+body,93,vbench_human_action:90,,kept: secondary,one person in full-body motion
+body,94,vbench_human_action:46,,skipped,kept in the manipulation stratum
+body,95,vbench_human_action:74,,skipped,not full-body motion
+body,96,vbench_human_action:77,,kept: secondary,one person in full-body motion
+body,97,vbench2_human_anatomy:25,,skipped,kept in the face stratum
+body,98,vbench2_human_anatomy:22,,skipped,kept in the face stratum
+body,99,vbench2_human_anatomy:119,,skipped,two people
+body,100,vbench_human_action:94,,skipped,kept in the manipulation stratum
+body,101,vbench_human_action:65,,skipped,kept in the manipulation stratum
+body,102,vbench2_human_anatomy:45,,skipped,"two successive actions, not full-body motion"
+body,103,vbench2_human_anatomy:67,,skipped,"two successive actions, not full-body motion"
+body,104,vbench2_human_anatomy:102,,skipped,two people
+body,105,vbench2_human_anatomy:96,,skipped,two people
+body,106,vbench2_human_anatomy:58,,skipped,"two successive actions, not full-body motion"
+body,107,vbench_human_action:64,,skipped,an animal is part of the action
+body,108,vbench2_human_anatomy:76,,skipped,"two successive actions, not full-body motion"
+body,109,vbench_human_action:44,,skipped,not full-body motion
+body,110,vbench_human_action:100,,skipped,"the motion is a vehicle's, not the body's"
+body,111,vbench_human_action:19,,kept: secondary,one person in full-body motion
+body,112,vbench_human_action:78,,skipped,kept in the manipulation stratum
+body,113,vbench2_human_anatomy:15,,skipped,more than one person
+body,114,vbench2_human_anatomy:60,,skipped,"two successive actions, not full-body motion"
+body,115,vbench_human_action:61,,kept: secondary,one person in full-body motion
+body,116,vbench_human_action:96,,skipped,kept in the manipulation stratum
+body,117,vbench2_human_anatomy:104,,skipped,two people
+body,118,vbench2_human_anatomy:86,,skipped,two people
+body,119,vbench2_human_anatomy:95,,skipped,two people
+body,120,vbench2_human_anatomy:32,,skipped,more than one person
+body,121,vbench_human_action:73,,skipped,"the motion is a vehicle's, not the body's"
+body,122,vbench_human_action:13,,kept: secondary,one person in full-body motion
+body,123,vbench_human_action:56,,skipped,not full-body motion
+body,124,vbench2_human_anatomy:90,,skipped,two people
+body,125,vbench_human_action:1,,kept: secondary,one person in full-body motion
+body,126,vbench2_human_anatomy:65,,skipped,"two successive actions, not full-body motion"
+body,127,vbench_human_action:41,,kept: reserve,one person in full-body motion
+body,128,vbench2_human_anatomy:80,,skipped,"two successive actions, not full-body motion"
+body,129,vbench_human_action:62,,skipped,kept in the manipulation stratum
+body,130,vbench2_human_anatomy:4,,skipped,kept in the face stratum
+body,131,vbench_human_action:88,,skipped,kept in the manipulation stratum
+body,132,vbench2_human_anatomy:55,,skipped,"two successive actions, not full-body motion"
+body,133,vbench2_human_anatomy:35,,skipped,kept in the face stratum
+body,134,vbench2_human_anatomy:2,,skipped,kept in the face stratum
+body,135,vbench_human_action:18,,kept: reserve,one person in full-body motion
+body,136,vbench2_human_anatomy:52,,skipped,"two successive actions, not full-body motion"
+body,137,vbench_human_action:81,,kept: reserve,one person in full-body motion
+body,138,vbench2_human_anatomy:14,,skipped,kept in the face stratum
+body,139,vbench_human_action:10,,skipped,two people
+body,140,vbench_human_action:63,,skipped,kept in the manipulation stratum
+body,141,vbench2_human_anatomy:28,,skipped,kept in the face stratum
+body,142,vbench_human_action:15,,skipped,not full-body motion
+body,143,vbench_human_action:33,,skipped,not full-body motion
+body,144,vbench_human_action:39,,kept: reserve,one person in full-body motion
+body,145,vbench2_human_anatomy:31,,skipped,kept in the face stratum
+body,146,vbench_human_action:3,,kept: reserve,one person in full-body motion
+body,147,vbench_human_action:66,,skipped,not full-body motion
+body,148,vbench2_human_anatomy:33,,skipped,kept in the face stratum
+body,149,vbench_human_action:79,,skipped,an animal is part of the action
+body,150,vbench2_human_anatomy:48,,skipped,"two successive actions, not full-body motion"
+body,151,vbench2_human_anatomy:44,,skipped,"two successive actions, not full-body motion"
+body,152,vbench_human_action:52,,skipped,kept in the manipulation stratum
+body,153,vbench_human_action:22,,skipped,not full-body motion
+body,154,vbench2_human_anatomy:47,,skipped,"two successive actions, not full-body motion"
+body,155,vbench2_human_anatomy:26,,skipped,more than one person
+body,156,vbench_human_action:55,,kept: reserve,one person in full-body motion
+body,157,vbench_human_action:67,,skipped,kept in the manipulation stratum
+body,158,vbench_human_action:31,,kept: reserve,one person in full-body motion
+body,159,vbench_human_action:42,,skipped,two people
+body,160,vbench_human_action:16,,skipped,not full-body motion
+body,161,vbench2_human_anatomy:118,,skipped,two people
+body,162,vbench_human_action:92,,kept: reserve,one person in full-body motion
+body,163,vbench2_human_anatomy:43,,skipped,"two successive actions, not full-body motion"
+body,164,vbench2_human_anatomy:10,,skipped,kept in the face stratum
+body,165,vbench_human_action:17,,skipped,kept in the manipulation stratum
+body,166,vbench_human_action:24,,skipped,not full-body motion
+body,167,vbench_human_action:93,,skipped,two people
+body,168,vbench_human_action:75,,skipped,not full-body motion
+body,169,vbench_human_action:26,,kept: reserve,one person in full-body motion
+body,170,vbench_human_action:72,,skipped,"the motion is a vehicle's, not the body's"
+body,171,vbench_human_action:60,,skipped,not full-body motion
+body,172,vbench_human_action:82,,skipped,not full-body motion
+body,173,vbench2_human_anatomy:94,,skipped,two people
+body,174,vbench_human_action:68,,skipped,not full-body motion
+body,175,vbench2_human_anatomy:77,,skipped,"two successive actions, not full-body motion"
+body,176,vbench2_human_anatomy:79,,skipped,"two successive actions, not full-body motion"
+body,177,vbench_human_action:76,,skipped,two people
+body,178,vbench_human_action:95,,skipped,not full-body motion
+body,179,vbench2_human_anatomy:13,,skipped,kept in the face stratum
+body,180,vbench2_human_anatomy:87,,skipped,two people
+body,181,vbench2_human_anatomy:113,,skipped,two people
+body,182,vbench_human_action:23,,skipped,not full-body motion
+body,183,vbench_human_action:97,,skipped,an animal is part of the action
+body,184,vbench_human_action:84,,skipped,kept in the manipulation stratum
+body,185,vbench_human_action:35,,skipped,kept in the manipulation stratum
+body,186,vbench2_human_anatomy:51,,skipped,"two successive actions, not full-body motion"
+body,187,vbench_human_action:20,,skipped,kept in the manipulation stratum
+body,188,vbench2_human_anatomy:106,,skipped,two people
+body,189,vbench2_human_anatomy:98,,skipped,two people
+body,190,vbench_human_action:57,,skipped,not full-body motion
+body,191,vbench_human_action:47,,kept: reserve,one person in full-body motion
+control,1,vbench_architecture:78,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,2,vbench_architecture:11,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,3,vbench_architecture:89,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,4,vbench_scenery:60,,kept: control,scenery or architecture with no people or animals
+control,5,vbench_scenery:100,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,6,vbench_scenery:64,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,7,vbench_architecture:91,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,8,vbench_scenery:25,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,9,vbench_architecture:76,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,10,vbench_scenery:37,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,11,vbench_scenery:55,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,12,vbench_architecture:70,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,13,vbench_scenery:6,,kept: control,scenery or architecture with no people or animals
+control,14,vbench_scenery:71,,kept: control,scenery or architecture with no people or animals
+control,15,vbench_architecture:65,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,16,vbench_architecture:30,,kept: control,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,17,vbench_architecture:2,,kept: reserve,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,18,vbench_architecture:100,,kept: reserve,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,19,vbench_architecture:31,,kept: reserve,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,20,vbench_scenery:99,,kept: reserve,scenery or architecture with no people or animals
+control,21,vbench_scenery:27,,kept: reserve,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,22,vbench_architecture:69,,kept: reserve,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,23,vbench_architecture:41,,kept: reserve,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"
+control,24,vbench_scenery:42,,kept: reserve,scenery or architecture with no people or animals
+control,25,vbench_architecture:66,,kept: reserve,scenery or architecture with no people or animals
+control,26,vbench_architecture:10,,kept: reserve,"scenery or architecture with no people or animals (the source names no action, so a state verb names the scene)"

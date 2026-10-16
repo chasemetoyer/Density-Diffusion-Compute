@@ -1,0 +1,39 @@
+{
+  "description": "GPU smoke-test prompts. They produce no experiment data and are excluded from every prompt pool: holdout, primary, secondary, controls and reserves.",
+  "excluded_from_every_pool": true,
+  "prompts": [
+    {
+      "id": "smoke-1",
+      "text": "Close-up of a woman laughing softly, warm window light, shallow depth of field.",
+      "seed": 9001,
+      "mask_stratum": "face"
+    },
+    {
+      "id": "smoke-2",
+      "text": "Close-up of two hands picking up a glass of water from a wooden table.",
+      "seed": 9002,
+      "mask_stratum": "manipulation"
+    }
+  ],
+  "negative_prompt": "Wan2.1 sample_neg_prompt (density.text_encoding.NEGATIVE_PROMPT, wan/configs/shared_config.py at 9737cba9c1c3c4d04b33fcad41c111989865d315)",
+  "text_encoder": "UMT5 in bf16, 512 tokens, Diffusers' WanPipeline._get_t5_prompt_embeds; ftfy absent (registered)",
+  "starting_noise": "density.noise (registered): generated once on CPU in float32 with torch.Generator('cpu').manual_seed(seed), latent shape (1, 16, 21, 60, 104); saved and identified by its SHA-256; always loaded from the saved file and never regenerated",
+  "generation": {
+    "width": 832,
+    "height": 480,
+    "frames": 81,
+    "shift": 8.0,
+    "guidance": 6.0,
+    "steps": 40
+  },
+  "c4": {
+    "lambda": 3.0,
+    "synthetic_mask": {
+      "shape": "disk",
+      "radius_px": 120,
+      "center": "the frame center, ((W - 1) / 2, (H - 1) / 2) = (415.5, 239.5) at 832 x 480",
+      "frames": "every frame",
+      "token_coverage": "density.token_map.token_coverage"
+    }
+  }
+}

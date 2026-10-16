@@ -1,0 +1,74 @@
+{
+  "description": "Milestone 4 stock test clips (pipeline tests only; not Wan references). Files are kept out of git under data/sample_clips/.",
+  "conform": {
+    "frames": 81,
+    "fps": 16,
+    "size": [832, 480],
+    "frame_selection": "nearest source frame (by packet timestamp) to start + i/16, i = 0..80; no interpolation",
+    "resize": "ffmpeg scale to height 480 keeping aspect, flags=area",
+    "crop": "centered 832 x 480"
+  },
+  "clips": [
+    {
+      "id": "face",
+      "stratum": "face",
+      "title": "20140529 - Va et vient.webm",
+      "page": "https://commons.wikimedia.org/wiki/File:20140529_-_Va_et_vient.webm",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/20140529_-_Va_et_vient.webm",
+      "sha1": "8287306ca53b5d1e45eedf79022c4952df0da8d9",
+      "sha256": "aa40c07c138896d95ae39180121205d82ae92e1d89a773a6a87d1728bd0b7bc0",
+      "author": "Clément Bucco-Lechat",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution": "Clément Bucco-Lechat, CC BY-SA 3.0, via Wikimedia Commons",
+      "restrictions": "Personality rights notice: depicts an identifiable person",
+      "segment_start_s": 2.0
+    },
+    {
+      "id": "hands",
+      "stratum": "manipulation",
+      "title": "Video of a complete use session with a gyroscopic exercise tool.webm",
+      "page": "https://commons.wikimedia.org/wiki/File:Video_of_a_complete_use_session_with_a_gyroscopic_exercise_tool.webm",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Video_of_a_complete_use_session_with_a_gyroscopic_exercise_tool.webm",
+      "sha1": "ba3af62dd5b2074a3ea046e792474c4826ec0f49",
+      "sha256": "081247cabfdd3a684a28295d4888e2f566f741c03269b42992e8e8e37e7887cf",
+      "author": "Pittigrilli",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Pittigrilli, CC BY-SA 4.0, via Wikimedia Commons",
+      "restrictions": "",
+      "segment_start_s": 70.0
+    },
+    {
+      "id": "body",
+      "stratum": "body",
+      "title": "Kettlebell juggling flow by Taco Fleur.webm",
+      "page": "https://commons.wikimedia.org/wiki/File:Kettlebell_juggling_flow_by_Taco_Fleur.webm",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Kettlebell_juggling_flow_by_Taco_Fleur.webm",
+      "sha1": "cb9f1a052418f5bf3ae61a7ef4da0d94562b9bd0",
+      "sha256": "8c086f7a1f875eee15148b1cdd858f7db70b82af1c63718e53a16ff260ab22fa",
+      "author": "Taco Fleur",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Taco Fleur, CC BY-SA 4.0, via Wikimedia Commons",
+      "restrictions": "",
+      "segment_start_s": 19.0,
+      "note": "Segment chosen for kettlebell releases and catches (informational Hands23 contact-transition test)."
+    },
+    {
+      "id": "landscape",
+      "stratum": "control",
+      "title": "South Fork Clackamas Wild and Scenic River (28287735390).webm",
+      "page": "https://commons.wikimedia.org/wiki/File:South_Fork_Clackamas_Wild_and_Scenic_River_(28287735390).webm",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/South_Fork_Clackamas_Wild_and_Scenic_River_%2828287735390%29.webm",
+      "sha1": "7799c28cfc8570b31952c80d1ff03753de3ddcfc",
+      "sha256": "a6fc6853fced78d37f9369b39484564ed0a7bf25fb8e64d04315bf5e9ae703ff",
+      "author": "BLM Oregon & Washington",
+      "license": "Public domain (US federal work, PD-USGov-BLM); also CC BY 2.0 on Flickr",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution": "BLM Oregon & Washington, via Wikimedia Commons",
+      "restrictions": "",
+      "segment_start_s": 1.0
+    }
+  ]
+}

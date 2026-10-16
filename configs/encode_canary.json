@@ -1,0 +1,27 @@
+{
+  "clip": "face",
+  "frames": 17,
+  "source_uint8_sha256": "6cd21675e40fe445b233dcebb60d28226af25b1a802e4c53395e9bc79a017a83",
+  "decoded_frames_sha256": "32b091cac57085dac05ee1f19edaf2abefe17b6b2fe8a87638c2b8194014cb09",
+  "psnr_vs_lossless_db": 47.351165005523804,
+  "encoding": {
+    "codec": "libx264",
+    "crf": 10,
+    "preset": "medium",
+    "pix_fmt": "yuv420p",
+    "fps": 16,
+    "x264_params": "threads=1:cpu-independent=1:colorprim=bt709:transfer=bt709:colormatrix=bt709:range=tv",
+    "colour": "BT.709 limited range, converted in numpy (round half to even); chroma: 2x2 mean when encoding, 2x2 repeat when decoding",
+    "library": "PyAV 17.1.0 with its bundled FFmpeg 8.1.1 and x264 (core 165, commit b35605a)"
+  },
+  "x264_options": {
+    "crf": "10.0",
+    "threads": "1"
+  },
+  "recorded_on": "Chases-MacBook-Pro.local (arm64, macOS-26.3.1-arm64-arm-64bit)",
+  "utc": "2026-10-07T06:21:57Z",
+  "code": {
+    "git_sha": "fe2d148d081b699f981357b66f11768108a65bcf",
+    "git_dirty": false
+  }
+}

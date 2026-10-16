@@ -1,0 +1,186 @@
+{
+  "milestone": "Real Wan2.1-T2V-1.3B dense runs through the custom Euler loop (Mac, MPS)",
+  "passed": true,
+  "checks": {
+    "finite": {
+      "passed": true
+    },
+    "repeat_run": {
+      "passed": null,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "decoded_psnr_db": Infinity,
+      "note": "Not required to be bitwise; a nonzero difference becomes the tolerance below."
+    },
+    "pipeline_fp32_velocity_latents": {
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "tolerance": 0.0
+    },
+    "decode_helper_vs_pipeline": {
+      "passed": true,
+      "max_abs_diff": 0.0,
+      "tolerance": 0.0,
+      "decoded_psnr_db": Infinity
+    }
+  },
+  "info": {
+    "velocity_effects_at_first_steps": {
+      "velocity_rms": 1.1006450653076172,
+      "text_effect_rms": 0.07847072929143906,
+      "timestep_effect_rms": 0.01987951621413231,
+      "informative": true
+    },
+    "stock_bf16_drift": {
+      "final_max_abs_diff": 0.41806116700172424,
+      "final_rel_diff": 0.2837001100111613,
+      "decoded_psnr_db": 33.88210656303939,
+      "protocol_threshold_db": 45.0
+    },
+    "structure": {
+      "r1": {
+        "spatial_mad": 0.004881116095930338,
+        "temporal_mad": 0.019972026348114014
+      },
+      "r3_stock_bf16": {
+        "spatial_mad": 0.004539537243545055,
+        "temporal_mad": 0.020324500277638435
+      },
+      "decoded_noise_latent": {
+        "spatial_mad": 0.03022906929254532,
+        "temporal_mad": 0.1199890524148941
+      }
+    },
+    "seconds": {
+      "r1_custom": 154.25224779103883,
+      "r2_custom": 141.19434970908333,
+      "r3_stock_bf16": 114.80445816705469,
+      "r4_pipeline_fp32_velocity": 113.65091512491927
+    }
+  },
+  "media": {
+    "contact_sheet": "results/checks/wan_real_mps/contact_sheet.png",
+    "gif": "results/checks/wan_real_mps/r1.gif",
+    "frames": "results/checks/wan_real_mps/r1_frames"
+  },
+  "artifacts_sha256": {
+    "wan_real_mps/contact_sheet.png": "e989d2bb577a4f43c71883ce249d90f77d0df936bc048eb2c80949b6204c5113",
+    "wan_real_mps/inputs.pt": "7bef2cd062b2197e35a33afe6b91503341b6d44212af39e59d8ff4fb89694b98",
+    "wan_real_mps/r1.gif": "f004808ff9e159e274729748ba3b29d27b566bba03c2c80b362e3c9660033af4",
+    "wan_real_mps/r1_frames/frame_000.png": "90cec0ebe413a54d76b8f2eb948fe43cdf9da107879fbd848d41fdc01a9b773c",
+    "wan_real_mps/r1_frames/frame_001.png": "af452bb7382827477c26fa077f7bada7f3f0c880bc0cd678de388ae4b7d6f419",
+    "wan_real_mps/r1_frames/frame_002.png": "9e45295e26670e2017ba0417ef989ebbca7f55b7be2ea417184f8740d0e7e2aa",
+    "wan_real_mps/r1_frames/frame_003.png": "03e97a4a37c9815d340a7ffb3a58fa140c7d98d74fb2d61c975987ed301e2430",
+    "wan_real_mps/r1_frames/frame_004.png": "3705a2875e232d7ddfc11d244d46649ad80f4c829e9d9c63b8fb9501233a20a6",
+    "wan_real_mps/r1_frames/frame_005.png": "5388b06204c93e148ebcedd1968972bbe7fe4ee52af373501bfdbf9a2b5e9622",
+    "wan_real_mps/r1_frames/frame_006.png": "ca2078239c7b4de5d2084b4c16f8eb7d5eaaf31a6c27142f8b7d734615d9317a",
+    "wan_real_mps/r1_frames/frame_007.png": "0063bdc3fb007dab4f0f36a475b84062f2cc9aecfc6aee72232a43c0705cbff3",
+    "wan_real_mps/r1_frames/frame_008.png": "9de1cdf8a25a440958f10d4311273e24bdc25a33e7afa7e14952916397782158",
+    "wan_real_mps/r1_frames/frame_009.png": "d1619f3dd4016383fb8f238b6cd7860dacbeb921249993f051c931f067f4109e",
+    "wan_real_mps/r1_frames/frame_010.png": "b238a4ab2b98b4b1c45ac87115fcd138a26c26852f39c00086f2eac12e33b178",
+    "wan_real_mps/r1_frames/frame_011.png": "286a0037469f3c6ff84fd600a131277cbb8ed56d3dcc72b507b2fb2c838e2bf8",
+    "wan_real_mps/r1_frames/frame_012.png": "f252edf71340ee34bb32ee53bcdbf900ec67b4dbfb307bd9013874289868c805",
+    "wan_real_mps/r1_frames/frame_013.png": "7465346c94757d7f021b46d2a60b8f1e8882295ed13764586fb1106cfff9afa8",
+    "wan_real_mps/r1_frames/frame_014.png": "3dad2e4a2465bec2c2a8af4417842b31ddd19faaefb13f38ff299f228a56734b",
+    "wan_real_mps/r1_frames/frame_015.png": "368b997ce1737284986704b6e9acb8a4325e85db961989093a296cee36f546aa",
+    "wan_real_mps/r1_frames/frame_016.png": "8dc04cba373ec25154d0d7fe57e462132c6cb6a0dc3d5e0bbe76a57a185a79b2"
+  },
+  "environment": {
+    "git_sha": "fd23e51450d3a5e2f265e99df701573a194c6899",
+    "git_dirty": false,
+    "python": "3.10.19",
+    "platform": "macOS-26.3.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "torch": "2.14.1",
+    "diffusers": "0.40.0",
+    "numpy": "2.2.6",
+    "mps_available": true
+  },
+  "model": {
+    "repo_id": "Wan-AI/Wan2.1-T2V-1.3B-Diffusers",
+    "revision": "0fad780a534b6463e45facd96134c9f345acfa5b",
+    "weights_sha256": {
+      "transformer/diffusion_pytorch_model-00001-of-00002.safetensors": "6d011927dbd2cc8afe53d57abab04a8fd86f615d83324770d985fb058ece3a24",
+      "transformer/diffusion_pytorch_model-00002-of-00002.safetensors": "b92ec2309b1f239af6f746431815a881afcc938abb26a4f08d9a2fd6c892f872",
+      "vae/diffusion_pytorch_model.safetensors": "d6e524b3fffede1787a74e81b30976dce5400c4439ba64222168e607ed19e793"
+    },
+    "transformer_param_dtypes": {
+      "float32": 3127296,
+      "bfloat16": 1415869504
+    },
+    "vae_dtype": "float32"
+  },
+  "settings": {
+    "device": "mps",
+    "shift": 8.0,
+    "guidance": 6.0,
+    "steps": 40,
+    "video": {
+      "num_frames": 17,
+      "height": 240,
+      "width": 416
+    },
+    "latent_shape": [
+      1,
+      16,
+      5,
+      30,
+      52
+    ],
+    "seed": 20261005,
+    "placeholder_embeddings": {
+      "text_len": 512,
+      "cond": "first 16 tokens ~ N(0, 0.1^2), rest zero",
+      "uncond": "all zeros"
+    },
+    "input_sha256": {
+      "latents": "ec071f907bc93572ca1d7a6b723a1ffafd31f629e8e89905dbefa4b8d4dc02c0",
+      "prompt_embeds": "39489c3e8663b05c0d4292a60bcc4e7904f866665824bae951781051fdaf73e3",
+      "negative_prompt_embeds": "2daeb1f36095b44b318410b3f4e8b5d989dcc7bb023d1426c492dab0a3053e74"
+    },
+    "sigmas": [
+      1.0,
+      0.9967479705810547,
+      0.9933443665504456,
+      0.989778459072113,
+      0.986038327217102,
+      0.9821107983589172,
+      0.9779815077781677,
+      0.9736344814300537,
+      0.9690520167350769,
+      0.9642145037651062,
+      0.9590999484062195,
+      0.9536839127540588,
+      0.9479389190673828,
+      0.941834032535553,
+      0.9353344440460205,
+      0.928400456905365,
+      0.920987069606781,
+      0.9130427837371826,
+      0.9045085310935974,
+      0.895315945148468,
+      0.8853858113288879,
+      0.8746257424354553,
+      0.8629270792007446,
+      0.8501613736152649,
+      0.836175799369812,
+      0.8207865953445435,
+      0.8037713766098022,
+      0.784857988357544,
+      0.763710081577301,
+      0.7399067878723145,
+      0.7129145264625549,
+      0.6820464134216309,
+      0.6464029550552368,
+      0.604783296585083,
+      0.5555468201637268,
+      0.49639201164245605,
+      0.42398616671562195,
+      0.33331531286239624,
+      0.2164705991744995,
+      0.06020696833729744,
+      0.0
+    ]
+  }
+}

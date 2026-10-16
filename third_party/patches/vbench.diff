@@ -1,0 +1,83 @@
+diff -ruN -x __pycache__ a/vbench/motion_smoothness.py b/vbench/motion_smoothness.py
+--- a/vbench/motion_smoothness.py	2026-10-07 01:19:57
++++ b/vbench/motion_smoothness.py	2026-10-07 01:19:57
+@@ -1,5 +1,6 @@
+ import os
+ import cv2
++import importlib
+ import glob
+ import torch
+ import numpy as np
+@@ -31,16 +32,9 @@
+ 
+ 
+     def get_frames(self, video_path):
+-        frame_list = []
+-        video = cv2.VideoCapture(video_path)
+-        while video.isOpened():
+-            success, frame = video.read()
+-            if success:
+-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # convert to rgb
+-                frame_list.append(frame)
+-            else:
+-                break
+-        video.release()
++        # Density: the registered decoder (RGB frames) instead of OpenCV's own FFmpeg build.
++        from density.video import decode_rgb
++        frame_list = list(decode_rgb(video_path))
+         assert frame_list != []
+         return frame_list 
+     
+@@ -83,9 +77,12 @@
+         network_cfg = OmegaConf.load(cfg_path).network
+         network_name = network_cfg.name
+         print(f'Loading [{network_name}] from [{ckpt_path}]...')
+-        self.model = build_from_cfg(network_cfg)
+-        ckpt = torch.load(ckpt_path, map_location="cpu")
+-        self.model.load_state_dict(ckpt['state_dict'])
++        # Density: the network module by its full name (not the sys.path entry build_utils appends), and the
++        # state dict from the converted safetensors file, loaded data-only.
++        module, cls = network_cfg['name'].rsplit(".", 1)
++        self.model = getattr(importlib.import_module("vbench.third_party.amt." + module), cls)(**network_cfg.get('params', {}))
++        from safetensors.torch import load_file
++        self.model.load_state_dict(load_file(ckpt_path))
+         self.model = self.model.to(self.device)
+         self.model.eval()
+ 
+diff -ruN -x __pycache__ a/vbench/utils.py b/vbench/utils.py
+--- a/vbench/utils.py	2026-10-07 01:19:57
++++ b/vbench/utils.py	2026-10-07 01:19:57
+@@ -7,7 +7,7 @@
+ import re
+ from pathlib import Path
+ from PIL import Image, ImageSequence
+-from decord import VideoReader, cpu
++# Density: decord is not imported; MP4 frames come from density.video.decode_rgb (third_party/patches/vbench.diff).
+ from torchvision import transforms
+ from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize, ToPILImage
+ try:
+@@ -145,19 +145,11 @@
+         frame_ls = [frame]
+         buffer = np.array(frame_ls)
+     elif video_path.endswith('.mp4'):
+-        import decord
+-        decord.bridge.set_bridge('native')
+-        if width:
+-            video_reader = VideoReader(video_path, width=width, height=height, num_threads=1)
+-        else:
+-            video_reader = VideoReader(video_path, num_threads=1)
+-        frame_indices = range(len(video_reader))
+-        if num_frames:
+-            frame_indices = get_frame_indices(
+-            num_frames, len(video_reader), sample="middle"
+-            )
+-        frames = video_reader.get_batch(frame_indices)  # (T, H, W, C), torch.uint8
+-        buffer = frames.asnumpy().astype(np.uint8)
++        # Density: every frame from the registered decoder (PyAV, BT.709 limited range converted in numpy) instead of decord.
++        if width or num_frames:
++            raise NotImplementedError("resized or subsampled MP4 loading is not used by the five quality dimensions")
++        from density.video import decode_rgb
++        buffer = decode_rgb(video_path)  # (T, H, W, C), uint8
+     else:
+         raise NotImplementedError
+     

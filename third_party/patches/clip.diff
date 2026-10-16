@@ -1,0 +1,7 @@
+diff -ruN -x __pycache__ a/clip/__init__.py b/clip/__init__.py
+--- a/clip/__init__.py	2026-10-07 01:19:57
++++ b/clip/__init__.py	2026-10-07 01:19:57
+@@ -1 +1,2 @@
+-from .clip import *
++# Density: only clip/model.py (build_model) is vendored; the downloader, TorchScript loader and tokenizer
++# (which needs ftfy) are not. density/metrics/quality.py builds the models from converted safetensors files.

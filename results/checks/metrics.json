@@ -1,0 +1,1595 @@
+{
+  "code": {
+    "git_sha": "601fc6cbfd6f704014ca1b384cd7658583dbb0db",
+    "git_dirty": false
+  },
+  "utc": "2026-10-07T17:46:07Z",
+  "parts": {
+    "analysis": {
+      "part": "analysis",
+      "utc": "2026-10-07T17:46:07Z",
+      "code": {
+        "git_sha": "601fc6cbfd6f704014ca1b384cd7658583dbb0db",
+        "git_dirty": false
+      },
+      "exit": 0,
+      "outcome": "GO",
+      "reason": "median at least 10 percent, lower bound above zero, and all seven guardrails pass",
+      "median_delta": 0.1462103972010973,
+      "ci95": [
+        0.13315674141639078,
+        0.15997644756692736
+      ],
+      "guardrails": {
+        "full_frame_lpips": "pass",
+        "outside_lpips": "pass",
+        "subject_consistency": "pass",
+        "background_consistency": "pass",
+        "motion_smoothness": "pass",
+        "aesthetic_quality": "pass",
+        "imaging_quality": "pass"
+      },
+      "secondary": {
+        "strata": {
+          "face": {
+            "median_delta": 0.15145406911241122,
+            "holm_p": 8.731149137020111e-11
+          },
+          "manipulation": {
+            "median_delta": 0.14433989586458987,
+            "holm_p": 8.731149137020111e-11
+          },
+          "body": {
+            "median_delta": -0.006532580094342479,
+            "holm_p": 0.129730224609375
+          }
+        },
+        "budget_switch": {
+          "75 percent": {
+            "median_delta": 0.15440315328038973,
+            "holm_p": 9.1552734375e-05
+          },
+          "switch-20": {
+            "median_delta": 0.1747870450116445,
+            "holm_p": 9.1552734375e-05
+          },
+          "switch-30": {
+            "median_delta": 0.1575436235234599,
+            "holm_p": 9.1552734375e-05
+          }
+        },
+        "ablations": {
+          "C5 vs C4": {
+            "median_delta": 0.03637118971413632,
+            "holm_p": 7.644880679436028e-05
+          },
+          "C6 vs C4": {
+            "median_delta": 0.024741024313979988,
+            "holm_p": 0.010238890361506492
+          },
+          "A1 vs C4": {
+            "median_delta": -0.0077440052755161914,
+            "holm_p": 0.3225523410656024
+          }
+        }
+      },
+      "controls_check": {
+        "max_abs_c4_minus_c3_full_frame_lpips": 0.0,
+        "note": "an explicit empty mask makes C4 reproduce C3; any difference is an implementation failure"
+      },
+      "validations": {
+        "improvement_15_percent": {
+          "outcome": "GO",
+          "median_delta": 0.14570600931217226,
+          "ci95": [
+            0.13847289220631104,
+            0.15194770466122368
+          ],
+          "guardrails": {
+            "full_frame_lpips": "pass",
+            "outside_lpips": "pass",
+            "subject_consistency": "pass",
+            "background_consistency": "pass",
+            "motion_smoothness": "pass",
+            "aesthetic_quality": "pass",
+            "imaging_quality": "pass"
+          },
+          "expected": "GO",
+          "passed": true
+        },
+        "no_effect": {
+          "outcomes": {
+            "NO-GO": 50
+          },
+          "replicates": 50,
+          "expected": "never GO",
+          "passed": true
+        },
+        "injected_harm": {
+          "cases": {
+            "outside_lpips": {
+              "injected": 0.02,
+              "outcome": "NO-GO",
+              "status": "confirmed harm",
+              "passed": true
+            },
+            "imaging_quality": {
+              "injected": 1.0,
+              "outcome": "NO-GO",
+              "status": "confirmed harm",
+              "passed": true
+            }
+          },
+          "expected": "NO-GO with confirmed harm",
+          "passed": true
+        },
+        "missing_metric": {
+          "outcome": "BLOCKED",
+          "reason": "1 required scores missing: ['prompt 5 C4 motion_smoothness: {1: 96.22614213934348, 2: None}']",
+          "expected": "BLOCKED",
+          "passed": true
+        },
+        "passed": true
+      }
+    },
+    "metrics": {
+      "part": "metrics",
+      "utc": "2026-10-07T15:14:30Z",
+      "code": {
+        "git_sha": "601fc6cbfd6f704014ca1b384cd7658583dbb0db",
+        "git_dirty": false
+      },
+      "weights": {
+        "lpips_alex_v0.1": {
+          "path": "metrics/lpips/alex_v0.1.pth",
+          "size": 6009,
+          "sha256": "df73285e35b22355a2df87cdb6b70b343713b667eddbda73e1977e0c860835c0",
+          "verified": true,
+          "loads": true,
+          "license": "BSD-2-Clause"
+        },
+        "alexnet": {
+          "path": "metrics/lpips/alexnet-owt-7be5be79.pth",
+          "size": 244408911,
+          "sha256": "7be5be791159472b1fbf3c69796f7cb30dca7ad8466c2df70058c37116cdee02",
+          "verified": true,
+          "loads": true,
+          "license": "no terms stated by torchvision; ImageNet-derived"
+        },
+        "arcface_w600k_r50": {
+          "path": "masks/insightface/models/buffalo_l/w600k_r50.onnx",
+          "size": 174383860,
+          "sha256": "4c06341c33c2ca1f86781dab0e829f88ad5b64be9fba56e56bc9ebdefc619e43",
+          "verified": true,
+          "loads": true,
+          "license": "InsightFace pretrained models: non-commercial research only"
+        },
+        "dino_vitb16": {
+          "path": "metrics/dino/dino_vitbase16_pretrain.pth",
+          "size": 343242485,
+          "sha256": "bf34ad0f424b9029b593e8dc3ed553bf26e88bcba0d32bf3e62a6209cb64c85e",
+          "verified": true,
+          "loads": true,
+          "license": "Apache-2.0"
+        },
+        "clip_vit_b32_original": {
+          "path": "metrics/clip/ViT-B-32.pt",
+          "size": 353976522,
+          "sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af",
+          "verified": true,
+          "loads": false,
+          "license": "MIT (OpenAI CLIP)"
+        },
+        "clip_vit_b32": {
+          "path": "metrics/clip/ViT-B-32.safetensors",
+          "size": 353470932,
+          "sha256": "4cada1a09d8b61a98b0a852743315dc84efde62e55b8c5da173d5937157fed19",
+          "verified": true,
+          "loads": true,
+          "license": "as clip_vit_b32_original"
+        },
+        "clip_vit_l14_original": {
+          "path": "metrics/clip/ViT-L-14.pt",
+          "size": 932768134,
+          "sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836",
+          "verified": true,
+          "loads": false,
+          "license": "MIT (OpenAI CLIP)"
+        },
+        "clip_vit_l14": {
+          "path": "metrics/clip/ViT-L-14.safetensors",
+          "size": 932103532,
+          "sha256": "a8e9ea88b09f37d8fc6c225e6d6f613dcaff94172ce387e7ca3676c3ddd2831f",
+          "verified": true,
+          "loads": true,
+          "license": "as clip_vit_l14_original"
+        },
+        "laion_aesthetic_head": {
+          "path": "metrics/aesthetic/sa_0_4_vit_l_14_linear.pth",
+          "size": 4071,
+          "sha256": "2cd4e60f4f24ae3bcd57b847b13c1f3ba27edc28cc1a7f9ce74ee9f421243cba",
+          "verified": true,
+          "loads": true,
+          "license": "MIT"
+        },
+        "musiq_spaq": {
+          "path": "metrics/musiq/musiq_spaq_ckpt-358bb6af.pth",
+          "size": 108610983,
+          "sha256": "358bb6af275e28ea56821d44fb55c6cb83645db11f394d3ad65b2d149965ab50",
+          "verified": true,
+          "loads": true,
+          "license": "CC BY-NC-SA 4.0 (research only)"
+        },
+        "amt_s_original": {
+          "path": "metrics/amt/amt-s.pth",
+          "size": 12038359,
+          "sha256": "07e7e03405c213fe4405678db9b42d05671e48c56faf6a441b99bb0047d3cf77",
+          "verified": true,
+          "loads": false,
+          "license": "CC BY-NC-SA 4.0 weights, CC BY-NC 4.0 code (research only)"
+        },
+        "amt_s": {
+          "path": "metrics/amt/amt-s.safetensors",
+          "size": 11982684,
+          "sha256": "704f6d5063c150f23548edba03c6cd1585f78e33168c67fafe88541cb3c119f3",
+          "verified": true,
+          "loads": true,
+          "license": "as amt_s_original"
+        }
+      },
+      "encode_canary": {
+        "passed": true,
+        "decoded_frames_sha256": "32b091cac57085dac05ee1f19edaf2abefe17b6b2fe8a87638c2b8194014cb09",
+        "registered": "32b091cac57085dac05ee1f19edaf2abefe17b6b2fe8a87638c2b8194014cb09",
+        "registered_on": "Chases-MacBook-Pro.local (arm64, macOS-26.3.1-arm64-arm-64bit)",
+        "psnr_vs_lossless_db": 47.351165005523804
+      },
+      "encoding": {
+        "face": {
+          "psnr_vs_lossless_db": 47.62026212700496,
+          "mp4_bytes": 1446902,
+          "png_bytes": 22471355,
+          "ffv1": {
+            "bytes": 14457433,
+            "exact": true
+          },
+          "decoded_identical_across_encodes": true,
+          "x264_options": {
+            "crf": "10.0",
+            "threads": "1"
+          },
+          "encode_seconds_mac": 2.66988783411216
+        },
+        "hands": {
+          "psnr_vs_lossless_db": 47.02600318174145,
+          "mp4_bytes": 2293410,
+          "png_bytes": 24296886,
+          "ffv1": {
+            "bytes": 17060654,
+            "exact": true
+          },
+          "decoded_identical_across_encodes": true,
+          "x264_options": {
+            "crf": "10.0",
+            "threads": "1"
+          },
+          "encode_seconds_mac": 2.897020500036888
+        },
+        "body": {
+          "psnr_vs_lossless_db": 44.933186252905514,
+          "mp4_bytes": 2548721,
+          "png_bytes": 25575178,
+          "ffv1": {
+            "bytes": 17217350,
+            "exact": true
+          },
+          "decoded_identical_across_encodes": true,
+          "x264_options": {
+            "crf": "10.0",
+            "threads": "1"
+          },
+          "encode_seconds_mac": 2.897060999996029
+        },
+        "landscape": {
+          "psnr_vs_lossless_db": 44.34378533218353,
+          "mp4_bytes": 7644907,
+          "png_bytes": 46633410,
+          "ffv1": {
+            "bytes": 26801537,
+            "exact": true
+          },
+          "decoded_identical_across_encodes": true,
+          "x264_options": {
+            "crf": "10.0",
+            "threads": "1"
+          },
+          "encode_seconds_mac": 4.021839291905053
+        }
+      },
+      "compression": {
+        "face": {
+          "full_frame_lpips": 0.005886799598365654,
+          "outside_lpips": 0.006278644836311212,
+          "masked_lpips": 0.004990581054916606,
+          "quality_lossless": {
+            "subject_consistency": 99.74058322608471,
+            "background_consistency": 99.43257573992014,
+            "motion_smoothness": 99.6854315024955,
+            "aesthetic_quality": 50.85347294807434,
+            "imaging_quality": 68.66764030927493
+          },
+          "quality_mp4": {
+            "subject_consistency": 99.73495442420244,
+            "background_consistency": 99.34730488806963,
+            "motion_smoothness": 99.67166882862253,
+            "aesthetic_quality": 50.35790801048279,
+            "imaging_quality": 68.63286797794295
+          },
+          "quality_difference": {
+            "subject_consistency": -0.005628801882266998,
+            "background_consistency": -0.08527085185050964,
+            "motion_smoothness": -0.013762673872975029,
+            "aesthetic_quality": -0.49556493759155273,
+            "imaging_quality": -0.03477233133197899
+          },
+          "quality_seconds_mac": 33.13744206249248
+        },
+        "hands": {
+          "full_frame_lpips": 0.013436359146402942,
+          "outside_lpips": 0.015601979048561447,
+          "masked_lpips": 0.006537235856021717,
+          "quality_lossless": {
+            "subject_consistency": 93.29728983342648,
+            "background_consistency": 95.08593522012234,
+            "motion_smoothness": 99.19664220923411,
+            "aesthetic_quality": 41.902607679367065,
+            "imaging_quality": 61.16033262087975
+          },
+          "quality_mp4": {
+            "subject_consistency": 93.35333574563265,
+            "background_consistency": 94.99692689627409,
+            "motion_smoothness": 99.18227832014884,
+            "aesthetic_quality": 41.871488094329834,
+            "imaging_quality": 60.99267309683341
+          },
+          "quality_difference": {
+            "subject_consistency": 0.05604591220617294,
+            "background_consistency": -0.08900832384824753,
+            "motion_smoothness": -0.014363889085274195,
+            "aesthetic_quality": -0.031119585037231445,
+            "imaging_quality": -0.16765952404634277
+          },
+          "quality_seconds_mac": 32.51961779152043
+        },
+        "body": {
+          "full_frame_lpips": 0.005315806354499525,
+          "outside_lpips": 0.00599232777989521,
+          "masked_lpips": 0.0025175878458575957,
+          "quality_lossless": {
+            "subject_consistency": 94.5897325873375,
+            "background_consistency": 95.249517634511,
+            "motion_smoothness": 99.10301214786796,
+            "aesthetic_quality": 76.9320011138916,
+            "imaging_quality": 75.71021157723887
+          },
+          "quality_mp4": {
+            "subject_consistency": 94.61563784629107,
+            "background_consistency": 95.07573369890451,
+            "motion_smoothness": 99.0883754857445,
+            "aesthetic_quality": 76.88327431678772,
+            "imaging_quality": 75.7589673642759
+          },
+          "quality_difference": {
+            "subject_consistency": 0.02590525895357132,
+            "background_consistency": -0.17378393560647964,
+            "motion_smoothness": -0.014636662123450606,
+            "aesthetic_quality": -0.048726797103881836,
+            "imaging_quality": 0.04875578703703809
+          },
+          "quality_seconds_mac": 32.40723460400477
+        },
+        "landscape": {
+          "full_frame_lpips": 0.007480302446142391,
+          "outside_lpips": 0.0074803322238362665,
+          "masked_lpips": null,
+          "quality_lossless": {
+            "subject_consistency": 94.39575672149658,
+            "background_consistency": 97.84013748168945,
+            "motion_smoothness": 95.38451280218284,
+            "aesthetic_quality": 56.48990273475647,
+            "imaging_quality": 68.14596750706802
+          },
+          "quality_mp4": {
+            "subject_consistency": 94.42057866603136,
+            "background_consistency": 96.86423566192389,
+            "motion_smoothness": 95.37680812175297,
+            "aesthetic_quality": 56.63313865661621,
+            "imaging_quality": 67.77940439294886
+          },
+          "quality_difference": {
+            "subject_consistency": 0.024821944534778595,
+            "background_consistency": -0.9759018197655678,
+            "motion_smoothness": -0.007704680429867494,
+            "aesthetic_quality": 0.1432359218597412,
+            "imaging_quality": -0.36656311411915965
+          },
+          "quality_seconds_mac": 33.006420791498385
+        }
+      },
+      "known_answers": {
+        "still": {
+          "subject_consistency": 100.00001192092896,
+          "background_consistency": 100.00003576278687,
+          "motion_smoothness": 99.75963240531254,
+          "aesthetic_quality": 20.815861225128174,
+          "imaging_quality": 14.961621284484863
+        },
+        "still_expected": "subject and background consistency 100, motion smoothness about 100",
+        "alternating_motion_smoothness": 73.50647179277694,
+        "alternating_expected": 73.50739221970841,
+        "alternating_error": -0.0009204269314722069
+      },
+      "determinism": {
+        "passed": true,
+        "processes": 2,
+        "scores": {
+          "detection": {
+            "box_overlap": {
+              "value": 0.9951569611216697
+            },
+            "detector": "scrfd",
+            "face_identity": {
+              "frames": 17,
+              "value": 0.9972924175939312
+            },
+            "reference_boxes": 17,
+            "reference_frames": 17
+          },
+          "fidelity": {
+            "crop_lpips": 0.00489006465410485,
+            "frames": {
+              "all": 17,
+              "inside": 17,
+              "outside": 17
+            },
+            "full_frame_lpips": 0.005760260611115133,
+            "masked_lpips": 0.005453364757178388,
+            "masked_psnr_db": 43.82495974620808,
+            "masked_ssim": 0.9805696256697805,
+            "outside_lpips": 0.005911079550999418
+          },
+          "quality": {
+            "raw": {
+              "aesthetic_quality": 0.5069484710693359,
+              "background_consistency": 0.9961012937128544,
+              "imaging_quality": 68.55766700295841,
+              "motion_smoothness": 0.9966688302591336,
+              "subject_consistency": 0.9982143901288509
+            },
+            "scores": {
+              "aesthetic_quality": 50.694847106933594,
+              "background_consistency": 99.61012937128544,
+              "imaging_quality": 68.55766700295841,
+              "motion_smoothness": 99.66688302591335,
+              "subject_consistency": 99.8214390128851
+            }
+          }
+        },
+        "device": "cpu (the Mac); CUDA is first checked on the pods"
+      },
+      "metric_canary": {
+        "record": {
+          "passed": true,
+          "recorded": true,
+          "digest": "36de6ec232d32a06a661ca4db47a0d8abb6a42450df45fde6a3c2923d3b54090",
+          "seconds": 79.08596866601147,
+          "stop": null
+        },
+        "check": {
+          "passed": true,
+          "recorded": false,
+          "digest": "36de6ec232d32a06a661ca4db47a0d8abb6a42450df45fde6a3c2923d3b54090",
+          "seconds": 39.23683475004509,
+          "stop": null
+        }
+      }
+    },
+    "prompts": {
+      "part": "prompts",
+      "utc": "2026-10-07T15:06:11Z",
+      "code": {
+        "git_sha": "601fc6cbfd6f704014ca1b384cd7658583dbb0db",
+        "git_dirty": false
+      },
+      "sources": {
+        "vbench_human": {
+          "prompts": 100,
+          "registered": 100,
+          "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+          "sha256_verified": true
+        },
+        "vbench_human_action": {
+          "prompts": 100,
+          "registered": 100,
+          "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+          "sha256_verified": true
+        },
+        "vbench_scenery": {
+          "prompts": 100,
+          "registered": 100,
+          "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+          "sha256_verified": true
+        },
+        "vbench_architecture": {
+          "prompts": 100,
+          "registered": 100,
+          "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+          "sha256_verified": true
+        },
+        "vbench2_human_anatomy": {
+          "prompts": 120,
+          "registered": 120,
+          "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+          "sha256_verified": true
+        },
+        "vbench2_human_identity": {
+          "prompts": 46,
+          "registered": 46,
+          "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+          "sha256_verified": true
+        },
+        "vbench2_human_clothes": {
+          "prompts": 75,
+          "registered": 75,
+          "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+          "sha256_verified": true
+        },
+        "t2v_compbench_object_interactions": {
+          "prompts": 200,
+          "registered": 200,
+          "commit": "dd5eff7b93af0550b9efa2bdabbb21b3b017ceda",
+          "sha256_verified": true
+        },
+        "t2v_compbench_action_binding": {
+          "prompts": 200,
+          "registered": 200,
+          "commit": "dd5eff7b93af0550b9efa2bdabbb21b3b017ceda",
+          "sha256_verified": true
+        }
+      },
+      "mock pilot": {
+        "rows": 12,
+        "errors": [],
+        "max_tokens": 21
+      },
+      "mock main": {
+        "rows": 8,
+        "errors": [],
+        "max_tokens": 21
+      },
+      "configs/prompts.csv": {
+        "rows": 151,
+        "counts": {
+          "control control": 16,
+          "holdout face": 6,
+          "holdout manipulation": 6,
+          "primary face": 36,
+          "primary manipulation": 31,
+          "reserve body": 10,
+          "reserve control": 10,
+          "reserve face": 20,
+          "secondary body": 16
+        },
+        "holdout_errors": [],
+        "all_errors": [
+          "primary manipulation: 31 prompts, registered 36",
+          "manipulation reserves: 0, at least 30 required"
+        ],
+        "note": "drafted by the registered procedure; Chase has not reviewed it yet"
+      },
+      "passed": true
+    },
+    "runs": {
+      "part": "runs",
+      "utc": "2026-10-07T17:45:53Z",
+      "code": {
+        "git_sha": "601fc6cbfd6f704014ca1b384cd7658583dbb0db",
+        "git_dirty": false
+      },
+      "pilot": {
+        "run": "scratch/dryrun/pilot",
+        "status": {
+          "embed": {
+            "done": 12
+          },
+          "reference": {
+            "done": 24
+          },
+          "mask": {
+            "done": 24
+          },
+          "condition": {
+            "done": 50
+          },
+          "score": {
+            "done": 10
+          }
+        },
+        "sessions": {
+          "h100 references": {
+            "session": "h100_Chases-MacBook-Pro.local_20261007T151430Z",
+            "jobs": 36,
+            "seconds": 123.77077512571122
+          },
+          "slice masks": {
+            "session": "slice_Chases-MacBook-Pro.local_20261007T151635Z",
+            "jobs": 24,
+            "seconds": 15.366085041780025
+          },
+          "freeze": {
+            "frozen_sha256": "d0b5dfb9ef24c58020b81cad14891cd8a5020cd264a5b0d144c76dd75803cfe5",
+            "jobs_added": 60,
+            "excluded": {
+              "6": "fail: seed 1006: roi_usable_frames",
+              "12": "fail: seed 1012: roi_usable_frames, no_contact_interval"
+            }
+          },
+          "h100 conditions": {
+            "session": "h100_Chases-MacBook-Pro.local_20261007T151651Z",
+            "jobs": 50,
+            "seconds": 872.7185712913051
+          },
+          "slice scores": {
+            "session": "slice_Chases-MacBook-Pro.local_20261007T153125Z",
+            "jobs": 10,
+            "seconds": 4805.777443957166
+          }
+        },
+        "setting": {
+          "scores": {
+            "sh8g6": 0.8333333333333334,
+            "sh5g5": 0.8333333333333334
+          },
+          "per_stratum": {
+            "sh8g6": {
+              "face": 0.8333333333333334,
+              "manipulation": 0.8333333333333334
+            },
+            "sh5g5": {
+              "face": 0.8333333333333334,
+              "manipulation": 0.8333333333333334
+            }
+          },
+          "setting": "sh8g6",
+          "tie": true,
+          "rule": "higher mean detection coverage, strata weighted equally; ties select 8 / 6",
+          "coverage": {
+            "sh8g6": {
+              "face": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.0
+              ],
+              "manipulation": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.0
+              ]
+            },
+            "sh5g5": {
+              "face": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.0
+              ],
+              "manipulation": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          },
+          "hsa_authors_settings": "none received",
+          "utc": "2026-10-07T15:16:51Z"
+        },
+        "rules": {
+          "utc": "2026-10-07T16:51:33Z",
+          "setting": {
+            "scores": {
+              "sh8g6": 0.8333333333333334,
+              "sh5g5": 0.8333333333333334
+            },
+            "per_stratum": {
+              "sh8g6": {
+                "face": 0.8333333333333334,
+                "manipulation": 0.8333333333333334
+              },
+              "sh5g5": {
+                "face": 0.8333333333333334,
+                "manipulation": 0.8333333333333334
+              }
+            },
+            "setting": "sh8g6",
+            "tie": true,
+            "rule": "higher mean detection coverage, strata weighted equally; ties select 8 / 6",
+            "coverage": {
+              "sh8g6": {
+                "face": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "manipulation": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              "sh5g5": {
+                "face": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "manipulation": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            },
+            "hsa_authors_settings": "none received",
+            "utc": "2026-10-07T15:16:51Z"
+          },
+          "frozen_sha256": "d0b5dfb9ef24c58020b81cad14891cd8a5020cd264a5b0d144c76dd75803cfe5",
+          "lambda": {
+            "table": {
+              "1.0": {
+                "mean_outside_degradation": 0.0017994499478892437,
+                "median_masked_lpips": 0.07240199472077126,
+                "prompts": 10,
+                "qualifies": true
+              },
+              "3.0": {
+                "mean_outside_degradation": 0.004460737879698929,
+                "median_masked_lpips": 0.05796135860609429,
+                "prompts": 10,
+                "qualifies": true
+              },
+              "10.0": {
+                "mean_outside_degradation": 0.03628415648449178,
+                "median_masked_lpips": 0.05228180722449058,
+                "prompts": 10,
+                "qualifies": false
+              }
+            },
+            "lambda": 3.0,
+            "stop": null,
+            "rule": "lowest median masked LPIPS among lambdas with mean outside-ROI degradation below 0.01; ties select the smaller"
+          },
+          "no_op": {
+            "unchanged": {
+              "1": [],
+              "3": [],
+              "10": []
+            },
+            "unchanged_at_every_lambda": [],
+            "prompts": 10,
+            "stop": null
+          },
+          "c2": {
+            "median_full_frame_lpips": {
+              "HSA-50 (C3)": 0.1228934614746659,
+              "C2": 0.24032411696734252
+            },
+            "ratio": 0.5113654968359493,
+            "threshold": 0.7,
+            "stop": null
+          },
+          "pass_rates": {
+            "strata": {
+              "face": {
+                "holdout_prompts": 6,
+                "passed": 5,
+                "p_seed": 0.8333333333333334,
+                "reserves_at_estimate": 24
+              },
+              "manipulation": {
+                "holdout_prompts": 6,
+                "passed": 5,
+                "p_seed": 0.8333333333333334,
+                "reserves_at_estimate": 24
+              }
+            },
+            "assumption": "both seeds must pass; seeds pass independently with the holdout's one-seed rate",
+            "coverage": 0.95,
+            "primary_per_stratum": 36
+          },
+          "reachability": {
+            "z": 2.690109527158867,
+            "n_main": 72,
+            "guardrails": {
+              "full_frame_lpips": {
+                "sd": 0.0012286665993506123,
+                "half_width": 0.0003895271799294418,
+                "limit": 0.01,
+                "reachable": true,
+                "mean": -0.0010260247613912733
+              },
+              "outside_lpips": {
+                "sd": 0.001391335639545056,
+                "half_width": 0.0004410985439774761,
+                "limit": 0.01,
+                "reachable": true,
+                "mean": 0.004460737879698929
+              },
+              "subject_consistency": {
+                "sd": 0.10190442068113828,
+                "half_width": 0.03230700796395626,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.03410431742668152
+              },
+              "background_consistency": {
+                "sd": 0.21967291089403335,
+                "half_width": 0.06964344072889257,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.0230543315410614
+              },
+              "motion_smoothness": {
+                "sd": 0.007856446218909447,
+                "half_width": 0.002490748378393768,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.012312545661291096
+              },
+              "aesthetic_quality": {
+                "sd": 0.41512941687653004,
+                "half_width": 0.13160949532373875,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": 0.26618778705596924
+              },
+              "imaging_quality": {
+                "sd": 0.26694020656204687,
+                "half_width": 0.08462870719107497,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.2734685120759174
+              }
+            },
+            "unreachable": [],
+            "note": "the pilot has one seed per prompt; the main run averages two seeds, whose differences vary less, so this check is conservative"
+          },
+          "compression": {
+            "prompts": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "dimensions": {
+              "subject_consistency": {
+                "mean_on_mp4": -0.00935778021812439,
+                "mean_on_lossless": -0.03410431742668152,
+                "mean_difference": 0.02474653720855713,
+                "sd_difference": 0.06248004165792751,
+                "limit": 0.5
+              },
+              "background_consistency": {
+                "mean_on_mp4": -0.06963028386235237,
+                "mean_on_lossless": -0.0230543315410614,
+                "mean_difference": -0.04657595232129097,
+                "sd_difference": 0.21512910614250738,
+                "limit": 0.5
+              },
+              "motion_smoothness": {
+                "mean_on_mp4": -0.009839673215711286,
+                "mean_on_lossless": -0.012312545661291096,
+                "mean_difference": 0.00247287244557981,
+                "sd_difference": 0.0013340847186101262,
+                "limit": 0.5
+              },
+              "aesthetic_quality": {
+                "mean_on_mp4": -0.010233819484710693,
+                "mean_on_lossless": 0.26618778705596924,
+                "mean_difference": -0.27642160654067993,
+                "sd_difference": 0.4037672168332889,
+                "limit": 0.5
+              },
+              "imaging_quality": {
+                "mean_on_mp4": -0.3180613765010122,
+                "mean_on_lossless": -0.2734685120759174,
+                "mean_difference": -0.0445928644250948,
+                "sd_difference": 0.07823632295304256,
+                "limit": 0.5
+              }
+            },
+            "note": "the guardrails are scored from lossless frames; this is how far the playback MP4 would have moved them"
+          },
+          "excluded": {
+            "6": "fail: seed 1006: roi_usable_frames",
+            "12": "fail: seed 1012: roi_usable_frames, no_contact_interval"
+          },
+          "stops": []
+        }
+      },
+      "registration": {
+        "values": {
+          "setting": "sh8g6",
+          "lambda": 3.0,
+          "reserve_sizes": null
+        },
+        "pilot": {
+          "status": "complete",
+          "stops": [],
+          "rules_sha256": "2c3f29566e6c2c25b8d21733e41a75a2f7811063c4b7663f17e07da8f742b6db",
+          "pilot_frozen_sha256": "d0b5dfb9ef24c58020b81cad14891cd8a5020cd264a5b0d144c76dd75803cfe5",
+          "setting": "sh8g6",
+          "setting_table": {
+            "scores": {
+              "sh8g6": 0.8333333333333334,
+              "sh5g5": 0.8333333333333334
+            },
+            "per_stratum": {
+              "sh8g6": {
+                "face": 0.8333333333333334,
+                "manipulation": 0.8333333333333334
+              },
+              "sh5g5": {
+                "face": 0.8333333333333334,
+                "manipulation": 0.8333333333333334
+              }
+            },
+            "tie": true
+          },
+          "lambda": 3.0,
+          "lambda_table": {
+            "1.0": {
+              "mean_outside_degradation": 0.0017994499478892437,
+              "median_masked_lpips": 0.07240199472077126,
+              "prompts": 10,
+              "qualifies": true
+            },
+            "3.0": {
+              "mean_outside_degradation": 0.004460737879698929,
+              "median_masked_lpips": 0.05796135860609429,
+              "prompts": 10,
+              "qualifies": true
+            },
+            "10.0": {
+              "mean_outside_degradation": 0.03628415648449178,
+              "median_masked_lpips": 0.05228180722449058,
+              "prompts": 10,
+              "qualifies": false
+            }
+          },
+          "no_op": {
+            "unchanged": {
+              "1": [],
+              "3": [],
+              "10": []
+            },
+            "unchanged_at_every_lambda": [],
+            "prompts": 10,
+            "stop": null
+          },
+          "c2": {
+            "median_full_frame_lpips": {
+              "HSA-50 (C3)": 0.1228934614746659,
+              "C2": 0.24032411696734252
+            },
+            "ratio": 0.5113654968359493,
+            "threshold": 0.7,
+            "stop": null
+          },
+          "pass_rates": {
+            "strata": {
+              "face": {
+                "holdout_prompts": 6,
+                "passed": 5,
+                "p_seed": 0.8333333333333334,
+                "reserves_at_estimate": 24
+              },
+              "manipulation": {
+                "holdout_prompts": 6,
+                "passed": 5,
+                "p_seed": 0.8333333333333334,
+                "reserves_at_estimate": 24
+              }
+            },
+            "assumption": "both seeds must pass; seeds pass independently with the holdout's one-seed rate",
+            "coverage": 0.95,
+            "primary_per_stratum": 36
+          },
+          "reachability": {
+            "z": 2.690109527158867,
+            "n_main": 72,
+            "guardrails": {
+              "full_frame_lpips": {
+                "sd": 0.0012286665993506123,
+                "half_width": 0.0003895271799294418,
+                "limit": 0.01,
+                "reachable": true,
+                "mean": -0.0010260247613912733
+              },
+              "outside_lpips": {
+                "sd": 0.001391335639545056,
+                "half_width": 0.0004410985439774761,
+                "limit": 0.01,
+                "reachable": true,
+                "mean": 0.004460737879698929
+              },
+              "subject_consistency": {
+                "sd": 0.10190442068113828,
+                "half_width": 0.03230700796395626,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.03410431742668152
+              },
+              "background_consistency": {
+                "sd": 0.21967291089403335,
+                "half_width": 0.06964344072889257,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.0230543315410614
+              },
+              "motion_smoothness": {
+                "sd": 0.007856446218909447,
+                "half_width": 0.002490748378393768,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.012312545661291096
+              },
+              "aesthetic_quality": {
+                "sd": 0.41512941687653004,
+                "half_width": 0.13160949532373875,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": 0.26618778705596924
+              },
+              "imaging_quality": {
+                "sd": 0.26694020656204687,
+                "half_width": 0.08462870719107497,
+                "limit": 0.5,
+                "reachable": true,
+                "mean": -0.2734685120759174
+              }
+            },
+            "unreachable": [],
+            "note": "the pilot has one seed per prompt; the main run averages two seeds, whose differences vary less, so this check is conservative"
+          },
+          "excluded_holdout": {
+            "6": "fail: seed 1006: roi_usable_frames",
+            "12": "fail: seed 1012: roi_usable_frames, no_contact_interval"
+          },
+          "reserve_sizes": "pending: Chase sets them from the pass rates' estimate"
+        },
+        "entries": 110
+      },
+      "main": {
+        "run": "scratch/dryrun/main",
+        "status": {
+          "embed": {
+            "done": 8
+          },
+          "reference": {
+            "done": 14
+          },
+          "mask": {
+            "done": 14
+          },
+          "condition": {
+            "done": 58
+          },
+          "score": {
+            "done": 2,
+            "ready": 8
+          }
+        },
+        "sessions": {
+          "h100 references": {
+            "session": "h100_Chases-MacBook-Pro.local_20261007T165137Z",
+            "jobs": 18,
+            "seconds": 68.49788524920586
+          },
+          "slice masks": {
+            "session": "slice_Chases-MacBook-Pro.local_20261007T165248Z",
+            "jobs": 10,
+            "seconds": 7.130395833868533
+          },
+          "review 1": {
+            "states": {
+              "21": "pass",
+              "22": "fail, replaced by 25",
+              "23": "pass",
+              "24": "fail, replaced by 26"
+            },
+            "replacements": [
+              {
+                "stratum": "face",
+                "failed_prompt": 22,
+                "replacement": 25,
+                "reasons": {
+                  "1022": [],
+                  "2022": [
+                    "audit_mask_invalid"
+                  ]
+                },
+                "written_reasons": {
+                  "2022": {
+                    "audit_mask_invalid": "dry run: an injected rejection, to exercise the replacement rule"
+                  }
+                },
+                "extra_cost_re": 2
+              },
+              {
+                "stratum": "manipulation",
+                "failed_prompt": 24,
+                "replacement": 26,
+                "reasons": {
+                  "1024": [
+                    "roi_usable_frames",
+                    "no_contact_interval"
+                  ],
+                  "2024": [
+                    "roi_usable_frames",
+                    "no_contact_interval"
+                  ]
+                },
+                "written_reasons": {},
+                "extra_cost_re": 2
+              }
+            ],
+            "extra_cost_re": 4,
+            "audit_csv_sha256": "5e2e3ed1a964651d7c6ebe1408b5e961e70ae215ccac4255a943ea117bf9ec25"
+          },
+          "h100 replacement references": {
+            "session": "h100_Chases-MacBook-Pro.local_20261007T165256Z",
+            "jobs": 4,
+            "seconds": 26.298022584058344
+          },
+          "slice replacement masks": {
+            "session": "slice_Chases-MacBook-Pro.local_20261007T165324Z",
+            "jobs": 4,
+            "seconds": 3.2828166669933125
+          },
+          "review 2": {
+            "states": {
+              "21": "pass",
+              "25": "pass",
+              "23": "pass",
+              "26": "pass"
+            },
+            "replacements": [
+              {
+                "stratum": "face",
+                "failed_prompt": 22,
+                "replacement": 25,
+                "reasons": {
+                  "1022": [],
+                  "2022": [
+                    "audit_mask_invalid"
+                  ]
+                },
+                "written_reasons": {
+                  "2022": {
+                    "audit_mask_invalid": "dry run: an injected rejection, to exercise the replacement rule"
+                  }
+                },
+                "extra_cost_re": 2
+              },
+              {
+                "stratum": "manipulation",
+                "failed_prompt": 24,
+                "replacement": 26,
+                "reasons": {
+                  "1024": [
+                    "roi_usable_frames",
+                    "no_contact_interval"
+                  ],
+                  "2024": [
+                    "roi_usable_frames",
+                    "no_contact_interval"
+                  ]
+                },
+                "written_reasons": {},
+                "extra_cost_re": 2
+              }
+            ],
+            "extra_cost_re": 4,
+            "audit_csv_sha256": "9a153c74c5db049059f840439228adfce6b722cc0f10ef260e2c6830f143bd71"
+          },
+          "freeze": {
+            "frozen_sha256": "1ee657f148e70ea564a58a5e2d4121ae2be20362711791d42b8d43b2d2bea8ac",
+            "jobs_added": 68,
+            "excluded": {}
+          },
+          "h100 conditions": {
+            "session": "h100_Chases-MacBook-Pro.local_20261007T165328Z",
+            "jobs": 58,
+            "seconds": 1123.4496625838801
+          },
+          "group checks": {
+            "021-s1021-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50",
+                "HSA-75B",
+                "switch-20",
+                "switch-30"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "025-s1025-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50",
+                "HSA-75B",
+                "switch-20",
+                "switch-30"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "023-s1023-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50",
+                "HSA-75B",
+                "switch-20",
+                "switch-30"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "026-s1026-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50",
+                "HSA-75B",
+                "switch-20",
+                "switch-30"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "021-s2021-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "025-s2025-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "023-s2023-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "026-s2026-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "027-s1027-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50"
+              ],
+              "empty_mask_c4_equals_c3": {}
+            },
+            "028-s1028-sh8g6": {
+              "active_counts_equal_across_conditions": [
+                "HSA-50"
+              ],
+              "empty_mask_c4_equals_c3": {
+                "HSA-50": "C4 equals C3"
+              }
+            }
+          },
+          "slice scores": {
+            "session": "slice_Chases-MacBook-Pro.local_20261007T171213Z",
+            "jobs": 2,
+            "seconds": 2019.3378120829584
+          }
+        },
+        "grid_blocks": [
+          "75 percent",
+          "A1",
+          "C5 and C6",
+          "controls",
+          "full body",
+          "primary seed 1",
+          "primary seed 2",
+          "switch points"
+        ],
+        "collected": {
+          "primary_rows": 20,
+          "secondary_blocks": {
+            "C5 and C6": 16,
+            "A1": 6,
+            "75 percent": 8,
+            "switch points": 16,
+            "full body": 2,
+            "controls": 2
+          },
+          "strata": {
+            "21": "face",
+            "25": "face",
+            "23": "manipulation",
+            "26": "manipulation",
+            "27": "body",
+            "28": "control"
+          }
+        },
+        "visual_check_selection": "15 face and 15 manipulation prompts drawn without replacement from the frozen primary prompts, then one of each prompt's two seeds",
+        "frozen": {
+          "C5_C6": {
+            "face": [
+              21,
+              25
+            ],
+            "manipulation": [
+              23,
+              26
+            ]
+          },
+          "budget_switch": {
+            "face": [
+              21,
+              25
+            ],
+            "manipulation": [
+              23,
+              26
+            ]
+          }
+        }
+      },
+      "cost_tables": {
+        "pilot": {
+          "blocks": {
+            "embeddings": {
+              "jobs": 12,
+              "re": 0.0,
+              "machine": "h100",
+              "seconds": 0.0,
+              "hours": 0.0,
+              "dollars": 0.0
+            },
+            "references (holdout)": {
+              "jobs": 24,
+              "re": 24.0,
+              "machine": "h100",
+              "seconds": 1771.1999999999994,
+              "hours": 0.4919999999999998,
+              "dollars": 1.7121599999999995
+            },
+            "masks (holdout)": {
+              "jobs": 24,
+              "re": 0.0,
+              "machine": "slice",
+              "seconds": 4368.0,
+              "hours": 1.2133333333333334,
+              "dollars": 0.7158666666666667
+            },
+            "pilot": {
+              "jobs": 60,
+              "re": 30.0,
+              "machine": "h100",
+              "seconds": 2343.5999999999985,
+              "hours": 0.6509999999999996,
+              "dollars": 2.2654799999999984
+            },
+            "scores": {
+              "jobs": 12,
+              "re": 0.0,
+              "machine": "slice",
+              "seconds": 0.0,
+              "hours": 0.0,
+              "dollars": 0.0
+            }
+          },
+          "totals": {
+            "h100": {
+              "re": 54.0,
+              "hours": 1.1429999999999993,
+              "dollars": 3.977639999999998
+            },
+            "slice": {
+              "re": 0.0,
+              "hours": 1.2133333333333334,
+              "dollars": 0.7158666666666667
+            }
+          },
+          "rates_per_hour": {
+            "h100": 3.48,
+            "slice": 0.59
+          },
+          "seconds_source": "smoke test Sessions D (H100, flash attention) and E (slice, thread cap and ROIAlign kernel); C2, HSA-75B and the switches scaled by token-step fraction",
+          "not_included": "metric scoring time (a placeholder until measured), embeddings, canaries, pod setup, replacements and debugging"
+        },
+        "main": {
+          "blocks": {
+            "embeddings": {
+              "jobs": 104,
+              "re": 0.0,
+              "machine": "h100",
+              "seconds": 0.0,
+              "hours": 0.0,
+              "dollars": 0.0
+            },
+            "references (primary)": {
+              "jobs": 144,
+              "re": 144.0,
+              "machine": "h100",
+              "seconds": 10627.19999999999,
+              "hours": 2.9519999999999973,
+              "dollars": 10.27295999999999
+            },
+            "masks (primary)": {
+              "jobs": 144,
+              "re": 0.0,
+              "machine": "slice",
+              "seconds": 26208.0,
+              "hours": 7.28,
+              "dollars": 4.2952
+            },
+            "references (secondary)": {
+              "jobs": 16,
+              "re": 16.0,
+              "machine": "h100",
+              "seconds": 1180.7999999999997,
+              "hours": 0.3279999999999999,
+              "dollars": 1.1414399999999996
+            },
+            "masks (secondary)": {
+              "jobs": 16,
+              "re": 0.0,
+              "machine": "slice",
+              "seconds": 1504.0,
+              "hours": 0.4177777777777778,
+              "dollars": 0.2464888888888889
+            },
+            "references (control)": {
+              "jobs": 16,
+              "re": 16.0,
+              "machine": "h100",
+              "seconds": 1180.7999999999997,
+              "hours": 0.3279999999999999,
+              "dollars": 1.1414399999999996
+            },
+            "masks (control)": {
+              "jobs": 16,
+              "re": 0.0,
+              "machine": "slice",
+              "seconds": 0.0,
+              "hours": 0.0,
+              "dollars": 0.0
+            },
+            "primary seed 1": {
+              "jobs": 216,
+              "re": 108.0,
+              "machine": "h100",
+              "seconds": 8359.200000000012,
+              "hours": 2.322000000000003,
+              "dollars": 8.08056000000001
+            },
+            "C5 and C6": {
+              "jobs": 72,
+              "re": 36.0,
+              "machine": "h100",
+              "seconds": 2851.199999999996,
+              "hours": 0.7919999999999989,
+              "dollars": 2.7561599999999964
+            },
+            "75 percent": {
+              "jobs": 32,
+              "re": 24.0,
+              "machine": "h100",
+              "seconds": 1768.2527231999995,
+              "hours": 0.49118131199999987,
+              "dollars": 1.7093109657599996
+            },
+            "switch points": {
+              "jobs": 64,
+              "re": 32.0,
+              "machine": "h100",
+              "seconds": 2534.399999999997,
+              "hours": 0.7039999999999992,
+              "dollars": 2.449919999999997
+            },
+            "scores": {
+              "jobs": 176,
+              "re": 0.0,
+              "machine": "slice",
+              "seconds": 0.0,
+              "hours": 0.0,
+              "dollars": 0.0
+            },
+            "A1": {
+              "jobs": 36,
+              "re": 18.0,
+              "machine": "h100",
+              "seconds": 1425.5999999999995,
+              "hours": 0.39599999999999985,
+              "dollars": 1.3780799999999995
+            },
+            "primary seed 2": {
+              "jobs": 144,
+              "re": 72.0,
+              "machine": "h100",
+              "seconds": 5702.400000000008,
+              "hours": 1.584000000000002,
+              "dollars": 5.512320000000007
+            },
+            "full body": {
+              "jobs": 32,
+              "re": 16.0,
+              "machine": "h100",
+              "seconds": 1267.1999999999998,
+              "hours": 0.3519999999999999,
+              "dollars": 1.2249599999999998
+            },
+            "controls": {
+              "jobs": 32,
+              "re": 16.0,
+              "machine": "h100",
+              "seconds": 1267.1999999999998,
+              "hours": 0.3519999999999999,
+              "dollars": 1.2249599999999998
+            }
+          },
+          "totals": {
+            "h100": {
+              "re": 498.0,
+              "hours": 10.601181312,
+              "dollars": 36.89211096576
+            },
+            "slice": {
+              "re": 0.0,
+              "hours": 7.6977777777777785,
+              "dollars": 4.541688888888889
+            }
+          },
+          "rates_per_hour": {
+            "h100": 3.48,
+            "slice": 0.59
+          },
+          "seconds_source": "smoke test Sessions D (H100, flash attention) and E (slice, thread cap and ROIAlign kernel); C2, HSA-75B and the switches scaled by token-step fraction",
+          "not_included": "metric scoring time (a placeholder until measured), embeddings, canaries, pod setup, replacements and debugging"
+        }
+      }
+    }
+  }
+}

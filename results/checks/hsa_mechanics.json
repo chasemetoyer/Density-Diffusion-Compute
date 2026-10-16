@@ -1,0 +1,1396 @@
+{
+  "milestone": "HSA mechanics on the Wan2.1 Transformer",
+  "passed": true,
+  "all_judged_passed": true,
+  "acceptance_gate": {
+    "test": "real-model T3: fast path vs oracle, bitwise, every label seed",
+    "ran": true,
+    "passed": true
+  },
+  "num_judged": 84,
+  "num_failed": 0,
+  "environment": {
+    "git_sha": "9694b2722ec63d29991c74cfabb5b79875229968",
+    "git_dirty": false,
+    "python": "3.10.19",
+    "platform": "macOS-26.3.1-arm64-arm-64bit",
+    "machine": "arm64",
+    "torch": "2.14.1",
+    "diffusers": "0.40.0",
+    "numpy": "2.2.6",
+    "mps_available": true
+  },
+  "real_model": {
+    "verification": {
+      "inputs_file_sha256": "7bef2cd062b2197e35a33afe6b91503341b6d44212af39e59d8ff4fb89694b98",
+      "inputs_file_matches_record": true,
+      "input_tensors_match_record": true,
+      "weights_sha256": {
+        "transformer/diffusion_pytorch_model-00001-of-00002.safetensors": "6d011927dbd2cc8afe53d57abab04a8fd86f615d83324770d985fb058ece3a24",
+        "transformer/diffusion_pytorch_model-00002-of-00002.safetensors": "b92ec2309b1f239af6f746431815a881afcc938abb26a4f08d9a2fd6c892f872",
+        "vae/diffusion_pytorch_model.safetensors": "d6e524b3fffede1787a74e81b30976dce5400c4439ba64222168e607ed19e793"
+      },
+      "weights_match_record": true
+    },
+    "seconds": {
+      "dense": 103.56317229091655,
+      "skipping_tests": 652.9652464999817
+    }
+  },
+  "settings": {
+    "shift": 8.0,
+    "guidance": 6.0,
+    "steps": 40,
+    "label_seeds": [
+      0,
+      1,
+      2
+    ],
+    "small_resolution_groups": "HSA-50 window and stride with the registered high-group share, rounded (31 of 192 tokens for the tiny model, 312 of 1,950 for the real model at 416 x 240)",
+    "judged_precision": "tiny model: every test in fp32 and bf16 on CPU and MPS; real model: bf16 on MPS",
+    "tiny_transformer_config": {
+      "patch_size": [
+        1,
+        2,
+        2
+      ],
+      "num_attention_heads": 2,
+      "attention_head_dim": 128,
+      "in_channels": 16,
+      "out_channels": 16,
+      "text_dim": 32,
+      "freq_dim": 256,
+      "ffn_dim": 64,
+      "num_layers": 2,
+      "cross_attn_norm": true,
+      "qk_norm": "rms_norm_across_heads",
+      "rope_max_seq_len": 32
+    },
+    "tiny_text_len": 512
+  },
+  "fixture_change": "The HSA tests first used diffusers' unit-test tiny Transformer: 2 heads of 12 dims and 8 text tokens. Its judged T3 failed once, on MPS in bf16 for label seed 0 at step 30. At that head size the attention kernel's accumulation order depends on the number of queries, and the fast path and the oracle send different query counts. With identical q, K and V the kernel's outputs differ by one rounding step; the diagnostic below recomputes this evidence on every run. The fixture now uses the real model's attention geometry, 2 heads of 128 dims and 512 text tokens, so the tiny tests exercise the same kernels as the real model. Every tiny test, including the negative controls, is judged bitwise in fp32 and bf16. The real-model T3 remains the final acceptance gate.",
+  "token_mixing_evidence": {
+    "source": "diffusers/models/transformers/transformer_wan.py (diffusers 0.40.0)",
+    "operations": [
+      [
+        "patch_embedding",
+        "WanTransformer3DModel.__init__ (line 598)",
+        "Conv3d with kernel_size == stride == patch_size, no padding: each token sees only its own patch"
+      ],
+      [
+        "rope",
+        "WanRotaryPosEmbed.forward (lines 395-416)",
+        "depends on the latent shape only; one frequency row per token"
+      ],
+      [
+        "condition_embedder",
+        "WanTimeTextImageEmbedding.forward (lines 330-351)",
+        "timestep and text only; shared by every token"
+      ],
+      [
+        "norm1, norm2, norm3, norm_out",
+        "FP32LayerNorm (normalization.py lines 85-93)",
+        "F.layer_norm over the channel dimension of each token"
+      ],
+      [
+        "attn1 q/k/v, norm_q, norm_k, to_out",
+        "WanAttnProcessor.__call__ (lines 93-100, 160-161)",
+        "Linear and RMSNorm over the channel dimension of each token"
+      ],
+      [
+        "attn1 attention",
+        "WanAttnProcessor.__call__ (lines 143-153)",
+        "softmax(QK^T)V over all video tokens: the only token-mixing operation"
+      ],
+      [
+        "attn2 (cross-attention)",
+        "WanTransformerBlock.forward (line 494)",
+        "queries are video tokens, keys and values are text tokens: no video token reads another"
+      ],
+      [
+        "ffn",
+        "FeedForward.forward (attention.py), GELU (activations.py lines 87-90)",
+        "Linear, tanh-GELU, Linear on each token"
+      ],
+      [
+        "modulation and residuals",
+        "WanTransformerBlock.forward (lines 483-502)",
+        "elementwise with a per-sample timestep table"
+      ],
+      [
+        "proj_out and unpatchify",
+        "WanTransformer3DModel.forward (lines 723-730)",
+        "Linear on each token, then a reshape and permute that places each token's patch"
+      ]
+    ]
+  },
+  "hd12_diagnostic": [
+    {
+      "model": "tiny-hd12",
+      "device": "cpu",
+      "dtype": "fp32",
+      "runs": [
+        {
+          "seed": 0,
+          "bitwise_equal": false,
+          "max_abs_diff": 2.384185791015625e-06,
+          "first_divergent_step": 5
+        },
+        {
+          "seed": 1,
+          "bitwise_equal": false,
+          "max_abs_diff": 2.0265579223632812e-06,
+          "first_divergent_step": 5
+        },
+        {
+          "seed": 2,
+          "bitwise_equal": false,
+          "max_abs_diff": 1.6689300537109375e-06,
+          "first_divergent_step": 5
+        }
+      ],
+      "evidence_seed": 0,
+      "evidence": {
+        "step": 5,
+        "module": "blocks.0.attn2",
+        "branch": "cond",
+        "module_inputs_equal": true,
+        "qkv_equal": true,
+        "queries": [
+          192,
+          31
+        ],
+        "sdpa_elements_differing": 12,
+        "sdpa_elements": 744,
+        "sdpa_max_abs_diff": 1.4901161193847656e-08,
+        "sdpa_fp32_max_abs_diff": 1.4901161193847656e-08
+      }
+    },
+    {
+      "model": "tiny-hd12",
+      "device": "cpu",
+      "dtype": "bf16",
+      "runs": [
+        {
+          "seed": 0,
+          "bitwise_equal": true,
+          "max_abs_diff": 0.0,
+          "first_divergent_step": null
+        },
+        {
+          "seed": 1,
+          "bitwise_equal": true,
+          "max_abs_diff": 0.0,
+          "first_divergent_step": null
+        },
+        {
+          "seed": 2,
+          "bitwise_equal": true,
+          "max_abs_diff": 0.0,
+          "first_divergent_step": null
+        }
+      ],
+      "evidence_seed": null,
+      "evidence": null
+    },
+    {
+      "model": "tiny-hd12",
+      "device": "mps",
+      "dtype": "fp32",
+      "runs": [
+        {
+          "seed": 0,
+          "bitwise_equal": false,
+          "max_abs_diff": 1.9073486328125e-06,
+          "first_divergent_step": 5
+        },
+        {
+          "seed": 1,
+          "bitwise_equal": false,
+          "max_abs_diff": 1.9073486328125e-06,
+          "first_divergent_step": 5
+        },
+        {
+          "seed": 2,
+          "bitwise_equal": false,
+          "max_abs_diff": 1.9073486328125e-06,
+          "first_divergent_step": 5
+        }
+      ],
+      "evidence_seed": 0,
+      "evidence": {
+        "step": 5,
+        "module": "blocks.0.attn1",
+        "branch": "cond",
+        "module_inputs_equal": true,
+        "qkv_equal": true,
+        "queries": [
+          192,
+          31
+        ],
+        "sdpa_elements_differing": 226,
+        "sdpa_elements": 744,
+        "sdpa_max_abs_diff": 1.1920928955078125e-07,
+        "sdpa_fp32_max_abs_diff": 1.1920928955078125e-07
+      }
+    },
+    {
+      "model": "tiny-hd12",
+      "device": "mps",
+      "dtype": "bf16",
+      "runs": [
+        {
+          "seed": 0,
+          "bitwise_equal": false,
+          "max_abs_diff": 0.023778200149536133,
+          "first_divergent_step": 30
+        },
+        {
+          "seed": 1,
+          "bitwise_equal": true,
+          "max_abs_diff": 0.0,
+          "first_divergent_step": null
+        },
+        {
+          "seed": 2,
+          "bitwise_equal": true,
+          "max_abs_diff": 0.0,
+          "first_divergent_step": null
+        }
+      ],
+      "evidence_seed": 0,
+      "evidence": {
+        "step": 30,
+        "module": "blocks.1.attn1",
+        "branch": "cond",
+        "module_inputs_equal": true,
+        "qkv_equal": true,
+        "queries": [
+          192,
+          31
+        ],
+        "sdpa_elements_differing": 1,
+        "sdpa_elements": 744,
+        "sdpa_max_abs_diff": 0.001953125,
+        "sdpa_fp32_max_abs_diff": 1.1920928955078125e-07
+      }
+    }
+  ],
+  "results": [
+    {
+      "test": "schedule (N = 32,760)",
+      "passed": true,
+      "preset": "HSA-50",
+      "group_sizes": [
+        5242,
+        27518
+      ],
+      "window": [
+        4,
+        36
+      ],
+      "stride": 4,
+      "evaluations": [
+        40,
+        16
+      ],
+      "token_step_fraction": 0.496007326007326,
+      "registered": [
+        16,
+        0.496007
+      ],
+      "low_group_iterations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        37,
+        38,
+        39
+      ]
+    },
+    {
+      "test": "schedule (N = 32,760)",
+      "passed": true,
+      "preset": "HSA-75B",
+      "group_sizes": [
+        10811,
+        21949
+      ],
+      "window": [
+        10,
+        30
+      ],
+      "stride": 4,
+      "evaluations": [
+        40,
+        25
+      ],
+      "token_step_fraction": 0.7487522893772893,
+      "registered": [
+        25,
+        0.748752
+      ],
+      "low_group_iterations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        12,
+        16,
+        20,
+        24,
+        28,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ]
+    },
+    {
+      "test": "schedule (N = 32,760)",
+      "passed": true,
+      "preset": "switch-20",
+      "group_sizes": [
+        1560,
+        31200
+      ],
+      "window": [
+        8,
+        36
+      ],
+      "stride": 4,
+      "evaluations": [
+        40,
+        19
+      ],
+      "token_step_fraction": 0.5,
+      "registered": [
+        19,
+        0.5
+      ],
+      "low_group_iterations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        37,
+        38,
+        39
+      ]
+    },
+    {
+      "test": "schedule (N = 32,760)",
+      "passed": true,
+      "preset": "switch-30",
+      "group_sizes": [
+        1560,
+        31200
+      ],
+      "window": [
+        12,
+        36
+      ],
+      "stride": 8,
+      "evaluations": [
+        40,
+        19
+      ],
+      "token_step_fraction": 0.5,
+      "registered": [
+        19,
+        0.5
+      ],
+      "low_group_iterations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        16,
+        24,
+        32,
+        36,
+        37,
+        38,
+        39
+      ]
+    },
+    {
+      "test": "T0 token locality",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "probe_token": 97,
+      "changed_with_local_attention": [
+        97
+      ],
+      "changed_with_stock_attention": 192,
+      "num_tokens": 192
+    },
+    {
+      "test": "T1 all groups full vs dense",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T2 all active, layer by layer",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "layers_compared": 3
+    },
+    {
+      "test": "oracle all groups full vs dense",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "oracle HSA-50-style differs from dense",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.06714892387390137,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 1,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 1,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 2,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 2,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T5 shared KV cache",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.0018184185028076172,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no RoPE gather",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.005145847797393799,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no cache refresh",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 1,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.01278996467590332,
+      "first_divergent_step": 1
+    },
+    {
+      "test": "T0 token locality",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "probe_token": 97,
+      "changed_with_local_attention": [
+        97
+      ],
+      "changed_with_stock_attention": 192,
+      "num_tokens": 192
+    },
+    {
+      "test": "T1 all groups full vs dense",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T2 all active, layer by layer",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "layers_compared": 3
+    },
+    {
+      "test": "oracle all groups full vs dense",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "oracle HSA-50-style differs from dense",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.07361876964569092,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 1,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 1,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 2,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 2,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T5 shared KV cache",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.04639410972595215,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no RoPE gather",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.03005671501159668,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no cache refresh",
+      "model": "tiny",
+      "device": "cpu",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 1,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.0383608341217041,
+      "first_divergent_step": 1
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "cpu",
+      "preset": "HSA-50",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.496007326007326,
+      "registered_fraction": 0.496007,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "cpu",
+      "preset": "HSA-75B",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.7487522893772893,
+      "registered_fraction": 0.748752,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "cpu",
+      "preset": "switch-20",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.5,
+      "registered_fraction": 0.5,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "cpu",
+      "preset": "switch-30",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.5,
+      "registered_fraction": 0.5,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 control: varying low-group velocity differs",
+      "passed": true,
+      "device": "cpu",
+      "preset": "HSA-50",
+      "bitwise_equal": false,
+      "max_abs_diff": 0.0436711311340332,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T0 token locality",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "probe_token": 97,
+      "changed_with_local_attention": [
+        97
+      ],
+      "changed_with_stock_attention": 192,
+      "num_tokens": 192
+    },
+    {
+      "test": "T1 all groups full vs dense",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T2 all active, layer by layer",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "layers_compared": 3
+    },
+    {
+      "test": "oracle all groups full vs dense",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "oracle HSA-50-style differs from dense",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.06714963912963867,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 1,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 1,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 2,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 2,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T5 shared KV cache",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.0018181800842285156,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no RoPE gather",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.005145847797393799,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no cache refresh",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "fp32",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 1,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.012790441513061523,
+      "first_divergent_step": 1
+    },
+    {
+      "test": "T0 token locality",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "probe_token": 97,
+      "changed_with_local_attention": [
+        97
+      ],
+      "changed_with_stock_attention": 192,
+      "num_tokens": 192
+    },
+    {
+      "test": "T1 all groups full vs dense",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T2 all active, layer by layer",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "layers_compared": 3
+    },
+    {
+      "test": "oracle all groups full vs dense",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "oracle HSA-50-style differs from dense",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.07573416829109192,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 1,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 1,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 2,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 2,
+      "log_entries": 160,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496875,
+      "planned_fraction": 0.496875
+    },
+    {
+      "test": "T5 shared KV cache",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.04212522506713867,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no RoPE gather",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.03127467632293701,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no cache refresh",
+      "model": "tiny",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 1,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.03356969356536865,
+      "first_divergent_step": 1
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "mps",
+      "preset": "HSA-50",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.496007326007326,
+      "registered_fraction": 0.496007,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "mps",
+      "preset": "HSA-75B",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.7487522893772893,
+      "registered_fraction": 0.748752,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "mps",
+      "preset": "switch-20",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.5,
+      "registered_fraction": 0.5,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 synthetic, full size",
+      "passed": true,
+      "device": "mps",
+      "preset": "switch-30",
+      "skipped_moves_exact": true,
+      "measured_fraction": 0.5,
+      "registered_fraction": 0.5,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T4 control: varying low-group velocity differs",
+      "passed": true,
+      "device": "mps",
+      "preset": "HSA-50",
+      "bitwise_equal": false,
+      "max_abs_diff": 0.0436708927154541,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T0 token locality",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "probe_token": 976,
+      "changed_with_local_attention": [
+        976
+      ],
+      "changed_with_stock_attention": 1950,
+      "num_tokens": 1950
+    },
+    {
+      "test": "T1 all groups full vs dense",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null,
+      "frames": 17,
+      "frames_matching_record": 17
+    },
+    {
+      "test": "T2 all active, layer by layer",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "layers_compared": 31
+    },
+    {
+      "test": "oracle all groups full vs dense",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "oracle HSA-50-style differs from dense",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.318634033203125,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "log_entries": 2400,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496,
+      "planned_fraction": 0.496
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 1,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 1,
+      "log_entries": 2400,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496,
+      "planned_fraction": 0.496
+    },
+    {
+      "test": "T3 fast path vs oracle",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 2,
+      "bitwise_equal": true,
+      "max_abs_diff": 0.0,
+      "first_divergent_step": null
+    },
+    {
+      "test": "T7 active counts and budget",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 2,
+      "log_entries": 2400,
+      "counts_match": true,
+      "same_ids_both_branches": true,
+      "measured_fraction": 0.496,
+      "planned_fraction": 0.496
+    },
+    {
+      "test": "T5 shared KV cache",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.19954872131347656,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no RoPE gather",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 5,
+      "bitwise_equal": false,
+      "max_abs_diff": 0.4658750891685486,
+      "first_divergent_step": 5
+    },
+    {
+      "test": "T6 no cache refresh",
+      "model": "real",
+      "device": "mps",
+      "dtype": "bf16",
+      "passed": true,
+      "seed": 0,
+      "failure_mode": "numerical",
+      "expected_first_divergence": 1,
+      "bitwise_equal": false,
+      "max_abs_diff": 1.041435718536377,
+      "first_divergent_step": 1
+    }
+  ]
+}

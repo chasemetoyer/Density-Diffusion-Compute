@@ -1,0 +1,145 @@
+{
+  "description": "Pinned prompt-candidate sources for prompts.csv (protocol v2 section 6). The files are not versioned; they are downloaded to data/prompt_sources/<repository>@<commit>/<path> and checked against these hashes. A candidate's ID is <list>:<line>, its 1-based line among the file's non-empty lines.",
+  "protocol_section_6": {
+    "face": "VBench human and VBench-2.0 Human Fidelity",
+    "manipulation": "T2V-CompBench interaction/action prompts and VBench human_action; then, in a second pass, the Kinetics-400 classes VBench's human_action prompts do not use (Chase, 2026-10-07)",
+    "body": "VBench human_action and VBench-2.0 Human Anatomy",
+    "control": "VBench scenery and architecture"
+  },
+  "lists": {
+    "vbench_human": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0 (LICENSE at the repository root; no separate terms for prompts)",
+      "citation": "Huang et al., VBench: Comprehensive Benchmark Suite for Video Generative Models, CVPR 2024, arXiv:2311.17982",
+      "path": "prompts/prompts_per_category/human.txt",
+      "sha256": "3b0a1cfa429b07fa4cd80efa6f69a47276a35ed2b70902a46a49206309994a52",
+      "prompts": 100,
+      "protocol_strata": [
+        "face"
+      ]
+    },
+    "vbench_human_action": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0 (LICENSE at the repository root; no separate terms for prompts)",
+      "citation": "Huang et al., VBench: Comprehensive Benchmark Suite for Video Generative Models, CVPR 2024, arXiv:2311.17982",
+      "path": "prompts/prompts_per_dimension/human_action.txt",
+      "sha256": "15442d4859ec73a181f9ff48680d3175a7ad59ae009ab04d5284975a4671cc09",
+      "prompts": 100,
+      "protocol_strata": [
+        "manipulation",
+        "body"
+      ]
+    },
+    "vbench_scenery": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0 (LICENSE at the repository root; no separate terms for prompts)",
+      "citation": "Huang et al., VBench: Comprehensive Benchmark Suite for Video Generative Models, CVPR 2024, arXiv:2311.17982",
+      "path": "prompts/prompts_per_category/scenery.txt",
+      "sha256": "3f0293619c04a3597132c8e04b328d1397b2eff0cf1db44f0c5f94405717187f",
+      "prompts": 100,
+      "protocol_strata": [
+        "control"
+      ]
+    },
+    "vbench_architecture": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0 (LICENSE at the repository root; no separate terms for prompts)",
+      "citation": "Huang et al., VBench: Comprehensive Benchmark Suite for Video Generative Models, CVPR 2024, arXiv:2311.17982",
+      "path": "prompts/prompts_per_category/architecture.txt",
+      "sha256": "d0afc3c90b570e68236c717adc9cd9ed0d4e8b698f5addd77ff7b6eb9e353623",
+      "prompts": 100,
+      "protocol_strata": [
+        "control"
+      ]
+    },
+    "vbench2_human_anatomy": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0 (LICENSE at the repository root; no separate terms for prompts)",
+      "citation": "Zheng, Huang et al., VBench-2.0: Advancing Video Generation Benchmark Suite for Intrinsic Faithfulness, arXiv:2503.21755",
+      "path": "VBench-2.0/prompts/prompt/Human_Anatomy.txt",
+      "sha256": "86c192924dec0b1c6cbefc8cfdb7e1152e28823a85dd8736015c4cc8f9272008",
+      "prompts": 120,
+      "protocol_strata": [
+        "face",
+        "body"
+      ]
+    },
+    "vbench2_human_identity": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0 (LICENSE at the repository root; no separate terms for prompts)",
+      "citation": "Zheng, Huang et al., VBench-2.0: Advancing Video Generation Benchmark Suite for Intrinsic Faithfulness, arXiv:2503.21755",
+      "path": "VBench-2.0/prompts/prompt/Human_Identity.txt",
+      "sha256": "cda8e5e6fc357ece6f2a08377937bb355e384ab2395e2d9c9ee7621b85ca0904",
+      "prompts": 46,
+      "protocol_strata": [
+        "face"
+      ]
+    },
+    "vbench2_human_clothes": {
+      "repository": "https://github.com/Vchitect/VBench",
+      "commit": "fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490",
+      "license": "Apache-2.0 (LICENSE at the repository root; no separate terms for prompts)",
+      "citation": "Zheng, Huang et al., VBench-2.0: Advancing Video Generation Benchmark Suite for Intrinsic Faithfulness, arXiv:2503.21755",
+      "path": "VBench-2.0/prompts/prompt/Human_Clothes.txt",
+      "sha256": "9347f687231da624b4dfb26986c7418ccf21702c4f4ab3d062862a9b7e23e3a8",
+      "prompts": 75,
+      "protocol_strata": [
+        "face"
+      ]
+    },
+    "t2v_compbench_object_interactions": {
+      "repository": "https://github.com/KaiyueSun98/T2V-CompBench",
+      "commit": "dd5eff7b93af0550b9efa2bdabbb21b3b017ceda",
+      "license": "none: the repository has no LICENSE file. Approved by Chase (2026-10-07) for candidate selection only; only his rewritten prompts, with a citation, may ever be published",
+      "citation": "Sun et al., T2V-CompBench: A Comprehensive Benchmark for Compositional Text-to-video Generation, CVPR 2025, arXiv:2407.14505",
+      "path": "prompts/6_interaction.txt",
+      "sha256": "e263890b14f23847bc2d9d2cd6ed7407a585654462b40a78ae53cd85a77f1921",
+      "prompts": 200,
+      "protocol_strata": [
+        "manipulation"
+      ]
+    },
+    "t2v_compbench_action_binding": {
+      "repository": "https://github.com/KaiyueSun98/T2V-CompBench",
+      "commit": "dd5eff7b93af0550b9efa2bdabbb21b3b017ceda",
+      "license": "none: the repository has no LICENSE file. Approved by Chase (2026-10-07) for candidate selection only; only his rewritten prompts, with a citation, may ever be published",
+      "citation": "Sun et al., T2V-CompBench: A Comprehensive Benchmark for Compositional Text-to-video Generation, CVPR 2025, arXiv:2407.14505",
+      "path": "prompts/5_action_binding.txt",
+      "sha256": "f05a79c2ad38437d8f61a136e141cbc175283c0a4a9ab2ced432b5571596ff97",
+      "prompts": 200,
+      "protocol_strata": [
+        "manipulation"
+      ]
+    },
+    "kinetics400_remaining": {
+      "repository": "https://s3.amazonaws.com/kinetics/400/annotations",
+      "commit": "358eaf47e7f80ebf9b17d49eb0635ad5e0fdab98a9cbd75ffdd2ee5d5e5b6944",
+      "commit_note": "not a git commit: the SHA-256 of val.csv, the file this list is derived from (the folder name follows the other lists)",
+      "license": "CC BY 4.0: the Kinetics dataset is licensed by Google Inc. under a Creative Commons Attribution 4.0 International License (DeepMind's Kinetics page, now offline; quoted in MCG-NJU/VideoMAE issue #107). Only the class names are used, never the videos. Approved by Chase on 2026-10-07",
+      "citation": "Kay et al., The Kinetics Human Action Video Dataset, arXiv:1705.06950, 2017",
+      "path": "kinetics400_remaining_classes.txt",
+      "sha256": "3f18384adc6bc31cb40706aea4118e21031cee8b7961f403c03cc3e871d9bb42",
+      "prompts": 300,
+      "protocol_strata": [
+        "manipulation"
+      ],
+      "draw_pass": 2,
+      "derived_from": {
+        "file": "val.csv",
+        "url": "https://s3.amazonaws.com/kinetics/400/annotations/val.csv",
+        "bytes": 810935,
+        "sha256": "358eaf47e7f80ebf9b17d49eb0635ad5e0fdab98a9cbd75ffdd2ee5d5e5b6944",
+        "last_modified": "2020-12-03",
+        "labels": 400,
+        "labels_checked_against": "torchvision.models._meta._KINETICS400_CATEGORIES: equal",
+        "rule": "the labels minus the 100 classes vbench_human_action writes as 'A person is {label}', each written 'A person is {label}', in sorted label order (density.prompt_draft.derive_kinetics)"
+      }
+    }
+  }
+}

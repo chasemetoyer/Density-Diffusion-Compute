@@ -1,0 +1,76 @@
+{
+  "registered": "2026-10-07, Chase: the mask canary's hashes (density/mask_canary.py)",
+  "source": "smoke test Session F on the 24 GB slice, pod pj1h2kouyzvs1a, after the mask-check rerun validated (results/checks/smoke_test/rerun); checked from a fresh process, which passed in 18 s",
+  "pod": {
+    "host": "04067d68a106",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 1g.24gb",
+    "driver": "580.126.16",
+    "driver_cuda": "13.0",
+    "cpu": "AMD EPYC 9355 32-Core Processor",
+    "kernel": "6.8.0-111-generic",
+    "nvidia_smi_query": "NVIDIA RTX PRO 6000 Blackwell Server Edition, 580.126.16, [Insufficient Permissions], 12.0, Enabled"
+  },
+  "code": {
+    "git_sha": "2036a769b6236caaf8a7a5cc0e22caed5333be29",
+    "git_dirty": false
+  },
+  "utc": "2026-10-07T04:10:05+00:00",
+  "device": "cuda",
+  "hashes": {
+    "scrfd": "45f25caf1580701a4c27ec8660d62e74269c7c4fa0face7ff052c2b8bac67384",
+    "wilor": "4a0f44bac3a911c625d69ded5093839411c0059e236afc33c5a5b03716a74bd6",
+    "hands23": "6e6caf56164e33aadb9d554881880455909d723bb2148096bd05cbacd8ffe155",
+    "mask_rcnn": "9946d05bee20d9b08d7b4905625a67266f2d61bedfbdfd4f38c973103838da0b",
+    "sam_face": "13dd21da5b2fe27c2a6650d902c679e16e9b42b05a7f3a2cf18e759dc5f456cf",
+    "sam_hands": "0c8000e922215a04e62034e8e084d9eb0f4828113ce8a996be01410638d4879a",
+    "sam_body": "4ba60074deeb68c5364da998848839cbf01a964febe0ea72eacd455628001323"
+  },
+  "counts": {
+    "scrfd": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "wilor": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "hands23": [
+      1,
+      1
+    ],
+    "mask_rcnn": [
+      2,
+      2
+    ],
+    "roi_align_kernel_calls": 40,
+    "onnxruntime_threads": 3,
+    "sam_face": 605869,
+    "sam_hands": 404415,
+    "sam_body": 203314
+  },
+  "determinism": {
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": false,
+    "deterministic_warnings_are_errors": true,
+    "cudnn_conv_fp32_precision": "tf32",
+    "cpu_threads": {
+      "quota_threads": 3,
+      "torch_intra_op": 3,
+      "torch_inter_op": 1
+    }
+  }
+}

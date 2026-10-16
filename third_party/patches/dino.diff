@@ -1,0 +1,17 @@
+diff -ruN -x __pycache__ a/dino_vit/__init__.py b/dino_vit/__init__.py
+--- a/dino_vit/__init__.py	1969-12-31 19:00:00
++++ b/dino_vit/__init__.py	2026-10-07 01:19:57
+@@ -0,0 +1 @@
++# Density: DINO's vision_transformer.py and utils.py, moved from the repository root into this package.
+diff -ruN -x __pycache__ a/dino_vit/vision_transformer.py b/dino_vit/vision_transformer.py
+--- a/dino_vit/vision_transformer.py	2026-10-07 01:19:57
++++ b/dino_vit/vision_transformer.py	2026-10-07 01:19:57
+@@ -21,7 +21,7 @@
+ import torch
+ import torch.nn as nn
+ 
+-from utils import trunc_normal_
++from .utils import trunc_normal_
+ 
+ 
+ def drop_path(x, drop_prob: float = 0., training: bool = False):

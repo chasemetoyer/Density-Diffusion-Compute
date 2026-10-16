@@ -1,0 +1,9 @@
+clip,seed,stratum,pipeline_decision,pipeline_reasons,usable_roi_frames,contact_intervals,outside_frames,contact_sheet,contact_sheet_sha256,reviewer_decision,reviewer_reason,reviewer_written_reason,reviewer,review_date
+face,,face,pass,,81,,81,results/checks/mask_pipeline/face.png,19ded3167b1ea0688157d8958ba086f26b0b518f20581467333dff4ae5d21dd4,Accept,,,Chase J. Metoyer,October 6th 2026
+hands,,manipulation,pass,,81,H0-O0 frames 0-80,81,results/checks/mask_pipeline/hands.png,bdf0ea96a4a667326eb7866764e6fdebcfe0e969487be4229f5b9dc278c17a72,Accept,,,Chase J. Metoyer,October 6th 2026
+body,,body,not gated,,81,,81,results/checks/mask_pipeline/body.png,0066c2ffa1c10ecfa54f72c17106c986cf19df048c140cd30b40f911fe3c92f4,Accept,,,Chase J. Metoyer,October 6th 2026
+landscape,,control,not gated,,0,,81,results/checks/mask_pipeline/landscape.png,1169e868780a401847895486c35a1dc4a50a715b0a95de2212ca9c1d2fd8cd94,Accept,,,Chase J. Metoyer,
+# reviewer_decision: accept or reject, by the audit criteria in protocol section 4.
+# A reject needs reviewer_reason, one of these kinds of mask invalidity: audit_roi_not_visible, audit_mask_invalid, audit_contact_interrupted,
+# and reviewer_written_reason, the reviewer's own words. A target that isn't visible counts as invalid.
+# Anatomy, image quality and appearance are never reasons to reject a reference.

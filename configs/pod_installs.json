@@ -1,0 +1,30 @@
+{
+  "description": "Software installed on the RunPod pods outside uv.lock, approved 2026-10-06 (standing install list). scripts/pod/bootstrap.sh verifies every download against these hashes; a null sha256 is measured on the first download and recorded here, after which later sessions verify against it.",
+  "uv": {
+    "version": "0.9.7",
+    "url": "https://github.com/astral-sh/uv/releases/download/0.9.7/uv-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "b26fcc8dfa1c39b5a5613445af3be3eefda45d9a39359bee271eafe34913583e",
+    "sha256_source": "the release's uv-x86_64-unknown-linux-gnu.tar.gz.sha256; bootstrap also checks the published sidecar",
+    "install_dir": "/workspace/bin"
+  },
+  "python": {
+    "version": "3.10.19",
+    "installer": "uv python install (uv-managed CPython)",
+    "install_dir": "/workspace/python"
+  },
+  "cuda_toolkit": {
+    "version": "13.0.3",
+    "url": "https://developer.download.nvidia.com/compute/cuda/13.0.3/local_installers/cuda_13.0.3_580.126.20_linux.run",
+    "md5": "13acdcabcb9e939f716c29eff8c12181",
+    "md5_source": "NVIDIA's md5sum.txt for CUDA 13.0.3",
+    "sha256": "79c82c6529d2adfc322336f37b2a7a856655cd739b4803d0af7344db5a69638b",
+    "sha256_source": "measured on pod A (umaruiv0mb0art) on 2026-10-06 after the MD5 matched NVIDIA's; later sessions verify against it",
+    "install_dir": "/workspace/cuda-13.0",
+    "installer_options": "--silent --toolkit --toolkitpath=/workspace/cuda-13.0 --no-man-page --override"
+  },
+  "apt_if_missing": [
+    "rsync",
+    "tmux",
+    "git"
+  ]
+}

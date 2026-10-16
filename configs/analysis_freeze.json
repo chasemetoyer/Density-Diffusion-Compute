@@ -1,0 +1,16 @@
+{
+  "files": {
+    "src/density/analysis.py": "0c634a5eef980b8ffe230485d96ecec680089c15d6f3550ce9ba823666e65a52",
+    "src/density/metrics/registered.py": "54a8619ec2a75d7cdc24cb836b5a5c2583703c13e9c96dfdd72934c820af2248",
+    "src/density/run/store.py": "9751acba805cfd5c22e17e49430b3938a0a85a9a12c4033ea5d3367ae6aacf2b",
+    "src/density/run/manifest.py": "139eef572d30788e12b3053b688f50016afb56672b69f9b6224947c15a416783",
+    "src/density/prompts.py": "c0620c7009f18e716b89ae3274b91102b5c88f6279911c8fc55c7547b5a4eb2c"
+  },
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "git": {
+    "git_sha": "98f4b9a45a9cfff80154555eaf495f314c223a24",
+    "git_dirty": false
+  },
+  "note": "the registered analysis: density.analysis refuses to run unless these hashes and versions match"
+}

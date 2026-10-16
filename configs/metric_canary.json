@@ -1,0 +1,187 @@
+{
+ "h100": {
+  "code": {
+   "git_dirty": false,
+   "git_sha": "87121d76acacc07513a48157a18f0a06733d7426"
+  },
+  "device": "cuda",
+  "digest": "2d729afd5a68d1dcf2b53ccfe722b1b1d818e30ad1ae25e85a31fa368783c471",
+  "pod": {
+   "cpu": "x86_64",
+   "gpu": "NVIDIA H100 80GB HBM3",
+   "host": "6f4bd462ebe0",
+   "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39"
+  },
+  "scores": {
+   "h100": {
+    "ffv1_uint8_sha256": "6cd21675e40fe445b233dcebb60d28226af25b1a802e4c53395e9bc79a017a83",
+    "ffv1_verified_bitwise": true,
+    "fidelity": {
+     "crop_lpips": 0.004470424644429894,
+     "frames": {
+      "all": 17,
+      "inside": 17,
+      "outside": 17
+     },
+     "full_frame_lpips": 0.005760260309804888,
+     "masked_lpips": 0.005455890510054293,
+     "masked_psnr_db": 43.83862520095553,
+     "masked_ssim": 0.9805843740095016,
+     "outside_lpips": 0.005848336288752974
+    }
+   }
+  },
+  "utc": "2026-10-07T18:45:32Z"
+ },
+ "slice": {
+  "code": {
+   "git_dirty": false,
+   "git_sha": "e2efe389b3fdfa694094accdbdcc7cf76313d569"
+  },
+  "device": "cuda",
+  "digest": "b439fc00230f39d579ed39d4439df7a3b68672da276883bdcad057dee6d09054",
+  "pod": {
+   "cpu": "x86_64",
+   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition MIG 1g.24gb",
+   "host": "1dd014f3e194",
+   "platform": "Linux-6.8.0-111-generic-x86_64-with-glibc2.39"
+  },
+  "scores": {
+   "slice": {
+    "detection_body": {
+     "boxes_sha256": [
+      "67598c850fa93e87c833384e5374c5d335ebdefe4c0f0027efe08871f4ce4e58",
+      "afcdbd499ec8482eb7f4ee3413dc3b7b99804ddd1cbce6b61e1fe5367c418125",
+      "7bfbc80555f4118884042827e7f711a7b04b29d9523e412f90498635a11f4c5e",
+      "8a7adef39d6eb40cebb47eb3bd68c99dfce3e876f188bea32489e7e23cd573a8",
+      "69050c84fb3e09ad15a734df5f8cd650c5859fcb777cf2e13ee38e08e815f9df",
+      "987d5387a0e7f6e78d0cb66466e3ce9e683e457e5259840ab91ef8970ac57d05",
+      "1b03d76783db11e6ba7a0c5a836ce4c1a88fc86857df03171c9ac0c84c895dfc",
+      "d771f7625f9fe1413a189b729add05427a6cd49eedcb9416b41554adf78429fc",
+      "0444b3afb68e1a40e2c83edea80ec522c4f1024312280890937cabd69536e99c",
+      "5c1ac21eacb6f365dca2bedb7483206a96a3e5ce712b50d676f0a3e8352535e0",
+      "e8b8830d2247a7a26d7e4d7de5aaebff3e4ef3b4b2c642d03d8da3435c2086f8",
+      "b79ea0db88517a2f52b7329f8c0dea8da152fddb6ac8b173428696f62589ad01",
+      "6bea5e96445200381bef94717873cfa4899c6269e92a92f57a86989a420d267c",
+      "1244c372ee674f322842225c1dc2b3d0e033516b63a2dd3c020758996e9b6fd8",
+      "65a6108f5d5e2584977d111a7d1525cb16e9deb23d022b5860f639fa88971271",
+      "de74569ff310cefcda9d88ea641239404f9eefd8863d82e483cac0ff81c99ca9",
+      "69d5c71c05ff4396b101e1171b6e8ff9517b6a4fe7d487feec1ddf5117ea7c7a",
+      "7d1aafd740425fc73446672a1129a45b150cd82b9cd4e29b91921c7c0b4b5f3e"
+     ],
+     "compare": {
+      "box_overlap": {
+       "value": 0.968309951571579
+      },
+      "detector": "mask_rcnn",
+      "reference_boxes": 18,
+      "reference_frames": 9
+     }
+    },
+    "detection_face": {
+     "boxes_sha256": [
+      "9ad185b74b0c4148751c11b3c5bddc3e71a5dc752e89eaa9489feabaedd30897",
+      "04e5e4589aee5d2d09880fbe0a97a951d85fba56f3829fae413425b6dd05e856",
+      "51a38e3688555beaab52bd2470594e9e0fc0482472d74687476c8f37283badbc",
+      "7c41911aba6d6e40fcf77b756d15a5be4d136eb751781d978b64cce009ee9b55",
+      "13bf01417b8ec5024723f30840651f6665fdd046fabebe7368099f62d52e2382",
+      "cd724d2be72ea434b7bcce361bd3bdde2d818b4ecd079ca29489ef95de32d577",
+      "f932e5a1640077296e24a304ae0e3ed7365282c5e68474a383b0d4c0b1f9d6ef",
+      "98d41a715b86b5e0c3dd251cbb3ab9446042a34ba5a9c3852611d3067e138f1a",
+      "11541be73f9043ca70dabc5e91fea5438d0444b8c1204ce2eeffc05be84a98fa",
+      "f6fc9eb06a666eb697b4e3b8eca3b304b8e0a518eb90306ab94ce6262a0934d9",
+      "5587ba18c1c82fa384d1a0eb3402edafe09e808220d22ef59551fcea6cce22a4",
+      "f9c1a135cc98da2751afec0f7d30293cd6083e54f7520c6c42acc7c74cc9786b",
+      "91a341d3561a91503813cbaf3cb0dca143ce76a37f63c6b2c7b08c2b85df0dc0",
+      "2ce05e05b687ada2cc24836a158470d3718adb39ca09d15db90e47d8b7002b33",
+      "84c372b3f95b33508db9fad00bf986c5fadb69d519b583103fcd6c3369da0d98",
+      "cb6bd9617e4a93cff9574f1b6c9033e4089af57a46f1d1dbf869ad0102f8e891",
+      "4b5d2bd897cf19f03aba3b236e96e45775309ea209dd8ebcecc81e3fb8749fba",
+      "a54871732c034d35e50626855a461049f577bfd5b846242378dd695b00235e6f"
+     ],
+     "compare": {
+      "box_overlap": {
+       "value": 0.9956035203310117
+      },
+      "detector": "scrfd",
+      "face_identity": {
+       "frames": 9,
+       "value": 0.9974127882744698
+      },
+      "reference_boxes": 9,
+      "reference_frames": 9
+     },
+     "embeddings_sha256": [
+      "9320eba516c12990918b6f06b7b6fc08ff9a0bde8178e484f373fd7529cca3e6",
+      "6180075935883d286cb4e2b2207250dddbfd3dd21e7acf53661423c399217281",
+      "407e50a88c77646a1c99e4db7d150c5fc23cc769b143351f35b611ba605aecfe",
+      "05569c0e180d17f32eec570da44a66b0318fc87dd7b5338fe667fb9f8d7b8ac5",
+      "ac2f2b37301ee41f9a34f20c567370287dde2d48fd21015fc6ce0c39cff166ba",
+      "63aca251ff53535c3189616b47faf44b49014f0562c312a8c2bd8906b5fef853",
+      "3824e43041a45cd04eca2cd585128d7ca5405ad21728e6514f8cb75ecb665803",
+      "be7c14ef4e0595436eb65f1c6c9e04061917e9252e4a1dce274533a4d33ca711",
+      "a01cbfef2d4c45967ca85512d36d5232b9e8c45efa6a4f8f687aae4a1c4e56aa",
+      "3ec94a2f4070a900c436427bd617404ce5c0a3567e85884c05b7691864561f7b",
+      "2119e6ccbe923289d0b5c1cc01e1eb57a3aa199f5c8bd518dc6f1816a38e4dac",
+      "699243e01eebff9863ec71c67227debe2ec7f1ceb0db209cf944e61a2bf16b02",
+      "24a4109daa6ed103676bf01dd6214f6db9a28e07c78db4a2bc0166289e116ea5",
+      "3982c9a711bab5f28882cbf17428092c7f927a1675c32cd4049989f6c4b02a10",
+      "6a03e8cc91d810c422733d45c074b86b068ed3a177b2f0ac01a0b983bb453113",
+      "ebbf54a8f875c8eee9e71900ecbaa34b86961adefa525dd8c136db5ab4412973",
+      "d826ed4aa459818dd5e82cfde6f317ac13a3a5c24b9eeb7d10c75a1377eb2fd4",
+      "5216c9ecbc0e89c78cae4e6bf5bd9710e785fef71e215ef841313f928767be83"
+     ]
+    },
+    "detection_hands": {
+     "boxes_sha256": [
+      "df6d561edc80a25f72088b8f81b91cd5f84cda17656a8d319323895cdfbf7b5f",
+      "bdea5a0be156f21ce046e01308b04917a6ce7f9037dd8beec3c851aba7a51195",
+      "5c430244b9bb6979a4a64fa5cd9fb13f8432f17779a2fb48b4288684ffddb04a",
+      "4080f92270132eef6fbd9d8049004204266e04a39a333a316de4bb50e7c8989a",
+      "698d857c2b1861ee3fb0c7b40b8cce9e197d4394edae07747488f7394da80166",
+      "5fbac6bfd7e992cecf4e7f60a7ffbea29e122593a712942bf984724b04a1a869",
+      "4df8b4a28246ffbb334603bf8d7bef46187c4630f7fc5627a924b71f1483de4a",
+      "def6444e4d6a801500f1c6f19cf02b773cc3d4a28abbfd69fbc31a97246feb5b",
+      "a181bb59edfeac722d1fd0665fff49ee4bd377ce88f6e5057934354b055cf628",
+      "fa8ff7df97cd47b7b12ee3361f62204ae0d9e47ffde212f71e72b78ea3b5ed66",
+      "d2b9ee75337db40f73f146d7e782132ba8ca47e948132e2d228d3cded5f7f98d",
+      "0d6e02786296ee26c05abd62e777d7ceca6ce377ef62119c66da7ad5dd8a2d63",
+      "50ec33804ac76c114f905071ec9b510254e3ac774d3475b67a4d4eb5b94589d8",
+      "705c89013c556640cf531f05c40f677910997cfa7c390a06d2e5f76d53b4de9b",
+      "42900333812cee9ffc7fbd0ac9ba15fd94620c83d2c78f4591923823f31b30b8",
+      "d63bb5e06a8a28e9a2f9323dbb185af634b91038ef30d41ed7ac44fb5e591ca2",
+      "f0e01563b24a03340cd25d1aa4a9575fc854777274a9e12cf717c8041a76c0b2",
+      "bbd4b7d4d71c096c9a285830f4b4bdf291542e4e8990c3dd85896ee6af0fba6d"
+     ],
+     "compare": {
+      "box_overlap": {
+       "value": 0.9838447976703577
+      },
+      "detector": "wilor",
+      "hand_detection": {
+       "matched": 9,
+       "value": 1.0
+      },
+      "reference_boxes": 9,
+      "reference_frames": 9
+     }
+    },
+    "quality_lossless": {
+     "aesthetic_quality": 0.5106226801872253,
+     "background_consistency": 0.996185302734375,
+     "imaging_quality": 68.55074624454274,
+     "motion_smoothness": 0.9968375855617354,
+     "subject_consistency": 0.9983502738177776
+    },
+    "quality_mp4": {
+     "aesthetic_quality": 0.5070245265960693,
+     "background_consistency": 0.9960174560546875,
+     "imaging_quality": 68.55768091538373,
+     "motion_smoothness": 0.996668918226679,
+     "subject_consistency": 0.998214403167367
+    }
+   }
+  },
+  "utc": "2026-10-07T20:08:59Z"
+ }
+}
