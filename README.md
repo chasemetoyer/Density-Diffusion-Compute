@@ -47,14 +47,10 @@ the first five steps, which also give each token its need score g, and the last 
 5,242 tokens (16%) runs every step and the rest run every fourth step: 16 of the 40 in all. The conditions differ only
 in **which** tokens make the full-step group:
 
-```mermaid
-flowchart LR
-    W["First 5 steps<br/>every token runs"] --> G["Need score g<br/>per token"]
-    G --> R["Rank tokens<br/>C3: by g<br/>C4: by (1 + λ·m)·g<br/>C7: outside the region first"]
-    M["Region coverage m<br/>per token"] --> R
-    R --> H["Full-step group<br/>16% of tokens<br/>all 40 steps"]
-    R --> L["Reduced group<br/>84% of tokens<br/>16 of 40 steps"]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/allocation_dark.png">
+  <img src="docs/images/allocation_light.png" alt="Every token runs the first 5 steps, which give each token its need score g. With each token's region coverage m, the tokens are ranked: C3 by g, C4 by (1 + λ·m)·g, C7 outside the region first. The top 16% get all 40 steps; the other 84% get 16 of the 40.">
+</picture>
 
 | Condition | What it is |
 | --- | --- |
@@ -70,22 +66,10 @@ and background consistency, motion smoothness, aesthetic and imaging quality.
 
 ## The pipeline
 
-```mermaid
-flowchart LR
-    subgraph gen ["Generate"]
-        direction TB
-        P["Prompts<br/>registered draw,<br/>human review"] --> E["Text embeddings<br/>UMT5 · H100"] --> R["References · C1<br/>Wan2.1, 40 steps · H100"]
-    end
-    subgraph seg ["Segment and check"]
-        direction TB
-        S["Segmentation<br/>SCRFD · WiLoR · Hands23<br/>SAM 2.1 · 24 GB slice"] --> A["Audit<br/>every contact sheet<br/>reviewed and signed"] --> F["Freeze<br/>hashes of references,<br/>masks and reviews"]
-    end
-    subgraph cmp ["Compare and decide"]
-        direction TB
-        C["Conditions<br/>C2 · C3 · C4 · C7<br/>in-job LPIPS · H100"] --> Q["Quality scores<br/>VBench on lossless<br/>frames · slice"] --> D["Pilot rules and<br/>frozen analysis<br/>laptop"]
-    end
-    gen --> seg --> cmp
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/pipeline_dark.png">
+  <img src="docs/images/pipeline_light.png" alt="Three stages. Generate: prompts, text embeddings and the C1 references, on the H100. Segment and check: segmentation on the 24 GB slice, the audit, and the freeze. Compare and decide: the conditions with in-job LPIPS on the H100, quality scores on the slice, and the pilot rules and frozen analysis on the laptop.">
+</picture>
 
 Generation runs on an H100; segmentation and quality scoring run on a 24 GB GPU slice. The laptop runs everything that
 decides: the pilot rules, the analysis, and end-to-end dry runs with tiny random models.

@@ -2,7 +2,7 @@
 
     uv run python scripts/readme_figures.py      writes docs/images/ and prints the README's tables
 
-Charts come in light and dark variants (the README picks one with <picture>), in a palette validated for colour
+Charts and diagrams come in light and dark variants (the README picks one with <picture>), in a palette validated for colour
 vision deficiency (blue C3, orange C4, aqua C7), with every series labelled directly. Every image is Wan2.1 output from
 the pilot; no stock footage is used.
 """
@@ -202,6 +202,157 @@ def gif(prompt: int, name: str, step=3, width=272):
     out[0].save(OUT / f"{name}.gif", save_all=True, append_images=out[1:], duration=int(1000 * step / 16), loop=0, optimize=True)
 
 
+# Diagrams: drawn here rather than in mermaid, whose GitHub renderer wraps and clips long node labels. One data unit is
+# 0.1 inch, and every box is sized from its measured text.
+
+DPI, UNIT = 150, 15  # pixels per inch, pixels per data unit
+HEAD, LINE, PAD = 11.5, 10, (1.3, 1.0)  # font sizes in points; box padding in units
+FILL = {"light": {"node": "#ffffff", "lane": "#f1f0ea"}, "dark": {"node": "#262624", "lane": "#20201f"}}
+
+
+def _size(fig, text, size, weight="normal"):
+    t = fig.text(0, 0, text, fontsize=size, fontweight=weight)
+    bb = t.get_window_extent(fig.canvas.get_renderer())
+    t.remove()
+    return bb.width / UNIT, bb.height / UNIT
+
+
+def _node_size(fig, head, lines, marked=False):
+    hw, hh = _size(fig, head, HEAD, "bold")
+    sizes = [_size(fig, s, LINE) for s in lines]
+    w = max([hw] + [lw + (1.6 if marked else 0) for lw, _ in sizes])
+    h = hh + sum(lh for _, lh in sizes) + 0.45 * len(lines)
+    return w + 2 * PAD[0], h + 2 * PAD[1]
+
+
+def _node(ax, t, mode, cx, cy, w, h, head, lines, colors=None):
+    from matplotlib.patches import FancyBboxPatch
+
+    ax.add_patch(FancyBboxPatch((cx - w / 2, cy - h / 2), w, h, boxstyle="round,pad=0,rounding_size=0.8",
+                                fc=FILL[mode]["node"], ec=t["base"], lw=1.2, zorder=2))
+    fig = ax.figure
+    _, hh = _size(fig, head, HEAD, "bold")
+    sizes = [_size(fig, s, LINE) for s in lines]
+    y = cy + (hh + sum(lh for _, lh in sizes) + 0.45 * len(lines)) / 2
+    ax.text(cx, y - hh / 2, head, ha="center", va="center", fontsize=HEAD, fontweight="bold", color=t["text"], zorder=3)
+    y -= hh + 0.45
+    left = cx - w / 2 + PAD[0]
+    for i, (s, (_, lh)) in enumerate(zip(lines, sizes)):
+        if colors:  # a series swatch, then the text in ink
+            ax.scatter(left + 0.45, y - lh / 2, s=55, marker="s", color=t[colors[i]], zorder=3)
+            ax.text(left + 1.6, y - lh / 2, s, ha="left", va="center", fontsize=LINE, color=t["text"], zorder=3)
+        else:
+            ax.text(cx, y - lh / 2, s, ha="center", va="center", fontsize=LINE, color=t["text2"], zorder=3)
+        y -= lh + 0.45
+
+
+def _arrow(ax, t, a, b):
+    ax.annotate("", xy=b, xytext=a, zorder=1,
+                arrowprops=dict(arrowstyle="-|>,head_length=0.55,head_width=0.3", color=t["text2"], lw=1.3, shrinkA=0, shrinkB=0))
+
+
+def _canvas(t, w, h):
+    fig = plt.figure(figsize=(w / 10, h / 10), dpi=DPI)
+    fig.patch.set_facecolor(t["surface"])
+    ax = fig.add_axes((0, 0, 1, 1))
+    ax.set_xlim(0, w)
+    ax.set_ylim(0, h)
+    ax.axis("off")
+    return fig, ax
+
+
+def allocation_diagram(mode):
+    """How HSA-50 and the conditions choose the full-step group."""
+    t = THEMES[mode]
+    nodes = {
+        "W": ("First 5 steps", ["every token runs"], None),
+        "G": ("Need score g", ["per token"], None),
+        "M": ("Region coverage m", ["per token"], None),
+        "R": ("Rank tokens", ["C3: by g", "C4: by (1 + λ·m)·g", "C7: outside the region first"], ["C3", "C4", "C7"]),
+        "H": ("Full-step group", ["16% of tokens, all 40 steps"], None),
+        "L": ("Reduced group", ["84% of tokens, 16 of 40 steps"], None),
+    }
+    probe = plt.figure(dpi=DPI)
+    size = {k: _node_size(probe, head, lines, colors is not None) for k, (head, lines, colors) in nodes.items()}
+    plt.close(probe)
+    gap, margin, vgap = 5.5, 1.5, 2.6
+    cols = [["W"], ["G", "M"], ["R"], ["H", "L"]]
+    col_w = [max(size[k][0] for k in c) for c in cols]
+    top = max(size[k][1] for k in ("W", "G", "H"))
+    bottom = max(size[k][1] for k in ("M", "L"))
+    stack = top + vgap + bottom
+    rank_h = max(size["R"][1], stack - 2.0)
+    W = 2 * margin + sum(col_w) + gap * (len(cols) - 1)
+    H = 2 * margin + max(stack, rank_h)
+    yt, yb = H / 2 + stack / 2 - top / 2, H / 2 - stack / 2 + bottom / 2
+    x, cx = margin, []
+    for w in col_w:
+        cx.append(x + w / 2)
+        x += w + gap
+    pos = {"W": (cx[0], yt), "G": (cx[1], yt), "M": (cx[1], yb), "R": (cx[2], H / 2), "H": (cx[3], yt), "L": (cx[3], yb)}
+    fig, ax = _canvas(t, W, H)
+    for k, (head, lines, colors) in nodes.items():
+        w = col_w[[i for i, c in enumerate(cols) if k in c][0]] if k in ("G", "M", "H", "L") else size[k][0]
+        h = rank_h if k == "R" else size[k][1]
+        _node(ax, t, mode, *pos[k], w, h, head, lines, colors)
+    edge = lambda k, side: pos[k][0] + (1 if side == "r" else -1) * (col_w[[i for i, c in enumerate(cols) if k in c][0]] / 2)
+    _arrow(ax, t, (edge("W", "r"), yt), (edge("G", "l"), yt))
+    for k, y in (("G", yt), ("M", yb)):
+        _arrow(ax, t, (edge(k, "r"), y), (edge("R", "l"), y))
+    for k, y in (("H", yt), ("L", yb)):
+        _arrow(ax, t, (edge("R", "r"), y), (edge(k, "l"), y))
+    fig.savefig(OUT / f"allocation_{mode}.png", facecolor=t["surface"])
+    plt.close(fig)
+
+
+def pipeline_diagram(mode):
+    """The study's pipeline in three lanes, each step with the machine it runs on."""
+    from matplotlib.patches import FancyBboxPatch
+
+    t = THEMES[mode]
+    lanes = [
+        ("Generate", [("Prompts", ["registered draw,", "human review"]), ("Text embeddings", ["UMT5 · H100"]),
+                      ("References (C1)", ["Wan2.1, 40 steps · H100"])]),
+        ("Segment and check", [("Segmentation", ["SCRFD · WiLoR · Hands23", "SAM 2.1 · 24 GB slice"]),
+                               ("Audit", ["every contact sheet", "reviewed and signed"]),
+                               ("Freeze", ["hashes of references,", "masks and reviews"])]),
+        ("Compare and decide", [("Conditions", ["C2 · C3 · C4 · C7", "in-job LPIPS · H100"]),
+                                ("Quality scores", ["VBench on lossless", "frames · slice"]),
+                                ("Pilot rules", ["and the frozen", "analysis · laptop"])]),
+    ]
+    probe = plt.figure(dpi=DPI)
+    sizes = [[_node_size(probe, head, lines) for head, lines in steps] for _, steps in lanes]
+    titles = [_size(probe, name, HEAD, "bold") for name, _ in lanes]
+    title_h = titles[0][1]
+    plt.close(probe)
+    gap, margin, vgap, lane_pad = 5.0, 1.0, 2.6, 1.4
+    node_w = [max(w for w, _ in s) for s in sizes]
+    node_h = max(h for s in sizes for _, h in s)
+    lane_w = [max(w, tw + 1.0) + 2 * lane_pad for w, (tw, _) in zip(node_w, titles)]
+    lane_h = title_h + 1.2 + 3 * node_h + 2 * vgap + 2 * lane_pad
+    W = 2 * margin + sum(lane_w) + gap * (len(lanes) - 1)
+    H = 2 * margin + lane_h
+    fig, ax = _canvas(t, W, H)
+    x = margin
+    for (name, steps), lw, nw in zip(lanes, lane_w, node_w):
+        ax.add_patch(FancyBboxPatch((x, margin), lw, lane_h, boxstyle="round,pad=0,rounding_size=1.0",
+                                    fc=FILL[mode]["lane"], ec=t["base"], lw=1.0, zorder=0))
+        cx = x + lw / 2
+        top = margin + lane_h - lane_pad
+        ax.text(cx, top - title_h / 2, name, ha="center", va="center", fontsize=HEAD, fontweight="bold", color=t["text2"])
+        y = top - title_h - 1.2 - node_h / 2
+        for i, (head, lines) in enumerate(steps):
+            _node(ax, t, mode, cx, y, nw, node_h, head, lines)
+            if i < len(steps) - 1:
+                _arrow(ax, t, (cx, y - node_h / 2), (cx, y - node_h / 2 - vgap))
+            y -= node_h + vgap
+        if x + lw < W - margin - 1:
+            _arrow(ax, t, (x + lw, margin + lane_h / 2), (x + lw + gap, margin + lane_h / 2))
+        x += lw + gap
+    fig.savefig(OUT / f"pipeline_{mode}.png", facecolor=t["surface"])
+    plt.close(fig)
+
+
 def tables(rows, rules):
     """The README's tables, from the same records."""
     lines = ["| Prompt | LPIPS C3 | LPIPS C4 | LPIPS C7 | C7 / C3 | Share C3 | Share C4 | Share C7 |", "|---|---|---|---|---|---|---|---|"]
@@ -229,6 +380,8 @@ def main() -> int:
         dose_response(rows, mode)
         per_prompt(rows, mode)
         c2_check(rules, mode)
+        allocation_diagram(mode)
+        pipeline_diagram(mode)
     qualitative(1, "face_badminton")
     qualitative(12, "hands_guitar")
     sheets([("001-s1001-sh8g6", "face_badminton"), ("007-s1007-sh8g6", "hands_tie"), ("012-s1012-sh8g6", "hands_guitar")])
